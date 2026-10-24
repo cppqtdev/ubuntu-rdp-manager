@@ -97,7 +97,9 @@ PageScaffold {
                         : "",
                     qsTr("Restart"), App.sessions.totalCount > 0, () => page.server.restart())
             }
-            Item { Layout.fillWidth: true }
+            Item {
+                Layout.fillWidth: true
+            }
             Switch {
                 text: qsTr("Start automatically when this computer starts")
                 checked: page.server.autostart
@@ -120,7 +122,10 @@ PageScaffold {
         iconName: "network"
         KeyValue { key: qsTr("People connect to"); value: (page.server.connectAddresses.length ? page.server.connectAddresses.join(", ") : page.config.hostName)
                                                          + (page.config.primaryPort !== 3389 ? qsTr("  (port %1)").arg(page.config.primaryPort) : "") }
-        KeyValue { key: qsTr("Ready for connections"); value: page.server.listening ? qsTr("Yes") : qsTr("No") }
+        KeyValue {
+            key: qsTr("Ready for connections")
+            value: page.server.listening ? qsTr("Yes") : qsTr("No")
+        }
         InlineMessage {
             visible: page.config.exposesNonLoopback
             severity: "warning"
@@ -129,26 +134,44 @@ PageScaffold {
         }
     }
 
-    Button {
-        text: details.visible ? qsTr("Hide technical details") : qsTr("Show technical details")
-        flat: true
-        icon.source: Theme.icon("info")
-        onClicked: details.visible = !details.visible
-    }
-    Card {
-        id: details
-        visible: false
-        Layout.fillWidth: true
+    DisclosureCard {
         title: qsTr("Technical details")
         iconName: "settings"
-        KeyValue { key: qsTr("Service"); value: "xrdp.service — " + page.server.activeState + " (" + page.server.subState + ")" }
-        KeyValue { key: qsTr("Session manager"); value: "xrdp-sesman.service — " + page.server.sesmanStatusText }
-        KeyValue { key: qsTr("Last result"); value: page.server.unitResult }
-        KeyValue { key: qsTr("Process ID"); value: page.server.mainPid > 0 ? String(page.server.mainPid) : "" }
-        KeyValue { key: qsTr("Running for"); value: page.server.uptimeText }
-        KeyValue { key: qsTr("Software"); value: "xrdp " + (page.config.xrdpPackageVersion || "—") + ", xorgxrdp " + (page.config.xorgxrdpPackageVersion || "—") }
-        KeyValue { key: qsTr("Configured listen setting"); value: page.config.listenSpec }
-        KeyValue { key: qsTr("Listening on"); value: page.server.listeningEndpoints.join(", ") }
-        KeyValue { key: qsTr("All network addresses"); value: page.server.ipAddresses.join("\n") }
+        KeyValue {
+            key: qsTr("Service")
+            value: "xrdp.service — " + page.server.activeState + " (" + page.server.subState + ")"
+        }
+        KeyValue {
+            key: qsTr("Session manager")
+            value: "xrdp-sesman.service — " + page.server.sesmanStatusText
+        }
+        KeyValue {
+            key: qsTr("Last result")
+            value: page.server.unitResult
+        }
+        KeyValue {
+            key: qsTr("Process ID")
+            value: page.server.mainPid > 0 ? String(page.server.mainPid) : ""
+        }
+        KeyValue {
+            key: qsTr("Running for")
+            value: page.server.uptimeText
+        }
+        KeyValue {
+            key: qsTr("Software")
+            value: "xrdp " + (page.config.xrdpPackageVersion || "—") + ", xorgxrdp " + (page.config.xorgxrdpPackageVersion || "—")
+        }
+        KeyValue {
+            key: qsTr("Configured listen setting")
+            value: page.config.listenSpec
+        }
+        KeyValue {
+            key: qsTr("Listening on")
+            value: page.server.listeningEndpoints.join(", ")
+        }
+        KeyValue {
+            key: qsTr("All network addresses")
+            value: page.server.ipAddresses.join("\n")
+        }
     }
 }

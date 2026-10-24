@@ -15,7 +15,11 @@ PageScaffold {
     subtitle: qsTr("People sign in with the same user name and password they use on this computer. Here you decide which of them may connect remotely. This program never sees or stores passwords.")
 
     actions: [
-        Button { text: qsTr("Refresh"); icon.source: Theme.icon("refresh"); onClicked: page.users.refresh() }
+        Button {
+            text: qsTr("Refresh")
+            icon.source: Theme.icon("refresh")
+            onClicked: page.users.refresh()
+        }
     ]
 
     InlineMessage {
@@ -74,20 +78,45 @@ PageScaffold {
         subtitle: qsTr("To add a new person, create a user account in Ubuntu Settings → System → Users.")
         iconName: "users"
 
-        BusyIndicator { visible: page.users.loading; running: visible; Layout.alignment: Qt.AlignHCenter }
+        BusyIndicator {
+            visible: page.users.loading
+            running: visible
+            Layout.alignment: Qt.AlignHCenter
+        }
 
         RowLayout {
             Layout.fillWidth: true
             spacing: Theme.s
             visible: page.users.model.count > 0
             component Head: Label { color: Theme.textSecondary; font.pixelSize: Theme.caption; font.weight: Font.DemiBold }
-            Head { text: qsTr("Person"); Layout.preferredWidth: 220 }
-            Head { text: ""; Layout.preferredWidth: 60 }
-            Head { text: qsTr("Desktops open"); Layout.preferredWidth: 100 }
-            Head { text: qsTr("Recent sign-in problem"); Layout.fillWidth: true }
-            Head { text: qsTr("May connect"); Layout.preferredWidth: 170; horizontalAlignment: Text.AlignRight }
+            Head {
+                text: qsTr("Person")
+                Layout.preferredWidth: 220
+            }
+            Head {
+                text: ""
+                Layout.preferredWidth: 60
+            }
+            Head {
+                text: qsTr("Desktops open")
+                Layout.preferredWidth: 100
+            }
+            Head {
+                text: qsTr("Recent sign-in problem")
+                Layout.fillWidth: true
+            }
+            Head {
+                text: qsTr("May connect")
+                Layout.preferredWidth: 170
+                horizontalAlignment: Text.AlignRight
+            }
         }
-        Rectangle { Layout.fillWidth: true; height: 1; color: Theme.divider; visible: page.users.model.count > 0 }
+        Rectangle {
+            Layout.fillWidth: true
+            height: 1
+            color: Theme.divider
+            visible: page.users.model.count > 0
+        }
 
         EmptyState {
             visible: !page.users.loading && page.users.model.count === 0
@@ -115,16 +144,40 @@ PageScaffold {
                     Layout.preferredWidth: 220
                     Layout.fillWidth: false
                     spacing: Theme.s
-                    IconImage { source: Theme.icon("user"); sourceSize: Qt.size(18, 18); color: Theme.textSecondary }
+                    IconImage {
+                        source: Theme.icon("user")
+                        sourceSize: Qt.size(18, 18)
+                        color: Theme.textSecondary
+                    }
                     ColumnLayout {
                         spacing: 0
                         Layout.fillWidth: true
-                        Label { text: userRow.name + (userRow.isAdmin ? "  ·  " + qsTr("administrator") : ""); font.weight: Font.DemiBold; color: Theme.textPrimary; elide: Text.ElideRight; Layout.fillWidth: true }
-                        Label { visible: userRow.fullName !== ""; text: userRow.fullName; color: Theme.textTertiary; font.pixelSize: Theme.caption; elide: Text.ElideRight; Layout.fillWidth: true }
+                        Label {
+                            text: userRow.name + (userRow.isAdmin ? "  ·  " + qsTr("administrator") : "")
+                            font.weight: Font.DemiBold
+                            color: Theme.textPrimary
+                            elide: Text.ElideRight
+                            Layout.fillWidth: true
+                        }
+                        Label {
+                            visible: userRow.fullName !== ""
+                            text: userRow.fullName
+                            color: Theme.textTertiary
+                            font.pixelSize: Theme.caption
+                            elide: Text.ElideRight
+                            Layout.fillWidth: true
+                        }
                     }
                 }
-                Item { Layout.preferredWidth: 60 }
-                Label { text: userRow.sessionCount; color: userRow.sessionCount > 0 ? Theme.success : Theme.textTertiary; font.weight: Font.DemiBold; Layout.preferredWidth: 100 }
+                Item {
+                    Layout.preferredWidth: 60
+                }
+                Label {
+                    text: userRow.sessionCount
+                    color: userRow.sessionCount > 0 ? Theme.success : Theme.textTertiary
+                    font.weight: Font.DemiBold
+                    Layout.preferredWidth: 100
+                }
                 Label { text: userRow.lastDenied ? userRow.lastDenied.replace("auth-failure", qsTr("wrong password")).replace("access-denied", qsTr("not allowed")).replace("limit-denied", qsTr("too many people")) : "—"
                     color: userRow.lastDenied ? Theme.warning : Theme.textTertiary; elide: Text.ElideRight; Layout.fillWidth: true }
                 Item {
@@ -174,14 +227,20 @@ PageScaffold {
                 Layout.fillWidth: true
             }
             RowLayout {
-                Label { text: qsTr("List name (advanced)"); color: Theme.textSecondary }
+                Label {
+                    text: qsTr("List name (advanced)")
+                    color: Theme.textSecondary
+                }
                 TextField {
                     id: groupField
                     Layout.fillWidth: true
                     validator: RegularExpressionValidator { regularExpression: /^[a-z_][a-z0-9_-]{0,30}$/ }
                 }
             }
-            Label { text: qsTr("People who may connect"); font.weight: Font.DemiBold }
+            Label {
+                text: qsTr("People who may connect")
+                font.weight: Font.DemiBold
+            }
             Flow {
                 Layout.fillWidth: true
                 spacing: Theme.s

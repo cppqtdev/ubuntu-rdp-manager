@@ -19,8 +19,20 @@ PageScaffold {
             property string answer
             Layout.fillWidth: true
             spacing: 2
-            Label { text: parent.question; font.weight: Font.DemiBold; color: Theme.textPrimary; wrapMode: Text.Wrap; Layout.fillWidth: true }
-            Label { text: parent.answer; color: Theme.textSecondary; wrapMode: Text.Wrap; Layout.fillWidth: true; Layout.bottomMargin: Theme.s }
+            Label {
+                text: parent.question
+                font.weight: Font.DemiBold
+                color: Theme.textPrimary
+                wrapMode: Text.Wrap
+                Layout.fillWidth: true
+            }
+            Label {
+                text: parent.answer
+                color: Theme.textSecondary
+                wrapMode: Text.Wrap
+                Layout.fillWidth: true
+                Layout.bottomMargin: Theme.s
+            }
         }
 
         Faq { question: qsTr("How do people connect?")
@@ -45,21 +57,49 @@ PageScaffold {
         Layout.fillWidth: true
         title: qsTr("Keyboard shortcuts")
         iconName: "info"
-        KeyValue { key: "Ctrl+1 … Ctrl+0"; value: qsTr("Jump to page 1 … 10 in the menu") }
-        KeyValue { key: "Ctrl+PgUp / Ctrl+PgDown"; value: qsTr("Previous / next page") }
-        KeyValue { key: "Tab / Shift+Tab"; value: qsTr("Move between buttons and fields") }
+        KeyValue {
+            key: "Ctrl+1 … Ctrl+0"
+            value: qsTr("Jump to page 1 … 10 in the menu")
+        }
+        KeyValue {
+            key: "Ctrl+PgUp / Ctrl+PgDown"
+            value: qsTr("Previous / next page")
+        }
+        KeyValue {
+            key: "Tab / Shift+Tab"
+            value: qsTr("Move between buttons and fields")
+        }
     }
 
     Card {
         Layout.fillWidth: true
         title: qsTr("Versions")
         iconName: "settings"
-        KeyValue { key: qsTr("This program"); value: App.version }
-        KeyValue { key: qsTr("Remote desktop server"); value: App.config.xrdpPackageVersion !== "" ? "xrdp " + App.config.xrdpPackageVersion : qsTr("not installed") }
-        KeyValue { key: qsTr("Display support"); value: App.config.xorgxrdpPackageVersion !== "" ? "xorgxrdp " + App.config.xorgxrdpPackageVersion : qsTr("not installed") }
-        KeyValue { key: qsTr("Administrator tools"); value: App.helperAvailable ? qsTr("installed") : qsTr("missing") }
-        KeyValue { key: qsTr("Built with"); value: "Qt " + App.qtVersion + " (FluentWinUI3)" }
-        KeyValue { key: qsTr("Documentation"); value: "/opt/ubuntu-rdp-manager/share/doc"; selectable: true }
+        KeyValue {
+            key: qsTr("This program")
+            value: App.version
+        }
+        KeyValue {
+            key: qsTr("Remote desktop server")
+            value: App.config.xrdpPackageVersion !== "" ? "xrdp " + App.config.xrdpPackageVersion : qsTr("not installed")
+        }
+        KeyValue {
+            key: qsTr("Display support")
+            value: App.config.xorgxrdpPackageVersion !== "" ? "xorgxrdp " + App.config.xorgxrdpPackageVersion : qsTr("not installed")
+        }
+        KeyValue {
+            key: qsTr("Administrator tools")
+            value: App.helperAvailable ? qsTr("installed") : qsTr("missing")
+        }
+        KeyValue {
+            key: qsTr("Built with")
+            value: "Qt " + App.qtVersion + " (FluentWinUI3)"
+        }
+        KeyValue {
+            key: qsTr("Documentation")
+            value: "/opt/ubuntu-rdp-manager/share/doc"
+            selectable: true
+        }
     }
 
     Card {
@@ -86,15 +126,45 @@ PageScaffold {
             property string note
             Layout.fillWidth: true
             spacing: Theme.m
-            Label { text: parent.name; font.weight: Font.DemiBold; color: Theme.textPrimary; Layout.preferredWidth: 200 }
-            Label { text: parent.license; color: Theme.textSecondary; Layout.preferredWidth: 200 }
-            Label { text: parent.note; color: Theme.textTertiary; wrapMode: Text.Wrap; Layout.fillWidth: true }
+            Label {
+                text: parent.name
+                font.weight: Font.DemiBold
+                color: Theme.textPrimary
+                Layout.preferredWidth: 200
+            }
+            Label {
+                text: parent.license
+                color: Theme.textSecondary
+                Layout.preferredWidth: 200
+            }
+            Label {
+                text: parent.note
+                color: Theme.textTertiary
+                wrapMode: Text.Wrap
+                Layout.fillWidth: true
+            }
         }
         Lic { name: "Qt 6.8"; license: "LGPL-3.0-only"; note: qsTr("Included; the library files can be replaced. Source: https://download.qt.io") }
-        Lic { name: "FluentWinUI3 style"; license: "LGPL-3.0-only"; note: qsTr("Part of Qt") }
-        Lic { name: "xrdp / xorgxrdp"; license: "Apache-2.0 / MIT"; note: qsTr("Installed from Ubuntu, not included") }
-        Lic { name: "FreeRDP 3 (optional)"; license: "Apache-2.0"; note: qsTr("Installed from Ubuntu, not included") }
-        Lic { name: "ICU"; license: "Unicode-3.0"; note: qsTr("Included with Qt") }
+        Lic {
+            name: "FluentWinUI3 style"
+            license: "LGPL-3.0-only"
+            note: qsTr("Part of Qt")
+        }
+        Lic {
+            name: "xrdp / xorgxrdp"
+            license: "Apache-2.0 / MIT"
+            note: qsTr("Installed from Ubuntu, not included")
+        }
+        Lic {
+            name: "FreeRDP 3 (optional)"
+            license: "Apache-2.0"
+            note: qsTr("Installed from Ubuntu, not included")
+        }
+        Lic {
+            name: "ICU"
+            license: "Unicode-3.0"
+            note: qsTr("Included with Qt")
+        }
         Label {
             Layout.fillWidth: true
             wrapMode: Text.Wrap

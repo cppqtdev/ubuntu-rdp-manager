@@ -114,7 +114,9 @@ Rectangle {
             }
         }
 
-        Item { Layout.fillHeight: true }
+        Item {
+            Layout.fillHeight: true
+        }
 
         // theme switcher (applies after restart; see main.cpp)
         ItemDelegate {

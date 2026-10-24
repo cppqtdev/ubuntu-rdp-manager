@@ -64,21 +64,68 @@ PageScaffold {
         visible: page.search === "" || "tls certificate key".indexOf(page.search) >= 0
         readonly property var info: page.config.certificateInfo
 
-        KeyValue { key: qsTr("File"); value: page.config.certificatePath + (tlsCard.info.resolvedPath && tlsCard.info.resolvedPath !== page.config.certificatePath ? "  →  " + tlsCard.info.resolvedPath : ""); selectable: true }
-        KeyValue { key: qsTr("Secret key file"); value: page.config.keyPath; selectable: true }
-        KeyValue { visible: !tlsCard.info.error; key: qsTr("Made for"); value: tlsCard.info.subject || "" }
-        KeyValue { visible: !tlsCard.info.error; key: qsTr("Made by"); value: tlsCard.info.selfSigned ? qsTr("this computer itself (normal)") : (tlsCard.info.issuer || "") }
-        KeyValue { visible: !tlsCard.info.error; key: qsTr("Valid until"); value: (tlsCard.info.notAfter || "") + (tlsCard.info.daysLeft !== undefined ? qsTr("  (%1 days)").arg(tlsCard.info.daysLeft) : "") }
-        KeyValue { visible: !tlsCard.info.error; key: qsTr("Fingerprint (to compare)"); value: tlsCard.info.sha256 || ""; selectable: true }
-        InlineMessage { visible: !!tlsCard.info.error; severity: "error"; text: tlsCard.info.error || "" }
+        KeyValue {
+            key: qsTr("File")
+            value: page.config.certificatePath + (tlsCard.info.resolvedPath && tlsCard.info.resolvedPath !== page.config.certificatePath ? "  →  " + tlsCard.info.resolvedPath : "")
+            selectable: true
+        }
+        KeyValue {
+            key: qsTr("Secret key file")
+            value: page.config.keyPath
+            selectable: true
+        }
+        KeyValue {
+            visible: !tlsCard.info.error
+            key: qsTr("Made for")
+            value: tlsCard.info.subject || ""
+        }
+        KeyValue {
+            visible: !tlsCard.info.error
+            key: qsTr("Made by")
+            value: tlsCard.info.selfSigned ? qsTr("this computer itself (normal)") : (tlsCard.info.issuer || "")
+        }
+        KeyValue {
+            visible: !tlsCard.info.error
+            key: qsTr("Valid until")
+            value: (tlsCard.info.notAfter || "") + (tlsCard.info.daysLeft !== undefined ? qsTr("  (%1 days)").arg(tlsCard.info.daysLeft) : "")
+        }
+        KeyValue {
+            visible: !tlsCard.info.error
+            key: qsTr("Fingerprint (to compare)")
+            value: tlsCard.info.sha256 || ""
+            selectable: true
+        }
+        InlineMessage {
+            visible: !!tlsCard.info.error
+            severity: "error"
+            text: tlsCard.info.error || ""
+        }
 
         RowLayout {
             spacing: Theme.m
-            Label { text: qsTr("Computer name") }
-            TextField { id: cnField; text: page.config.hostName; Layout.preferredWidth: 240; Accessible.name: qsTr("Certificate host name") }
-            Label { text: qsTr("Valid for") }
-            SpinBox { id: daysField; from: 30; to: 825; value: 365; editable: true }
-            Label { text: qsTr("days"); color: Theme.textSecondary }
+            Label {
+                text: qsTr("Computer name")
+            }
+            TextField {
+                id: cnField
+                text: page.config.hostName
+                Layout.preferredWidth: 240
+                Accessible.name: qsTr("Certificate host name")
+            }
+            Label {
+                text: qsTr("Valid for")
+            }
+            SpinBox {
+                id: daysField
+                from: 30
+                to: 825
+                value: 365
+                editable: true
+            }
+            Label {
+                text: qsTr("days")
+                color: Theme.textSecondary
+            }
             Button {
                 text: qsTr("Create new certificate")
                 enabled: page.canAct
@@ -90,9 +137,15 @@ PageScaffold {
         }
         RowLayout {
             spacing: Theme.m
-            Button { text: qsTr("Use my own: choose certificate…"); onClicked: certDialog.open() }
+            Button {
+                text: qsTr("Use my own: choose certificate…")
+                onClicked: certDialog.open()
+            }
             Label { text: certDialog.selectedFile.toString() !== "" ? certDialog.selectedFile.toString().replace("file://", "") : qsTr("none"); color: Theme.textSecondary; elide: Text.ElideMiddle; Layout.maximumWidth: 260 }
-            Button { text: qsTr("Choose key…"); onClicked: keyDialog.open() }
+            Button {
+                text: qsTr("Choose key…")
+                onClicked: keyDialog.open()
+            }
             Label { text: keyDialog.selectedFile.toString() !== "" ? keyDialog.selectedFile.toString().replace("file://", "") : qsTr("none"); color: Theme.textSecondary; elide: Text.ElideMiddle; Layout.maximumWidth: 260 }
             Button {
                 text: qsTr("Install")
@@ -107,8 +160,16 @@ PageScaffold {
             font.pixelSize: Theme.caption
             text: qsTr("Most people should simply press \"Create new certificate\". If your company gives you its own certificate, choose the certificate and key files instead and press Install.")
         }
-        FileDialog { id: certDialog; title: qsTr("Choose PEM certificate"); nameFilters: [qsTr("PEM files (*.pem *.crt *.cer)"), qsTr("All files (*)")] }
-        FileDialog { id: keyDialog; title: qsTr("Choose PEM private key"); nameFilters: [qsTr("PEM files (*.pem *.key)"), qsTr("All files (*)")] }
+        FileDialog {
+            id: certDialog
+            title: qsTr("Choose PEM certificate")
+            nameFilters: [qsTr("PEM files (*.pem *.crt *.cer)"), qsTr("All files (*)")]
+        }
+        FileDialog {
+            id: keyDialog
+            title: qsTr("Choose PEM private key")
+            nameFilters: [qsTr("PEM files (*.pem *.key)"), qsTr("All files (*)")]
+        }
     }
 
     // ---- Desktop -----------------------------------------------------------------------
@@ -216,9 +277,19 @@ PageScaffold {
                 required property var modelData
                 Layout.fillWidth: true
                 spacing: Theme.m
-                Label { text: modelData.created; color: Theme.textPrimary; Layout.preferredWidth: 170 }
-                Label { text: modelData.file === "xrdp.ini" ? qsTr("connection settings") : qsTr("desktop & user settings"); color: Theme.textSecondary; Layout.preferredWidth: 180 }
-                Item { Layout.fillWidth: true }
+                Label {
+                    text: modelData.created
+                    color: Theme.textPrimary
+                    Layout.preferredWidth: 170
+                }
+                Label {
+                    text: modelData.file === "xrdp.ini" ? qsTr("connection settings") : qsTr("desktop & user settings")
+                    color: Theme.textSecondary
+                    Layout.preferredWidth: 180
+                }
+                Item {
+                    Layout.fillWidth: true
+                }
                 Button {
                     text: qsTr("Restore")
                     flat: true

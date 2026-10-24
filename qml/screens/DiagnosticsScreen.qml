@@ -38,9 +38,18 @@ PageScaffold {
 
         RowLayout {
             spacing: Theme.m
-            Label { text: qsTr("Computer") }
-            TextField { id: hostField; text: App.config.hostName; Layout.preferredWidth: 240; Accessible.name: qsTr("Computer to test") }
-            Label { text: qsTr("Port") }
+            Label {
+                text: qsTr("Computer")
+            }
+            TextField {
+                id: hostField
+                text: App.config.hostName
+                Layout.preferredWidth: 240
+                Accessible.name: qsTr("Computer to test")
+            }
+            Label {
+                text: qsTr("Port")
+            }
             SpinBox { id: portField; from: 1; to: 65535; value: App.config.primaryPort; editable: true
                       textFromValue: (v) => String(v); valueFromText: (t) => parseInt(t) }
             Button {
@@ -73,20 +82,55 @@ PageScaffold {
                 required property var modelData
                 Layout.fillWidth: true
                 spacing: Theme.m
-                StatusPill { status: modelData.status; text: Words.checkStatus(modelData.status); Layout.preferredWidth: 120 }
-                Label { text: modelData.name; font.weight: Font.DemiBold; color: Theme.textPrimary; Layout.preferredWidth: 190 }
-                Label { text: modelData.detail; color: Theme.textSecondary; wrapMode: Text.Wrap; Layout.fillWidth: true }
-                Label { text: modelData.ms >= 0 ? modelData.ms + " ms" : ""; color: Theme.textTertiary; Layout.preferredWidth: 60; horizontalAlignment: Text.AlignRight }
+                StatusPill {
+                    status: modelData.status
+                    text: Words.checkStatus(modelData.status)
+                    Layout.preferredWidth: 120
+                }
+                Label {
+                    text: modelData.name
+                    font.weight: Font.DemiBold
+                    color: Theme.textPrimary
+                    Layout.preferredWidth: 190
+                }
+                Label {
+                    text: modelData.detail
+                    color: Theme.textSecondary
+                    wrapMode: Text.Wrap
+                    Layout.fillWidth: true
+                }
+                Label {
+                    text: modelData.ms >= 0 ? modelData.ms + " ms" : ""
+                    color: Theme.textTertiary
+                    Layout.preferredWidth: 60
+                    horizontalAlignment: Text.AlignRight
+                }
             }
         }
         RowLayout {
             visible: page.diag.testHistory.length > 0
             spacing: Theme.m
-            Label { text: qsTr("After trying it yourself, tick what worked:"); color: Theme.textSecondary }
-            CheckBox { id: authOk; text: qsTr("I could sign in") }
-            CheckBox { id: sessOk; text: qsTr("A desktop opened") }
-            CheckBox { id: deskOk; text: qsTr("I could see and use it") }
-            TextField { id: noteField; placeholderText: qsTr("Note (optional)"); Layout.fillWidth: true }
+            Label {
+                text: qsTr("After trying it yourself, tick what worked:")
+                color: Theme.textSecondary
+            }
+            CheckBox {
+                id: authOk
+                text: qsTr("I could sign in")
+            }
+            CheckBox {
+                id: sessOk
+                text: qsTr("A desktop opened")
+            }
+            CheckBox {
+                id: deskOk
+                text: qsTr("I could see and use it")
+            }
+            TextField {
+                id: noteField
+                placeholderText: qsTr("Note (optional)")
+                Layout.fillWidth: true
+            }
             Button {
                 text: qsTr("Save result")
                 onClicked: page.diag.recordManualResult(authOk.checked, sessOk.checked, deskOk.checked, noteField.text)
@@ -122,9 +166,24 @@ PageScaffold {
                     ColumnLayout {
                         Layout.fillWidth: true
                         spacing: 2
-                        Label { text: modelData.title; font.weight: Font.DemiBold; color: Theme.textPrimary }
-                        Label { text: modelData.detail; color: Theme.textSecondary; wrapMode: Text.Wrap; Layout.fillWidth: true }
-                        Label { visible: modelData.remedy !== ""; text: qsTr("What to do: %1").arg(modelData.remedy); color: Theme.accent; wrapMode: Text.Wrap; Layout.fillWidth: true }
+                        Label {
+                            text: modelData.title
+                            font.weight: Font.DemiBold
+                            color: Theme.textPrimary
+                        }
+                        Label {
+                            text: modelData.detail
+                            color: Theme.textSecondary
+                            wrapMode: Text.Wrap
+                            Layout.fillWidth: true
+                        }
+                        Label {
+                            visible: modelData.remedy !== ""
+                            text: qsTr("What to do: %1").arg(modelData.remedy)
+                            color: Theme.accent
+                            wrapMode: Text.Wrap
+                            Layout.fillWidth: true
+                        }
                     }
                     Button {
                         visible: modelData.action !== ""
@@ -149,13 +208,47 @@ PageScaffold {
                 required property var modelData
                 Layout.fillWidth: true
                 spacing: Theme.m
-                Label { text: String(modelData.time).replace("T", " "); color: Theme.textTertiary; Layout.preferredWidth: 170 }
-                Label { text: modelData.target; color: Theme.textPrimary; Layout.preferredWidth: 200; elide: Text.ElideRight }
-                Label { text: modelData.summary; color: Theme.textSecondary; elide: Text.ElideRight; Layout.fillWidth: true }
                 Label {
-                    text: modelData.manual ? qsTr("you tried: sign-in %1 · desktop %2 · usable %3").arg(modelData.manual.authenticated ? "✓" : "✗")
-                                             .arg(modelData.manual.sessionCreated ? "✓" : "✗").arg(modelData.manual.desktopRendered ? "✓" : "✗") : ""
+                    text: String(modelData.time).replace("T", " ")
+                    color: Theme.textTertiary
+                    Layout.preferredWidth: 170
+                }
+                Label {
+                    text: modelData.target
+                    color: Theme.textPrimary
+                    Layout.preferredWidth: 200
+                    elide: Text.ElideRight
+                }
+                Label {
+                    text: modelData.summary
                     color: Theme.textSecondary
+                    elide: Text.ElideRight
+                    Layout.fillWidth: true
+                }
+                RowLayout {
+                    visible: !!modelData.manual
+                    spacing: Theme.m
+                    Repeater {
+                        model: modelData.manual ? [
+                            { label: qsTr("Sign-in"), passed: modelData.manual.authenticated },
+                            { label: qsTr("Desktop"), passed: modelData.manual.sessionCreated },
+                            { label: qsTr("Usable"), passed: modelData.manual.desktopRendered }
+                        ] : []
+                        delegate: RowLayout {
+                            required property var modelData
+                            spacing: Theme.xs
+                            IconImage {
+                                source: Theme.icon(modelData.passed ? "check" : "close")
+                                sourceSize: Qt.size(14, 14)
+                                color: modelData.passed ? Theme.success : Theme.danger
+                            }
+                            Label {
+                                text: modelData.label
+                                color: Theme.textSecondary
+                                font.pixelSize: Theme.caption
+                            }
+                        }
+                    }
                 }
             }
         }

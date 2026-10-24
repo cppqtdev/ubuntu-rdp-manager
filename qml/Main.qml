@@ -14,6 +14,8 @@ ApplicationWindow {
     visible: true
     title: qsTr("Remote Desktop Manager")
     color: Theme.windowBg
+    font.family: Theme.fontFamily
+    font.pixelSize: Theme.body
 
     readonly property var pages: [
         { title: qsTr("Overview"), icon: "dashboard" },
@@ -76,22 +78,57 @@ ApplicationWindow {
                 currentIndex: App.currentPage
 
                 // Screens are created on first visit and then kept, so state survives navigation.
-                Loader { active: StackLayout.isCurrentItem || item !== null; sourceComponent: DashboardScreen { onOpenPage: (i) => window.go(i) } }
-                Loader { active: StackLayout.isCurrentItem || item !== null; sourceComponent: InstallationScreen { confirm: confirmDialog; onOpenPage: (i) => window.go(i) } }
-                Loader { active: StackLayout.isCurrentItem || item !== null; sourceComponent: ServerControlScreen { confirm: confirmDialog } }
-                Loader { active: StackLayout.isCurrentItem || item !== null; sourceComponent: SessionsScreen { confirm: confirmDialog } }
-                Loader { active: StackLayout.isCurrentItem || item !== null; sourceComponent: UsersScreen { confirm: confirmDialog } }
-                Loader { active: StackLayout.isCurrentItem || item !== null; sourceComponent: SessionLimitsScreen { confirm: confirmDialog } }
-                Loader { active: StackLayout.isCurrentItem || item !== null; sourceComponent: ConfigurationScreen { confirm: confirmDialog } }
-                Loader { active: StackLayout.isCurrentItem || item !== null; sourceComponent: PerformanceScreen {} }
-                Loader { active: StackLayout.isCurrentItem || item !== null; sourceComponent: LogsScreen {} }
-                Loader { active: StackLayout.isCurrentItem || item !== null; sourceComponent: DiagnosticsScreen { onOpenAction: (a) => window.openAction(a) } }
-                Loader { active: StackLayout.isCurrentItem || item !== null; sourceComponent: AboutScreen {} }
+                Loader {
+                    active: StackLayout.isCurrentItem || item !== null
+                    sourceComponent: DashboardScreen { onOpenPage: (i) => window.go(i) }
+                }
+                Loader {
+                    active: StackLayout.isCurrentItem || item !== null
+                    sourceComponent: InstallationScreen { confirm: confirmDialog; onOpenPage: (i) => window.go(i) }
+                }
+                Loader {
+                    active: StackLayout.isCurrentItem || item !== null
+                    sourceComponent: ServerControlScreen { confirm: confirmDialog }
+                }
+                Loader {
+                    active: StackLayout.isCurrentItem || item !== null
+                    sourceComponent: SessionsScreen { confirm: confirmDialog }
+                }
+                Loader {
+                    active: StackLayout.isCurrentItem || item !== null
+                    sourceComponent: UsersScreen { confirm: confirmDialog }
+                }
+                Loader {
+                    active: StackLayout.isCurrentItem || item !== null
+                    sourceComponent: SessionLimitsScreen { confirm: confirmDialog }
+                }
+                Loader {
+                    active: StackLayout.isCurrentItem || item !== null
+                    sourceComponent: ConfigurationScreen { confirm: confirmDialog }
+                }
+                Loader {
+                    active: StackLayout.isCurrentItem || item !== null
+                    sourceComponent: PerformanceScreen {}
+                }
+                Loader {
+                    active: StackLayout.isCurrentItem || item !== null
+                    sourceComponent: LogsScreen {}
+                }
+                Loader {
+                    active: StackLayout.isCurrentItem || item !== null
+                    sourceComponent: DiagnosticsScreen { onOpenAction: (a) => window.openAction(a) }
+                }
+                Loader {
+                    active: StackLayout.isCurrentItem || item !== null
+                    sourceComponent: AboutScreen {}
+                }
             }
         }
     }
 
-    ConfirmDialog { id: confirmDialog }
+    ConfirmDialog {
+        id: confirmDialog
+    }
 
     ToastHost {
         id: toasts
@@ -115,6 +152,12 @@ ApplicationWindow {
             }
         }
     }
-    Shortcut { sequence: "Ctrl+PgDown"; onActivated: window.go(App.currentPage + 1) }
-    Shortcut { sequence: "Ctrl+PgUp"; onActivated: window.go(App.currentPage - 1) }
+    Shortcut {
+        sequence: "Ctrl+PgDown"
+        onActivated: window.go(App.currentPage + 1)
+    }
+    Shortcut {
+        sequence: "Ctrl+PgUp"
+        onActivated: window.go(App.currentPage - 1)
+    }
 }

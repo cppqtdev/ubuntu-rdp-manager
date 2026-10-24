@@ -13,8 +13,6 @@ PageScaffold {
     readonly property SessionManager sessions: App.sessions
     readonly property SystemMonitor monitor: App.monitor
     readonly property bool canAct: App.helperAvailable && server.installed && !server.busy
-    property bool showDetails: false
-
     title: qsTr("Overview")
     subtitle: qsTr("Remote Desktop lets other people use this computer (%1) from their own computer, each with their own separate desktop.")
               .arg(config.hostName)
@@ -32,7 +30,7 @@ PageScaffold {
         Layout.fillWidth: true
         padding: Theme.xl
         background: Rectangle {
-            radius: Theme.radiusL
+            radius: Theme.radiusS
             color: Theme.tint(Theme.statusColor(Words.statusKey(page.server.plainStatus)), Theme.dark ? 0.16 : 0.08)
             border.color: Theme.tint(Theme.statusColor(Words.statusKey(page.server.plainStatus)), 0.5)
         }
@@ -97,7 +95,9 @@ PageScaffold {
                           qsTr("Nobody will be able to connect until you turn it on again. It will also stay off after this computer restarts."),
                           "", qsTr("Turn off"), false, () => page.server.setRemoteDesktopEnabled(false))
     }
-    ConfirmDialog { id: confirm }
+    ConfirmDialog {
+        id: confirm
+    }
 
     InlineMessage {
         visible: page.server.lastError !== ""
@@ -147,7 +147,10 @@ PageScaffold {
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignTop
                 spacing: Theme.s
-                Label { text: qsTr("Type this address in the remote desktop program:"); color: Theme.textSecondary }
+                Label {
+                    text: qsTr("Type this address in the remote desktop program:")
+                    color: Theme.textSecondary
+                }
                 Repeater {
                     model: page.server.connectAddresses.length > 0 ? page.server.connectAddresses : [page.config.hostName]
                     delegate: TextEdit {
@@ -176,12 +179,41 @@ PageScaffold {
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignTop
                 spacing: Theme.xs
-                Label { text: qsTr("Windows"); font.weight: Font.DemiBold; color: Theme.textPrimary }
-                Label { text: qsTr("Press the Windows key, type \"Remote Desktop Connection\", open it, enter the address and click Connect."); color: Theme.textSecondary; wrapMode: Text.Wrap; Layout.fillWidth: true }
-                Label { text: qsTr("Mac, iPhone, iPad, Android"); font.weight: Font.DemiBold; color: Theme.textPrimary; Layout.topMargin: Theme.s }
-                Label { text: qsTr("Install Microsoft's free \"Windows App\" (formerly Remote Desktop) from the app store and add a PC with the address."); color: Theme.textSecondary; wrapMode: Text.Wrap; Layout.fillWidth: true }
-                Label { text: qsTr("Linux"); font.weight: Font.DemiBold; color: Theme.textPrimary; Layout.topMargin: Theme.s }
-                Label { text: qsTr("Use Remmina (preinstalled on Ubuntu) and choose the RDP option."); color: Theme.textSecondary; wrapMode: Text.Wrap; Layout.fillWidth: true }
+                Label {
+                    text: qsTr("Windows")
+                    font.weight: Font.DemiBold
+                    color: Theme.textPrimary
+                }
+                Label {
+                    text: qsTr("Press the Windows key, type \"Remote Desktop Connection\", open it, enter the address and click Connect.")
+                    color: Theme.textSecondary
+                    wrapMode: Text.Wrap
+                    Layout.fillWidth: true
+                }
+                Label {
+                    text: qsTr("Mac, iPhone, iPad, Android")
+                    font.weight: Font.DemiBold
+                    color: Theme.textPrimary
+                    Layout.topMargin: Theme.s
+                }
+                Label {
+                    text: qsTr("Install Microsoft's free \"Windows App\" (formerly Remote Desktop) from the app store and add a PC with the address.")
+                    color: Theme.textSecondary
+                    wrapMode: Text.Wrap
+                    Layout.fillWidth: true
+                }
+                Label {
+                    text: qsTr("Linux")
+                    font.weight: Font.DemiBold
+                    color: Theme.textPrimary
+                    Layout.topMargin: Theme.s
+                }
+                Label {
+                    text: qsTr("Use Remmina (preinstalled on Ubuntu) and choose the RDP option.")
+                    color: Theme.textSecondary
+                    wrapMode: Text.Wrap
+                    Layout.fillWidth: true
+                }
                 Label {
                     text: qsTr("The first time, the program may ask whether to trust this computer's certificate. That is normal — you can compare its fingerprint on the Settings page.")
                     color: Theme.textTertiary
@@ -261,11 +293,29 @@ PageScaffold {
                     required property string durationText
                     Layout.fillWidth: true
                     spacing: Theme.m
-                    IconImage { source: Theme.icon("user"); sourceSize: Qt.size(16, 16); color: Theme.textSecondary }
-                    Label { text: userName; font.weight: Font.DemiBold; color: Theme.textPrimary; Layout.preferredWidth: 160; elide: Text.ElideRight }
-                    StatusPill { status: sessionState; text: Words.sessionState(sessionState) }
-                    Item { Layout.fillWidth: true }
-                    Label { text: qsTr("for %1").arg(durationText); color: Theme.textTertiary }
+                    IconImage {
+                        source: Theme.icon("user")
+                        sourceSize: Qt.size(16, 16)
+                        color: Theme.textSecondary
+                    }
+                    Label {
+                        text: userName
+                        font.weight: Font.DemiBold
+                        color: Theme.textPrimary
+                        Layout.preferredWidth: 160
+                        elide: Text.ElideRight
+                    }
+                    StatusPill {
+                        status: sessionState
+                        text: Words.sessionState(sessionState)
+                    }
+                    Item {
+                        Layout.fillWidth: true
+                    }
+                    Label {
+                        text: qsTr("for %1").arg(durationText)
+                        color: Theme.textTertiary
+                    }
                 }
             }
         }
@@ -292,35 +342,63 @@ PageScaffold {
                     spacing: 0
                     RowLayout {
                         spacing: Theme.s
-                        StatusPill { status: "warning"; text: Words.logCategory(modelData.category) }
-                        Label { text: modelData.time; color: Theme.textTertiary }
+                        StatusPill {
+                            status: "warning"
+                            text: Words.logCategory(modelData.category)
+                        }
+                        Label {
+                            text: modelData.time
+                            color: Theme.textTertiary
+                        }
                     }
-                    Label { text: modelData.message; color: Theme.textSecondary; elide: Text.ElideRight; Layout.fillWidth: true; font.pixelSize: Theme.caption + 1 }
+                    Label {
+                        text: modelData.message
+                        color: Theme.textSecondary
+                        elide: Text.ElideRight
+                        Layout.fillWidth: true
+                        font.pixelSize: Theme.caption + 1
+                    }
                 }
             }
         }
     }
 
     // ---- technical details (folded away) -------------------------------------------------
-    Button {
-        text: page.showDetails ? qsTr("Hide technical details") : qsTr("Show technical details")
-        flat: true
-        icon.source: Theme.icon("info")
-        onClicked: page.showDetails = !page.showDetails
-    }
-    Card {
-        visible: page.showDetails
-        Layout.fillWidth: true
+    DisclosureCard {
         title: qsTr("Technical details")
         subtitle: qsTr("For IT staff and support.")
         iconName: "settings"
-        KeyValue { key: qsTr("Server software"); value: "xrdp " + (page.config.xrdpPackageVersion || qsTr("not installed")) + ", xorgxrdp " + (page.config.xorgxrdpPackageVersion || "—") }
-        KeyValue { key: qsTr("Service state"); value: page.server.activeState + " / " + page.server.subState + " · " + qsTr("up %1").arg(page.server.uptimeText) }
-        KeyValue { key: qsTr("Listening on"); value: page.server.listening ? page.server.listeningEndpoints.join(", ") : qsTr("not listening") }
-        KeyValue { key: qsTr("Encryption"); value: page.config.securityLayer + (page.config.certificateInfo.selfSigned ? qsTr(" · self-made certificate") : "") }
-        KeyValue { key: qsTr("Desktop"); value: page.config.desktopId === "xfce" ? "Xfce" : page.config.desktopScript }
-        KeyValue { key: qsTr("All network addresses"); value: page.server.ipAddresses.join("\n") }
-        KeyValue { key: qsTr("Memory used by remote desktops"); value: Theme.formatMiB(page.monitor.sessionMemoryMiB) }
-        KeyValue { key: qsTr("Computer running for"); value: page.monitor.systemUptimeText }
+        KeyValue {
+            key: qsTr("Server software")
+            value: "xrdp " + (page.config.xrdpPackageVersion || qsTr("not installed")) + ", xorgxrdp " + (page.config.xorgxrdpPackageVersion || "—")
+        }
+        KeyValue {
+            key: qsTr("Service state")
+            value: page.server.activeState + " / " + page.server.subState + " · " + qsTr("up %1").arg(page.server.uptimeText)
+        }
+        KeyValue {
+            key: qsTr("Listening on")
+            value: page.server.listening ? page.server.listeningEndpoints.join(", ") : qsTr("not listening")
+        }
+        KeyValue {
+            key: qsTr("Encryption")
+            value: page.config.securityLayer + (page.config.certificateInfo.selfSigned ? qsTr(" · self-made certificate") : "")
+        }
+        KeyValue {
+            key: qsTr("Desktop")
+            value: page.config.desktopId === "xfce" ? "Xfce" : page.config.desktopScript
+        }
+        KeyValue {
+            key: qsTr("All network addresses")
+            value: page.server.ipAddresses.join("\n")
+        }
+        KeyValue {
+            key: qsTr("Memory used by remote desktops")
+            value: Theme.formatMiB(page.monitor.sessionMemoryMiB)
+        }
+        KeyValue {
+            key: qsTr("Computer running for")
+            value: page.monitor.systemUptimeText
+        }
     }
 }

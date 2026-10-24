@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Controls.impl
 import QtQuick.Layouts
 import UbuntuRdpManager
 
@@ -23,10 +24,14 @@ PageScaffold {
     readonly property bool tlsOk: (config.certificateInfo.error === undefined) && App.diagnostics.checks.some(c => c.id === "tlskey" && c.status !== "fail")
 
     title: qsTr("Setup")
-    subtitle: qsTr("Go through these steps from top to bottom. Green ticks are done. Software is downloaded only from Ubuntu's official servers.")
+    subtitle: qsTr("Go through these steps from top to bottom. Completed steps are marked with a check. Software is downloaded only from Ubuntu's official servers.")
 
     actions: [
-        Button { text: qsTr("Check again"); icon.source: Theme.icon("refresh"); onClicked: page.inst.refresh() }
+        Button {
+            text: qsTr("Check again")
+            icon.source: Theme.icon("refresh")
+            onClicked: page.inst.refresh()
+        }
     ]
 
     component Step: Pane {
@@ -39,27 +44,64 @@ PageScaffold {
         default property alias extra: extraRow.data
         Layout.fillWidth: true
         padding: Theme.m
-        background: Rectangle { color: Theme.subtleBg; radius: Theme.radiusM }
+        background: Rectangle {
+            color: Theme.subtleBg
+            radius: Theme.radiusM
+        }
         RowLayout {
             anchors.fill: parent
             spacing: Theme.m
             Rectangle {
-                width: 28; height: 28; radius: 14
-                color: Theme.tint(Theme.statusColor(step.status), 0.18)
-                border.color: Theme.statusColor(step.status)
+                width: 28
+                height: 28
+                radius: Theme.radiusS
+                color: Theme.tint(Theme.statusColor(step.status), Theme.dark ? 0.20 : 0.12)
                 Layout.alignment: Qt.AlignTop
-                Label { anchors.centerIn: parent; text: step.status === "pass" ? "✓" : step.number; color: Theme.statusColor(step.status); font.weight: Font.Bold }
+                IconImage {
+                    anchors.centerIn: parent
+                    visible: step.status === "pass"
+                    source: Theme.icon("check")
+                    sourceSize: Qt.size(16, 16)
+                    color: Theme.statusColor(step.status)
+                }
+                Label {
+                    anchors.centerIn: parent
+                    visible: step.status !== "pass"
+                    text: step.number
+                    color: Theme.statusColor(step.status)
+                    font.pixelSize: Theme.body
+                    font.weight: Font.DemiBold
+                }
             }
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 2
                 RowLayout {
                     spacing: Theme.s
-                    Label { text: step.stepTitle; font.weight: Font.DemiBold; color: Theme.textPrimary }
-                    StatusPill { visible: step.statusText !== ""; status: step.status === "busy" ? "info" : step.status; text: step.statusText; busy: step.status === "busy" }
+                    Label {
+                        text: step.stepTitle
+                        font.weight: Font.DemiBold
+                        color: Theme.textPrimary
+                    }
+                    StatusPill {
+                        visible: step.statusText !== ""
+                        status: step.status === "busy" ? "info" : step.status
+                        text: step.statusText
+                        busy: step.status === "busy"
+                    }
                 }
-                Label { visible: step.description !== ""; text: step.description; color: Theme.textSecondary; wrapMode: Text.Wrap; Layout.fillWidth: true }
-                RowLayout { id: extraRow; spacing: Theme.s; Layout.topMargin: children.length > 0 ? Theme.xs : 0 }
+                Label {
+                    visible: step.description !== ""
+                    text: step.description
+                    color: Theme.textSecondary
+                    wrapMode: Text.Wrap
+                    Layout.fillWidth: true
+                }
+                RowLayout {
+                    id: extraRow
+                    spacing: Theme.s
+                    Layout.topMargin: children.length > 0 ? Theme.xs : 0
+                }
             }
         }
     }
@@ -145,7 +187,12 @@ PageScaffold {
                         qsTr("Please do not turn off the computer while it is installing."),
                         qsTr("Install"), false, () => page.inst.install(installPanel.missing))
                 }
-                BusyIndicator { visible: page.inst.installing; running: visible; implicitWidth: 28; implicitHeight: 28 }
+                BusyIndicator {
+                    visible: page.inst.installing
+                    running: visible
+                    implicitWidth: 28
+                    implicitHeight: 28
+                }
                 Label {
                     visible: page.inst.installResult !== ""
                     text: page.inst.installResult
@@ -195,7 +242,11 @@ PageScaffold {
             status: !page.config.configPresent ? "neutral" : page.config.allowRootLogin ? "warn" : "pass"
             Button { text: qsTr("Block the root account"); enabled: page.canAct && page.config.allowRootLogin
                      onClicked: page.config.applyValue("security.allowRootLogin", "false") }
-            Button { text: qsTr("Choose who can connect…"); flat: true; onClicked: page.openPage(4) }
+            Button {
+                text: qsTr("Choose who can connect…")
+                flat: true
+                onClicked: page.openPage(4)
+            }
         }
         Step {
             number: 11; stepTitle: qsTr("Encryption")
@@ -206,7 +257,11 @@ PageScaffold {
                      onClicked: page.config.generateCertificate(page.config.hostName, 365) }
             Button { text: qsTr("2. Always encrypt"); enabled: page.canAct && page.config.securityLayer !== "tls"
                      onClicked: page.config.applyValue("security.layer", "tls") }
-            Button { text: qsTr("More settings…"); flat: true; onClicked: page.openPage(6) }
+            Button {
+                text: qsTr("More settings…")
+                flat: true
+                onClicked: page.openPage(6)
+            }
         }
         Step {
             number: 12; stepTitle: qsTr("How many people")
@@ -214,7 +269,11 @@ PageScaffold {
             status: page.config.limitKind === "unlimited" ? "pass" : page.config.limitKind === "limited" ? "neutral" : "fail"
             Button { text: qsTr("Remove the limit"); enabled: page.canAct && page.config.limitKind !== "unlimited"
                      onClicked: page.config.applySessionLimits({ unlimited: true }) }
-            Button { text: qsTr("Choose a limit…"); flat: true; onClicked: page.openPage(5) }
+            Button {
+                text: qsTr("Choose a limit…")
+                flat: true
+                onClicked: page.openPage(5)
+            }
         }
     }
 
@@ -231,7 +290,11 @@ PageScaffold {
             description: Words.serverHeadline(page.server.plainStatus) + ". " + (page.server.autostart ? qsTr("It turns on by itself when the computer starts.") : qsTr("It does not turn on by itself yet."))
             status: page.server.running && page.server.autostart && !page.config.restartRequired ? "pass" : page.server.running ? "warn" : "fail"
             statusText: page.config.restartRequired ? qsTr("restart needed") : page.server.running ? qsTr("on") : qsTr("off")
-            Button { text: qsTr("Turn on at every start"); enabled: page.canAct && !page.server.autostart; onClicked: page.server.setAutostart(true) }
+            Button {
+                text: qsTr("Turn on at every start")
+                enabled: page.canAct && !page.server.autostart
+                onClicked: page.server.setAutostart(true)
+            }
             Button { text: page.server.running ? qsTr("Restart") : qsTr("Turn on"); enabled: page.canAct && !page.server.busy
                      onClicked: page.server.running ? page.server.restart() : page.server.start() }
         }
@@ -248,14 +311,22 @@ PageScaffold {
                     : App.diagnostics.testStages.some(s => s.status === "fail") ? "fail" : "neutral"
             Button { text: qsTr("Run test"); enabled: page.server.listening && !App.diagnostics.testRunning
                      onClicked: App.diagnostics.runConnectionTest("127.0.0.1", page.config.primaryPort) }
-            Button { text: qsTr("See details…"); flat: true; onClicked: page.openPage(9) }
+            Button {
+                text: qsTr("See details…")
+                flat: true
+                onClicked: page.openPage(9)
+            }
         }
         Step {
             number: 16; stepTitle: qsTr("All done?")
             description: App.diagnostics.failCount === 0 ? qsTr("Everything is ready. See the Overview page for how people connect.")
                                                          : qsTr("Problems still to fix: %1. The Health Check explains each one.").arg(App.diagnostics.failCount)
             status: App.diagnostics.failCount === 0 ? "pass" : "fail"
-            Button { text: qsTr("Open Health Check"); flat: true; onClicked: page.openPage(9) }
+            Button {
+                text: qsTr("Open Health Check")
+                flat: true
+                onClicked: page.openPage(9)
+            }
         }
     }
 }

@@ -24,7 +24,7 @@ Pane {
 
     background: Rectangle {
         color: Theme.cardBg
-        radius: Theme.radiusL
+        radius: Theme.radiusS
         border.color: Theme.cardBorder
         Rectangle {
             visible: root.status !== ""
@@ -85,6 +85,8 @@ Pane {
             elide: Text.ElideRight
             Layout.fillWidth: true
         }
-        Item { Layout.fillHeight: true }
+        Item {
+            Layout.fillHeight: true
+        }
     }
 }

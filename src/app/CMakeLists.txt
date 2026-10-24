@@ -34,6 +34,7 @@ set(URDM_QML_FILES
     ../../qml/components/AppSidebar.qml
     ../../qml/components/Card.qml
     ../../qml/components/ConfirmDialog.qml
+    ../../qml/components/DisclosureCard.qml
     ../../qml/components/EmptyState.qml
     ../../qml/components/InlineMessage.qml
     ../../qml/components/KeyValue.qml

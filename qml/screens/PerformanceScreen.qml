@@ -50,7 +50,12 @@ PageScaffold {
             iconName: "cpu"
             Layout.fillWidth: true
             Layout.preferredWidth: 1
-            Sparkline { values: page.monitor.cpuHistory; maxValue: 100; Layout.fillWidth: true; Layout.preferredHeight: 90 }
+            Sparkline {
+                values: page.monitor.cpuHistory
+                maxValue: 100
+                Layout.fillWidth: true
+                Layout.preferredHeight: 90
+            }
         }
         Card {
             title: qsTr("Memory")
@@ -58,7 +63,13 @@ PageScaffold {
             iconName: "memory"
             Layout.fillWidth: true
             Layout.preferredWidth: 1
-            Sparkline { values: page.monitor.memHistory; maxValue: 100; lineColor: Theme.success; Layout.fillWidth: true; Layout.preferredHeight: 90 }
+            Sparkline {
+                values: page.monitor.memHistory
+                maxValue: 100
+                lineColor: Theme.success
+                Layout.fillWidth: true
+                Layout.preferredHeight: 90
+            }
         }
         Card {
             title: qsTr("Open desktops")
@@ -86,15 +97,42 @@ PageScaffold {
             Layout.fillWidth: true
             Layout.preferredWidth: 1
             Layout.alignment: Qt.AlignTop
-            KeyValue { key: qsTr("xrdp processes"); value: qsTr("%1 (xrdp, sesman, Xorg, chansrv)").arg(page.monitor.xrdpProcessCount) }
-            KeyValue { key: qsTr("Xorg servers"); value: String(page.monitor.xorgCount) }
-            KeyValue { key: qsTr("Resident memory"); value: Theme.formatMiB(page.monitor.xrdpMemoryMiB) + qsTr(" (RSS, shared pages counted per process)") }
-            KeyValue { key: qsTr("CPU"); value: page.monitor.xrdpCpuPercent.toFixed(1) + qsTr(" % of machine") }
-            KeyValue { key: qsTr("All RDP session cgroups"); value: Theme.formatMiB(page.monitor.sessionMemoryMiB) }
-            KeyValue { key: qsTr("Memory pressure (PSI)"); value: page.monitor.memoryPressure < 0 ? qsTr("unavailable on this kernel") : page.monitor.memoryPressure.toFixed(1) + qsTr(" % (some, avg10)") }
-            KeyValue { key: qsTr("Disk free (/)"); value: page.monitor.diskFreeGiB < 0 ? qsTr("unavailable") : qsTr("%1 GiB of %2 GiB").arg(page.monitor.diskFreeGiB.toFixed(1)).arg(page.monitor.diskTotalGiB.toFixed(0)) }
-            KeyValue { key: qsTr("GPU"); value: qsTr("not measured (xorgxrdp renders in software)") }
-            KeyValue { key: qsTr("Per-session network"); value: qsTr("not available (no per-session accounting in xrdp 0.9)") }
+            KeyValue {
+                key: qsTr("xrdp processes")
+                value: qsTr("%1 (xrdp, sesman, Xorg, chansrv)").arg(page.monitor.xrdpProcessCount)
+            }
+            KeyValue {
+                key: qsTr("Xorg servers")
+                value: String(page.monitor.xorgCount)
+            }
+            KeyValue {
+                key: qsTr("Resident memory")
+                value: Theme.formatMiB(page.monitor.xrdpMemoryMiB) + qsTr(" (RSS, shared pages counted per process)")
+            }
+            KeyValue {
+                key: qsTr("CPU")
+                value: page.monitor.xrdpCpuPercent.toFixed(1) + qsTr(" % of machine")
+            }
+            KeyValue {
+                key: qsTr("All RDP session cgroups")
+                value: Theme.formatMiB(page.monitor.sessionMemoryMiB)
+            }
+            KeyValue {
+                key: qsTr("Memory pressure (PSI)")
+                value: page.monitor.memoryPressure < 0 ? qsTr("unavailable on this kernel") : page.monitor.memoryPressure.toFixed(1) + qsTr(" % (some, avg10)")
+            }
+            KeyValue {
+                key: qsTr("Disk free (/)")
+                value: page.monitor.diskFreeGiB < 0 ? qsTr("unavailable") : qsTr("%1 GiB of %2 GiB").arg(page.monitor.diskFreeGiB.toFixed(1)).arg(page.monitor.diskTotalGiB.toFixed(0))
+            }
+            KeyValue {
+                key: qsTr("GPU")
+                value: qsTr("not measured (xorgxrdp renders in software)")
+            }
+            KeyValue {
+                key: qsTr("Per-session network")
+                value: qsTr("not available (no per-session accounting in xrdp 0.9)")
+            }
         }
 
         Card {
@@ -103,19 +141,43 @@ PageScaffold {
             Layout.fillWidth: true
             Layout.preferredWidth: 1
             Layout.alignment: Qt.AlignTop
-            KeyValue { key: qsTr("Desktops opened"); value: String(page.logs.sessionStarts24h) }
-            KeyValue { key: qsTr("Desktops that failed to open"); value: String(page.logs.sessionFailures24h) }
-            KeyValue { key: qsTr("Turned away (too many people)"); value: String(page.logs.limitDenied24h) }
-            KeyValue { key: qsTr("Wrong passwords"); value: String(page.logs.authFailures24h) }
+            KeyValue {
+                key: qsTr("Desktops opened")
+                value: String(page.logs.sessionStarts24h)
+            }
+            KeyValue {
+                key: qsTr("Desktops that failed to open")
+                value: String(page.logs.sessionFailures24h)
+            }
+            KeyValue {
+                key: qsTr("Turned away (too many people)")
+                value: String(page.logs.limitDenied24h)
+            }
+            KeyValue {
+                key: qsTr("Wrong passwords")
+                value: String(page.logs.authFailures24h)
+            }
             KeyValue {
                 key: qsTr("Worked first time")
                 value: (page.logs.sessionStarts24h + page.logs.sessionFailures24h + page.logs.limitDenied24h) === 0 ? qsTr("nobody signed in")
                        : (100 * page.logs.sessionStarts24h / (page.logs.sessionStarts24h + page.logs.sessionFailures24h + page.logs.limitDenied24h)).toFixed(0) + " %"
             }
-            KeyValue { key: qsTr("Last connection test"); value: page.lastTest ? page.lastTest.time.replace("T", " ") : qsTr("not done yet (Health Check)") }
-            KeyValue { key: qsTr("Time to reach the computer"); value: page.stageMs("tcp") >= 0 ? page.stageMs("tcp") + " ms" : "—" }
-            KeyValue { key: qsTr("Time for the server to answer"); value: page.stageMs("negotiation") >= 0 ? page.stageMs("negotiation") + " ms" : "—" }
-            KeyValue { key: qsTr("Time to set up encryption"); value: page.stageMs("tls") >= 0 ? page.stageMs("tls") + " ms" : "—" }
+            KeyValue {
+                key: qsTr("Last connection test")
+                value: page.lastTest ? page.lastTest.time.replace("T", " ") : qsTr("not done yet (Health Check)")
+            }
+            KeyValue {
+                key: qsTr("Time to reach the computer")
+                value: page.stageMs("tcp") >= 0 ? page.stageMs("tcp") + " ms" : "—"
+            }
+            KeyValue {
+                key: qsTr("Time for the server to answer")
+                value: page.stageMs("negotiation") >= 0 ? page.stageMs("negotiation") + " ms" : "—"
+            }
+            KeyValue {
+                key: qsTr("Time to set up encryption")
+                value: page.stageMs("tls") >= 0 ? page.stageMs("tls") + " ms" : "—"
+            }
             Label {
                 Layout.fillWidth: true
                 wrapMode: Text.Wrap
@@ -130,7 +192,11 @@ PageScaffold {
         Layout.fillWidth: true
         title: qsTr("Memory used by each person")
         iconName: "sessions"
-        EmptyState { visible: App.sessions.totalCount === 0; iconName: "sessions"; title: qsTr("Nobody is connected") }
+        EmptyState {
+            visible: App.sessions.totalCount === 0
+            iconName: "sessions"
+            title: qsTr("Nobody is connected")
+        }
         Repeater {
             model: App.sessions.model
             delegate: RowLayout {
@@ -142,13 +208,45 @@ PageScaffold {
                 required property int processCount
                 Layout.fillWidth: true
                 spacing: Theme.m
-                Label { text: userName; font.weight: Font.DemiBold; color: Theme.textPrimary; Layout.preferredWidth: 140 }
-                Label { text: display; color: Theme.textSecondary; Layout.preferredWidth: 50 }
-                StatusPill { status: sessionState; text: Words.sessionState(sessionState) }
-                ProgressBar { from: 0; to: Math.max(1, page.monitor.memTotalMiB); value: Math.max(0, memoryMiB); Layout.fillWidth: true }
-                Label { text: Theme.formatMiB(memoryMiB); color: Theme.textPrimary; Layout.preferredWidth: 90; horizontalAlignment: Text.AlignRight }
-                Label { text: cpuPercent < 0 ? "—" : qsTr("%1 % busy").arg(cpuPercent.toFixed(1)); color: Theme.textSecondary; Layout.preferredWidth: 90; horizontalAlignment: Text.AlignRight }
-                Label { text: processCount < 0 ? "—" : qsTr("%1 programs").arg(processCount); color: Theme.textTertiary; Layout.preferredWidth: 70; horizontalAlignment: Text.AlignRight }
+                Label {
+                    text: userName
+                    font.weight: Font.DemiBold
+                    color: Theme.textPrimary
+                    Layout.preferredWidth: 140
+                }
+                Label {
+                    text: display
+                    color: Theme.textSecondary
+                    Layout.preferredWidth: 50
+                }
+                StatusPill {
+                    status: sessionState
+                    text: Words.sessionState(sessionState)
+                }
+                ProgressBar {
+                    from: 0
+                    to: Math.max(1, page.monitor.memTotalMiB)
+                    value: Math.max(0, memoryMiB)
+                    Layout.fillWidth: true
+                }
+                Label {
+                    text: Theme.formatMiB(memoryMiB)
+                    color: Theme.textPrimary
+                    Layout.preferredWidth: 90
+                    horizontalAlignment: Text.AlignRight
+                }
+                Label {
+                    text: cpuPercent < 0 ? "—" : qsTr("%1 % busy").arg(cpuPercent.toFixed(1))
+                    color: Theme.textSecondary
+                    Layout.preferredWidth: 90
+                    horizontalAlignment: Text.AlignRight
+                }
+                Label {
+                    text: processCount < 0 ? "—" : qsTr("%1 programs").arg(processCount)
+                    color: Theme.textTertiary
+                    Layout.preferredWidth: 70
+                    horizontalAlignment: Text.AlignRight
+                }
             }
         }
     }

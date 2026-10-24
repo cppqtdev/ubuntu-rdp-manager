@@ -75,9 +75,17 @@ PageScaffold {
             }
         }
 
-        Rectangle { Layout.fillWidth: true; height: 1; color: Theme.divider }
+        Rectangle {
+            Layout.fillWidth: true
+            height: 1
+            color: Theme.divider
+        }
 
-        BusyIndicator { visible: page.logs.loading && page.logs.totalCount === 0; running: visible; Layout.alignment: Qt.AlignHCenter }
+        BusyIndicator {
+            visible: page.logs.loading && page.logs.totalCount === 0
+            running: visible
+            Layout.alignment: Qt.AlignHCenter
+        }
         EmptyState {
             visible: !page.logs.loading && page.logs.model.count === 0
             iconName: "logs"
@@ -119,7 +127,14 @@ PageScaffold {
                     anchors.leftMargin: Theme.s
                     anchors.rightMargin: Theme.s
                     spacing: Theme.m
-                    Label { text: entry.timeText; color: Theme.textTertiary; font.family: "monospace"; font.pixelSize: Theme.caption + 1; Layout.preferredWidth: 110; Layout.alignment: Qt.AlignTop }
+                    Label {
+                        text: entry.timeText
+                        color: Theme.textTertiary
+                        font.family: "monospace"
+                        font.pixelSize: Theme.caption + 1
+                        Layout.preferredWidth: 110
+                        Layout.alignment: Qt.AlignTop
+                    }
                     Rectangle { width: 8; height: 8; radius: 4; color: Theme.statusColor(entry.severity); Layout.alignment: Qt.AlignTop; Layout.topMargin: 5
                                 Accessible.name: Words.severity(entry.severity) }
                     Label { text: entry.source === "xrdp-sesman" ? qsTr("desktops") : entry.source === "xrdp" ? qsTr("connections") : entry.source === "systemd" ? qsTr("system") : entry.source
@@ -129,7 +144,12 @@ PageScaffold {
                     ColumnLayout {
                         Layout.fillWidth: true
                         spacing: 0
-                        Label { text: entry.plain; color: Theme.textPrimary; wrapMode: Text.Wrap; Layout.fillWidth: true }
+                        Label {
+                            text: entry.plain
+                            color: Theme.textPrimary
+                            wrapMode: Text.Wrap
+                            Layout.fillWidth: true
+                        }
                         Label { visible: entry.plain !== entry.message; text: entry.message; color: Theme.textTertiary; wrapMode: Text.WrapAnywhere
                                 font.family: "monospace"; font.pixelSize: Theme.caption; Layout.fillWidth: true }
                     }

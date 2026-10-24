@@ -17,7 +17,7 @@ Pane {
     padding: Theme.l
     background: Rectangle {
         color: Theme.cardBg
-        radius: Theme.radiusL
+        radius: Theme.radiusS
         border.color: Theme.cardBorder
         border.width: 1
     }

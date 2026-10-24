@@ -14,7 +14,9 @@ Item {
             toasts.remove(0)
     }
 
-    ListModel { id: toasts }
+    ListModel {
+        id: toasts
+    }
 
     ColumnLayout {
         anchors.right: parent.right

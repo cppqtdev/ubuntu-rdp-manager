@@ -9,6 +9,9 @@ QtObject {
     // controls and these tokens can never disagree.
     readonly property bool dark: Application.styleHints.colorScheme !== Qt.Light
 
+    // Match the Windows 11 typeface across the app.
+    readonly property string fontFamily: "Segoe UI Variable"
+
     // surfaces
     readonly property color windowBg: dark ? "#202020" : "#F3F3F3"
     readonly property color sidebarBg: dark ? "#1A1A1A" : "#EBEBEB"
@@ -40,8 +43,8 @@ QtObject {
     readonly property int xl: 24
     readonly property int xxl: 32
     readonly property int radiusS: 4
-    readonly property int radiusM: 8
-    readonly property int radiusL: 12
+    readonly property int radiusM: 4
+    readonly property int radiusL: 4
 
     // WinUI type ramp
     readonly property int caption: 12

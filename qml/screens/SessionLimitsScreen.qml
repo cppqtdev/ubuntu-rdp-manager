@@ -91,7 +91,9 @@ PageScaffold {
             enabled: !page.unlimited
             opacity: enabled ? 1 : 0.5
             spacing: Theme.m
-            Label { text: qsTr("At most this many people:") }
+            Label {
+                text: qsTr("At most this many people:")
+            }
             SpinBox {
                 from: 1
                 to: 9998
@@ -117,7 +119,11 @@ PageScaffold {
         RowLayout {
             Layout.fillWidth: true
             spacing: Theme.l
-            MetricTile { label: qsTr("Desktops open now"); value: App.sessions.totalCount; iconName: "sessions" }
+            MetricTile {
+                label: qsTr("Desktops open now")
+                value: App.sessions.totalCount
+                iconName: "sessions"
+            }
             MetricTile {
                 label: qsTr("Room for about")
                 value: page.monitor.hasData ? qsTr("%1 more").arg(page.monitor.estimatedAdditionalSessions) : "…"
@@ -148,19 +154,34 @@ PageScaffold {
         GridLayout {
             columns: 3
             columnSpacing: Theme.m
-            Label { text: qsTr("Memory to plan per person") }
+            Label {
+                text: qsTr("Memory to plan per person")
+            }
             SpinBox { from: 64; to: 16384; stepSize: 64; editable: true; value: page.monitor.plannedSessionMiB
                       onValueModified: page.monitor.plannedSessionMiB = value }
-            Label { text: qsTr("MiB"); color: Theme.textSecondary }
-            Label { text: qsTr("Warn me when free memory drops below") }
+            Label {
+                text: qsTr("MiB")
+                color: Theme.textSecondary
+            }
+            Label {
+                text: qsTr("Warn me when free memory drops below")
+            }
             SpinBox { from: 1; to: 90; editable: true; value: Math.round(page.monitor.memWarnPercent)
                       onValueModified: page.monitor.memWarnPercent = value }
-            Label { text: "%"; color: Theme.textSecondary }
-            Label { text: qsTr("Warn me when the processor is busier than") }
+            Label {
+                text: "%"
+                color: Theme.textSecondary
+            }
+            Label {
+                text: qsTr("Warn me when the processor is busier than")
+            }
             SpinBox { from: 1; to: 80; editable: true; value: Math.round(page.monitor.loadWarnPerCore * 10)
                       textFromValue: (v) => (v / 10).toFixed(1); valueFromText: (t) => Math.round(parseFloat(t) * 10)
                       onValueModified: page.monitor.loadWarnPerCore = value / 10 }
-            Label { text: "×"; color: Theme.textSecondary }
+            Label {
+                text: "×"
+                color: Theme.textSecondary
+            }
         }
     }
 
@@ -171,7 +192,9 @@ PageScaffold {
 
         RowLayout {
             spacing: Theme.m
-            Label { text: qsTr("They get:") }
+            Label {
+                text: qsTr("They get:")
+            }
             ComboBox {
                 id: policyBox
                 Layout.preferredWidth: 380
@@ -215,15 +238,37 @@ PageScaffold {
             enabled: page.killDisconnected
             opacity: enabled ? 1 : 0.5
             spacing: Theme.m
-            Label { text: qsTr("after") }
-            SpinBox { from: 0; to: 43200; editable: true; value: page.disconnectedMinutes; onValueModified: page.disconnectedMinutes = value }
-            Label { text: qsTr("minutes (0 = right away)"); color: Theme.textSecondary }
+            Label {
+                text: qsTr("after")
+            }
+            SpinBox {
+                from: 0
+                to: 43200
+                editable: true
+                value: page.disconnectedMinutes
+                onValueModified: page.disconnectedMinutes = value
+            }
+            Label {
+                text: qsTr("minutes (0 = right away)")
+                color: Theme.textSecondary
+            }
         }
         RowLayout {
             spacing: Theme.m
-            Label { text: qsTr("Disconnect people who do nothing for") }
-            SpinBox { from: 0; to: 43200; editable: true; value: page.idleMinutes; onValueModified: page.idleMinutes = value }
-            Label { text: qsTr("minutes (0 = never). Their desktop stays open."); color: Theme.textSecondary }
+            Label {
+                text: qsTr("Disconnect people who do nothing for")
+            }
+            SpinBox {
+                from: 0
+                to: 43200
+                editable: true
+                value: page.idleMinutes
+                onValueModified: page.idleMinutes = value
+            }
+            Label {
+                text: qsTr("minutes (0 = never). Their desktop stays open.")
+                color: Theme.textSecondary
+            }
         }
         Label {
             Layout.fillWidth: true

@@ -35,8 +35,17 @@ PageScaffold {
         columns: page.width >= 1000 ? 4 : 2
         columnSpacing: Theme.l
         rowSpacing: Theme.l
-        MetricTile { label: qsTr("Open desktops"); value: page.sessions.totalCount; iconName: "sessions" }
-        MetricTile { label: qsTr("Connected now"); value: page.sessions.connectedCount; status: "ok"; iconName: "link" }
+        MetricTile {
+            label: qsTr("Open desktops")
+            value: page.sessions.totalCount
+            iconName: "sessions"
+        }
+        MetricTile {
+            label: qsTr("Connected now")
+            value: page.sessions.connectedCount
+            status: "ok"
+            iconName: "link"
+        }
         MetricTile { label: qsTr("Away – still open"); value: page.sessions.disconnectedCount - page.sessions.orphanedCount; status: "warning"; iconName: "disconnect"
                      caption: qsTr("They get back to it by signing in again") }
         MetricTile { label: qsTr("Left open / stuck"); value: page.sessions.staleCount; status: page.sessions.staleCount > 0 ? "error" : ""; iconName: "trash"
@@ -98,17 +107,53 @@ PageScaffold {
                 font.weight: Font.DemiBold
                 elide: Text.ElideRight
             }
-            Head { text: qsTr("No."); Layout.preferredWidth: 70 }
-            Head { text: qsTr("Person"); Layout.preferredWidth: 130 }
-            Head { text: qsTr("State"); Layout.preferredWidth: 150 }
-            Head { text: qsTr("Screen"); Layout.preferredWidth: 60 }
-            Head { text: qsTr("Signed in at"); Layout.preferredWidth: 130 }
-            Head { text: qsTr("Connecting from"); Layout.fillWidth: true; Layout.minimumWidth: 120 }
-            Head { text: qsTr("Memory"); Layout.preferredWidth: 80; horizontalAlignment: Text.AlignRight }
-            Head { text: qsTr("CPU"); Layout.preferredWidth: 55; horizontalAlignment: Text.AlignRight }
-            Head { text: qsTr("Actions"); Layout.preferredWidth: 120; horizontalAlignment: Text.AlignRight }
+            Head {
+                text: qsTr("No.")
+                Layout.preferredWidth: 70
+            }
+            Head {
+                text: qsTr("Person")
+                Layout.preferredWidth: 130
+            }
+            Head {
+                text: qsTr("State")
+                Layout.preferredWidth: 150
+            }
+            Head {
+                text: qsTr("Screen")
+                Layout.preferredWidth: 60
+            }
+            Head {
+                text: qsTr("Signed in at")
+                Layout.preferredWidth: 130
+            }
+            Head {
+                text: qsTr("Connecting from")
+                Layout.fillWidth: true
+                Layout.minimumWidth: 120
+            }
+            Head {
+                text: qsTr("Memory")
+                Layout.preferredWidth: 80
+                horizontalAlignment: Text.AlignRight
+            }
+            Head {
+                text: qsTr("CPU")
+                Layout.preferredWidth: 55
+                horizontalAlignment: Text.AlignRight
+            }
+            Head {
+                text: qsTr("Actions")
+                Layout.preferredWidth: 120
+                horizontalAlignment: Text.AlignRight
+            }
         }
-        Rectangle { Layout.fillWidth: true; height: 1; color: Theme.divider; visible: page.sessions.totalCount > 0 }
+        Rectangle {
+            Layout.fillWidth: true
+            height: 1
+            color: Theme.divider
+            visible: page.sessions.totalCount > 0
+        }
 
         EmptyState {
             visible: page.sessions.totalCount === 0
@@ -139,7 +184,9 @@ PageScaffold {
                 implicitHeight: 44
                 radius: Theme.radiusS
                 color: hover.hovered ? Theme.hoverBg : "transparent"
-                HoverHandler { id: hover }
+                HoverHandler {
+                    id: hover
+                }
 
                 RowLayout {
                     anchors.fill: parent
@@ -147,13 +194,28 @@ PageScaffold {
                     anchors.rightMargin: Theme.xs
                     spacing: Theme.s
 
-                    Label { text: rowItem.sessionId; color: Theme.textSecondary; font.family: "monospace"; Layout.preferredWidth: 70 }
+                    Label {
+                        text: rowItem.sessionId
+                        color: Theme.textSecondary
+                        font.family: "monospace"
+                        Layout.preferredWidth: 70
+                    }
                     RowLayout {
                         Layout.preferredWidth: 130
                         Layout.fillWidth: false // nested layouts default to filling and would steal space
                         spacing: Theme.xs
-                        IconImage { source: Theme.icon("user"); sourceSize: Qt.size(14, 14); color: Theme.textSecondary }
-                        Label { text: rowItem.userName; font.weight: Font.DemiBold; color: Theme.textPrimary; elide: Text.ElideRight; Layout.fillWidth: true }
+                        IconImage {
+                            source: Theme.icon("user")
+                            sourceSize: Qt.size(14, 14)
+                            color: Theme.textSecondary
+                        }
+                        Label {
+                            text: rowItem.userName
+                            font.weight: Font.DemiBold
+                            color: Theme.textPrimary
+                            elide: Text.ElideRight
+                            Layout.fillWidth: true
+                        }
                     }
                     Item {
                         Layout.preferredWidth: 150
@@ -165,10 +227,17 @@ PageScaffold {
                                   ? qsTr("Away since %1").arg(rowItem.disconnectedSince) : Words.sessionState(rowItem.sessionState)
                             ToolTip.visible: pillHover.hovered
                             ToolTip.text: Words.sessionStateHelp(rowItem.sessionState)
-                            HoverHandler { id: pillHover }
+                            HoverHandler {
+                                id: pillHover
+                            }
                         }
                     }
-                    Label { text: rowItem.display; color: Theme.textPrimary; font.family: "monospace"; Layout.preferredWidth: 60 }
+                    Label {
+                        text: rowItem.display
+                        color: Theme.textPrimary
+                        font.family: "monospace"
+                        Layout.preferredWidth: 60
+                    }
                     Label { text: rowItem.startedText; color: Theme.textSecondary; Layout.preferredWidth: 130
                             ToolTip.visible: startHover.hovered; ToolTip.text: qsTr("signed in %1 ago").arg(rowItem.durationText)
                             HoverHandler { id: startHover } }
@@ -181,14 +250,21 @@ PageScaffold {
                         Layout.fillWidth: true
                         Layout.minimumWidth: 120
                     }
-                    Label { text: Theme.formatMiB(rowItem.memoryMiB); color: Theme.textPrimary; horizontalAlignment: Text.AlignRight; Layout.preferredWidth: 80 }
+                    Label {
+                        text: Theme.formatMiB(rowItem.memoryMiB)
+                        color: Theme.textPrimary
+                        horizontalAlignment: Text.AlignRight
+                        Layout.preferredWidth: 80
+                    }
                     Label { text: rowItem.cpuPercent < 0 ? "—" : rowItem.cpuPercent.toFixed(1) + "%"; color: Theme.textPrimary
                             horizontalAlignment: Text.AlignRight; Layout.preferredWidth: 55 }
                     RowLayout {
                         Layout.preferredWidth: 120
                         Layout.fillWidth: false
                         spacing: 0
-                        Item { Layout.fillWidth: true }
+                        Item {
+                            Layout.fillWidth: true
+                        }
                         ToolButton {
                             icon.source: Theme.icon("info")
                             icon.width: 16; icon.height: 16
@@ -235,15 +311,43 @@ PageScaffold {
         ColumnLayout {
             anchors.fill: parent
             spacing: Theme.xs
-            KeyValue { key: qsTr("Person"); value: (details.info.userName || "") }
-            KeyValue { key: qsTr("Status"); value: Words.sessionState(details.info.state || "") }
-            KeyValue { key: qsTr("Screen number"); value: details.info.display || "" }
-            KeyValue { key: qsTr("Signed in at"); value: (details.info.started || "").replace("T", " ") }
-            KeyValue { key: qsTr("Connecting from"); value: details.info.clientAddress || "" }
-            KeyValue { key: qsTr("Programs running"); value: details.info.processCount >= 0 ? String(details.info.processCount) : qsTr("unknown") }
-            KeyValue { key: qsTr("Memory used"); value: Theme.formatMiB(details.info.memoryMiB) }
-            KeyValue { key: qsTr("Technical ID"); value: (details.info.sessionId || "") + " · " + (details.info.scope || "") + " · uid " + (details.info.uid || ""); selectable: true }
-                        KeyValue { key: qsTr("Desktop type"); value: "Xorg (xorgxrdp)" }
+            KeyValue {
+                key: qsTr("Person")
+                value: (details.info.userName || "")
+            }
+            KeyValue {
+                key: qsTr("Status")
+                value: Words.sessionState(details.info.state || "")
+            }
+            KeyValue {
+                key: qsTr("Screen number")
+                value: details.info.display || ""
+            }
+            KeyValue {
+                key: qsTr("Signed in at")
+                value: (details.info.started || "").replace("T", " ")
+            }
+            KeyValue {
+                key: qsTr("Connecting from")
+                value: details.info.clientAddress || ""
+            }
+            KeyValue {
+                key: qsTr("Programs running")
+                value: details.info.processCount >= 0 ? String(details.info.processCount) : qsTr("unknown")
+            }
+            KeyValue {
+                key: qsTr("Memory used")
+                value: Theme.formatMiB(details.info.memoryMiB)
+            }
+            KeyValue {
+                key: qsTr("Technical ID")
+                value: (details.info.sessionId || "") + " · " + (details.info.scope || "") + " · uid " + (details.info.uid || "")
+                selectable: true
+            }
+                        KeyValue {
+                            key: qsTr("Desktop type")
+                            value: "Xorg (xorgxrdp)"
+                        }
         }
     }
 }
