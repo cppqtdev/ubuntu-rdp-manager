@@ -1,4 +1,4 @@
-=== Integration run 2026-10-24T12:40:05+05:30, xrdp 0.9.24-4ubuntu0.1
+=== Integration run 2026-10-24T12:54:55+05:30, xrdp 0.9.24-4ubuntu0.1
 --- 1. Authorization
 PASS  non-admin cannot change config -> Call failed: not authorized for com.urdm.config.modify
 PASS  non-admin cannot terminate sessions -> Call failed: not authorized for com.urdm.sessions.manage
@@ -9,12 +9,12 @@ PASS  unknown key rejected -> Call failed: [Xorg] param in sesman.ini is not a s
 PASS  internal key rejected -> Call failed: Desktop start script can only be changed through its dedicated operation
 PASS  legacy TLS rejected -> Call failed: Protocol "TLSv1.1" is not allowed; use TLSv1.2 and/or TLSv1.3
 PASS  path traversal in file name rejected -> Call failed: Unknown configuration file "../shadow"
-PASS  unlimited sentinel written, backup sesman.ini.20261024T071007013
+PASS  unlimited sentinel written, backup sesman.ini.20261024T072456177
 PASS  backup is byte-identical to previous file
 PASS  comments preserved
-PASS  restore backup -> s "Restored sesman.ini.20261024T071007013"
+PASS  restore backup -> s "Restored sesman.ini.20261024T072456177"
 PASS  rollback restored original bytes
-PASS  re-apply unlimited sessions -> s "sesman.ini.20261024T071007778"
+PASS  re-apply unlimited sessions -> s "sesman.ini.20261024T072456547"
 --- 3. Desktop selection
 PASS  unknown desktop rejected -> Call failed: Unknown desktop "gnome-shell"
 PASS  configure Xfce start script -> s "New sessions will start Xfce"
@@ -22,7 +22,7 @@ PASS  DefaultWindowManager points at packaged script
 PASS  restart service -> s "RestartUnit completed for xrdp.service"
 --- 4. Sessions: two users via the packaged Xfce script
 PASS  two concurrent sessions (c15, c16) started by startwm-xfce.sh
-PASS  client addresses resolved from kernel socket tables: a{sv} 2 "10" s "172.18.0.3:34524" "11" s "172.18.0.4:40346"
+PASS  client addresses resolved from kernel socket tables: a{sv} 2 "10" s "172.18.0.3:60678" "11" s "172.18.0.4:41682"
 PASS  disconnect c15 via xrdp-dis -> s "Session c15 (display :10) disconnected; it keeps running"
 PASS  rdpuser1 session survives disconnect (:10)
 PASS  client 1 was disconnected

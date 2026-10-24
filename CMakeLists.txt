@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(UbuntuRdpManager
-    VERSION 1.0.1
+    VERSION 1.0.2
     DESCRIPTION "Ubuntu multi-user remote desktop (xrdp) manager"
     HOMEPAGE_URL "https://example.invalid/ubuntu-rdp-manager"
     LANGUAGES CXX)

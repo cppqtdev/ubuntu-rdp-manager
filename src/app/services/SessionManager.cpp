@@ -6,6 +6,8 @@
 #include "SystemMonitor.h"
 #include "Validators.h"
 
+#include <algorithm>
+
 namespace urdm::app {
 
 SessionManager::SessionManager(LogindClient *logind, SystemMonitor *monitor, HelperClient *helper, QObject *parent)
@@ -83,6 +85,16 @@ void SessionManager::rebuild()
         scopes << ScopeRef{s.id, s.uid, s.scope};
     }
     std::sort(rows.begin(), rows.end(), [](const SessionRow &a, const SessionRow &b) { return a.displayNumber < b.displayNumber; });
+    QStringList alsoLocal;
+    for (const LogindSession &s : m_logind->sessions()) {
+        const bool localGraphical = s.service != urdm::protocol::kSesmanPamService
+                                    && (s.type == QLatin1String("wayland") || s.type == QLatin1String("x11"));
+        if (!localGraphical || alsoLocal.contains(s.user))
+            continue;
+        if (std::any_of(rows.cbegin(), rows.cend(), [&](const SessionRow &r) { return r.userName == s.user; }))
+            alsoLocal << s.user;
+    }
+    m_alsoLocal = alsoLocal;
     m_monitor->setScopes(scopes);
     m_monitor->setSessionCount(int(rows.size()));
     m_model->setRows(rows);

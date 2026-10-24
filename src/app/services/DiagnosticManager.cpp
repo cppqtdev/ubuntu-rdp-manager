@@ -369,6 +369,14 @@ void DiagnosticManager::runChecks()
     if (m_monitor->diskFreeGiB() >= 0 && m_monitor->diskFreeGiB() < 2)
         addCheck(QStringLiteral("disk"), cap, QStringLiteral("The disk is almost full"), warn,
                  QStringLiteral("Only %1 GB free. People may not be able to save their work.").arg(m_monitor->diskFreeGiB(), 0, 'f', 1));
+    if (!m_sessions->alsoLocalUsers().isEmpty())
+        addCheck(QStringLiteral("alsolocal"), cap, QStringLiteral("Same account used here and remotely at the same time"), warn,
+                 QStringLiteral("%1 is signed in at this computer's own screen and remotely at the same time. Programs that allow only one "
+                                "copy per account (Google Chrome, Firefox, some file managers) open on the screen where they are already "
+                                "running — so they can appear here instead of on the remote computer.")
+                     .arg(m_sessions->alsoLocalUsers().join(QStringLiteral(", "))),
+                 QStringLiteral("Give remote users their own account (Ubuntu Settings → System → Users), or sign out at this computer before "
+                                "connecting remotely."));
     if (m_sessions->staleCount() > 0)
         addCheck(QStringLiteral("stale"), cap, QStringLiteral("Some desktops were left open"), warn,
                  counted("Not used any more: %n desktop(s). They still take up memory.", m_sessions->staleCount()),

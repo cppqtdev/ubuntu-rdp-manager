@@ -9,6 +9,7 @@
 | 3 | Stopping/restarting xrdp leaves desktops running but sesman forgets them (not reconnectable) | Sessions shown as **Orphaned**; warnings with counts before stop/restart; cleanup action |
 | 4 | Ubuntu's `xrdp-sesman` `ExecStop` exits 1 on every stop → unit shows `failed` until next start | Displayed as a harmless stop, not as a fault |
 | 5 | With `dbus-user-session`, a second concurrent Xfce desktop of the same user exits immediately | Packaged start script gives each desktop a private session bus (verified fix). Trade-off: those desktops don't share the systemd user bus. Removing the package reverts to stock behaviour. |
+| 5b | A user signed in locally on a Wayland desktop (Ubuntu GNOME) who also connects remotely got a **black screen**: the remote session shares `/run/user/<uid>`, GTK found the local `wayland-0` socket and Xfce's desktop/settings daemons crashed (found on real hardware, RK3328 client, 2026-10-24) | Packaged start script forces X11 (`GDK_BACKEND=x11`, `QT_QPA_PLATFORM=xcb`, `CLUTTER_BACKEND=x11`, unset `WAYLAND_DISPLAY`) — fixed in 1.0.2 |
 | 6 | Qt 6.8 cannot change light/dark at runtime on Linux | Theme applied at start-up via the gtk3 platform theme; changing it offers a restart |
 | 7 | Root is required to map sessions to client IPs | Loaded on demand through the helper (one authorization) |
 

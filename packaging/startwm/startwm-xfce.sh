@@ -11,6 +11,16 @@ if test -r "$HOME/.profile"; then
 fi
 
 # Each RDP session is a separate X display; make sure desktop components identify it as such.
+# The session shares XDG_RUNTIME_DIR (/run/user/<uid>) with any local login of the same user.
+# If that local login is a Wayland desktop (Ubuntu's GNOME default), GTK finds its wayland-0
+# socket there and draws onto the LOCAL screen: xfdesktop/xfsettingsd crash and the remote
+# user sees a black screen (verified 2026-10-24). Force the X11 backends.
+unset WAYLAND_DISPLAY
+export GDK_BACKEND=x11
+export QT_QPA_PLATFORM=xcb
+export CLUTTER_BACKEND=x11
+export SDL_VIDEODRIVER=x11
+export MOZ_ENABLE_WAYLAND=0
 export XDG_SESSION_TYPE=x11
 export XDG_CURRENT_DESKTOP=XFCE
 export XDG_SESSION_DESKTOP=xfce

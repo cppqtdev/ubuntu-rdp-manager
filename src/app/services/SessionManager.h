@@ -34,6 +34,8 @@ class SessionManager : public QObject
     Q_PROPERTY(bool busy READ busy NOTIFY busyChanged)
     Q_PROPERTY(int staleHours READ staleHours WRITE setStaleHours NOTIFY staleHoursChanged)
     Q_PROPERTY(bool addressesLoaded READ addressesLoaded NOTIFY countsChanged)
+    // users who are connected remotely AND signed in at this computer's own screen
+    Q_PROPERTY(QStringList alsoLocalUsers READ alsoLocalUsers NOTIFY countsChanged)
 
 public:
     SessionManager(LogindClient *logind, SystemMonitor *monitor, HelperClient *helper, QObject *parent = nullptr);
@@ -54,6 +56,7 @@ public:
     void setStaleHours(int h);
     bool addressesLoaded() const { return m_addressesLoaded; }
     int sessionCountForUser(const QString &user) const;
+    QStringList alsoLocalUsers() const { return m_alsoLocal; }
 
     Q_INVOKABLE void refresh();
     Q_INVOKABLE void disconnectSession(const QString &sessionId);
@@ -83,6 +86,7 @@ private:
     bool m_busy = false;
     bool m_addressesLoaded = false;
     int m_staleHours = 24;
+    QStringList m_alsoLocal;
     bool m_sesmanRunning = true;
     quint64 m_sesmanStartUsec = 0;
 };
