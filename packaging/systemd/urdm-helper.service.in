@@ -1,0 +1,28 @@
+[Unit]
+Description=Ubuntu RDP Manager privileged helper
+Documentation=file://@URDM_DATA_DIR@/doc/security.md
+
+[Service]
+Type=dbus
+BusName=com.urdm.Helper1
+ExecStart=@URDM_LIBEXEC_DIR@/urdm-helper
+# The helper must edit /etc/xrdp, manage groups, control units and run apt-get, so the file
+# system cannot be read-only. Hardening is limited to what package installation tolerates.
+PrivateTmp=yes
+ProtectHome=read-only
+ProtectKernelTunables=yes
+ProtectKernelLogs=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictRealtime=yes
+RestrictNamespaces=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=no
+SystemCallArchitectures=native
+RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_INET AF_INET6
+UMask=0022
+StateDirectory=ubuntu-rdp-manager
+# backups mirror the world-readable /etc/xrdp/*.ini files (keys are never backed up)
+StateDirectoryMode=0755
+LogsDirectory=ubuntu-rdp-manager
+LogsDirectoryMode=0750

@@ -1,0 +1,2 @@
+c1 1001 rdpuser1 - - active no -
+c2 1002 rdpuser2 - - active no -

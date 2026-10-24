@@ -1,0 +1,47 @@
+=== GUI acceptance 2026-10-24T11:28:51+05:30
+      screenshot 01-server-control-initial.png
+--- Test B: disable / enable RDP through the UI
+      screenshot 02-stop-confirmation.png
+PASS  xrdp.service inactive after UI stop
+PASS  port 3389 closed
+PASS  remote client cannot connect while stopped
+      screenshot 03-stopped.png
+PASS  xrdp.service active after UI start
+PASS  port 3389 listening again
+PASS  new RDP login (rdpuser4) reached a desktop after UI start
+      screenshot 04-started.png
+--- Autostart switch
+PASS  autostart disabled through UI
+PASS  autostart re-enabled through UI
+--- Test E: unlimited sessions through the UI
+      screenshot 05-session-limits-before.png
+PASS  sesman.ini now MaxSessions=9999 (0.9.24-safe unlimited)
+PASS  backup created (1 sesman.ini backups)
+      screenshot 06-session-limits-applied.png
+      screenshot 07-dashboard-unlimited.png
+--- Sessions page: clean up orphans, disconnect, reconnect (Test F), terminate
+      screenshot 08-sessions-orphans-after-restart.png
+      screenshot 09-cleanup-confirmation.png
+PASS  UI cleanup ended the 3 orphaned desktops (5 -> 2 sessions)
+PASS  connected rdpuser4 untouched by cleanup
+PASS  bystander rdpuser5 logged in
+      screenshot 10-sessions-two-connected.png
+      rdpuser4 row at y=409
+PASS  rdpuser4 desktop keeps running after UI disconnect
+PASS  client 4 disconnected
+PASS  rdpuser5 unaffected by the disconnect
+      screenshot 11-sessions-after-disconnect.png
+PASS  Test F: reconnect returned to the same desktop ( :13, Policy=Default)
+      screenshot 12-sessions-after-reconnect.png
+      screenshot 13-terminate-confirmation.png
+PASS  rdpuser4 session terminated through UI
+PASS  logind session c14 removed
+PASS  rdpuser5 still connected after terminating rdpuser4
+      screenshot 14-sessions-after-terminate.png
+--- Restart orphans running desktops (documented behaviour) and the UI reports it
+      screenshot 15-restart-confirmation.png
+      screenshot 16-sessions-orphaned.png
+      logind sessions still present after restart: 2
+PASS  desktops survive restart (as orphans)
+QML warnings in GUI log: 0
+=== RESULT: 21 passed, 0 failed

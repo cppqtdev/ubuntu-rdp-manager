@@ -1,0 +1,11 @@
+ c1 1011 urdmadmin - - closing no -
+c30 1001 rdpuser1  - - active  no -
+c31 1002 rdpuser2  - - active  no -
+c32 1003 rdpuser3  - - active  no -
+c33 1004 rdpuser4  - - active  no -
+c34 1005 rdpuser5  - - active  no -
+c35 1006 rdpuser6  - - active  no -
+c36 1007 rdpuser7  - - active  no -
+c37 1008 rdpuser8  - - active  no -
+c38 1009 rdpuser9  - - active  no -
+c39 1010 rdpuser10 - - active  no -

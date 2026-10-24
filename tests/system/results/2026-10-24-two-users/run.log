@@ -1,0 +1,29 @@
+== Multi-session test: N=2 server=urdm-srv 2026-10-24T10:02:48+05:30
+== xrdp version: 0.9.24-4ubuntu0.1
+== sesman [Sessions]:
+[Sessions]
+X11DisplayOffset=10
+MaxSessions=50
+KillDisconnected=false
+DisconnectedTimeLimit=0
+IdleTimeLimit=0
+Policy=Default
+[Logging]
+== baseline memory:
+               total        used        free      shared  buff/cache   available
+Mem:           15376        8198         723        1847        8502        7177
+Swap:           4095           0        4095
+== Summary
+USER       RESULT   LOGIN_MS     DISPLAY    XFREERDP
+rdpuser1   PASS     1930          :10       alive
+rdpuser2   PASS     1938          :11       alive
+== Per-user RSS (MiB)
+rdpuser1 511.4
+rdpuser2 430.2
+== Memory after
+               total        used        free      shared  buff/cache   available
+Mem:           15376        8524         311        1838        8512        6851
+Swap:           4095           0        4095
+== Load after: 1.29 1.29 1.06 3/2362 518
+== Container stats: urdm-srv 0.01% 322.6MiB / 15.02GiB
+== RESULT: 2 passed, 0 failed of 2

@@ -1,0 +1,28 @@
+#!/bin/sh
+# Ubuntu RDP Manager post-installation.
+set -e
+
+case "$1" in
+    configure)
+        # Helper state: configuration backups mirror world-readable /etc/xrdp/*.ini files.
+        install -d -m 0755 -o root -g root /var/lib/ubuntu-rdp-manager
+        install -d -m 0755 -o root -g root /var/lib/ubuntu-rdp-manager/backups
+        # Audit log: root:adm 0750/0640, like other system logs.
+        install -d -m 0750 -o root -g adm /var/log/ubuntu-rdp-manager
+
+        # Pick up the new D-Bus policy, polkit actions and systemd unit.
+        if [ -d /run/systemd/system ]; then
+            systemctl daemon-reload >/dev/null 2>&1 || true
+        fi
+        if command -v dbus-send >/dev/null 2>&1; then
+            dbus-send --system --type=method_call --dest=org.freedesktop.DBus \
+                /org/freedesktop/DBus org.freedesktop.DBus.ReloadConfig >/dev/null 2>&1 || true
+        fi
+        # On upgrade, restart an already running helper so the new binary is used.
+        if [ -n "$2" ] && [ -d /run/systemd/system ]; then
+            systemctl try-restart urdm-helper.service >/dev/null 2>&1 || true
+        fi
+        ;;
+esac
+
+exit 0

@@ -1,0 +1,10 @@
+c10 1003 rdpuser3  - - active no -
+c11 1004 rdpuser4  - - active no -
+c12 1005 rdpuser5  - - active no -
+c13 1006 rdpuser6  - - active no -
+c14 1007 rdpuser7  - - active no -
+c15 1008 rdpuser8  - - active no -
+c16 1009 rdpuser9  - - active no -
+c17 1010 rdpuser10 - - active no -
+ c8 1001 rdpuser1  - - active no -
+ c9 1002 rdpuser2  - - active no -

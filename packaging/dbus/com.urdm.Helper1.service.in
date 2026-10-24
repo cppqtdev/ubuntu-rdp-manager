@@ -1,0 +1,5 @@
+[D-BUS Service]
+Name=com.urdm.Helper1
+Exec=@URDM_LIBEXEC_DIR@/urdm-helper
+User=root
+SystemdService=urdm-helper.service

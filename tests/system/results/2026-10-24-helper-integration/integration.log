@@ -1,0 +1,68 @@
+=== Integration run 2026-10-24T10:36:06+05:30, xrdp 0.9.24-4ubuntu0.1
+--- 1. Authorization
+PASS  non-admin cannot change config -> Call failed: not authorized for com.urdm.config.modify
+PASS  non-admin cannot terminate sessions -> Call failed: not authorized for com.urdm.sessions.manage
+PASS  sudo member without interactive auth refused -> Call failed: not authorized for com.urdm.service.control
+--- 2. Configuration validation, backup, rollback
+PASS  MaxSessions=0 rejected on 0.9.24 -> Call failed: MaxSessions=0 would deny every login on xrdp 0.9.24; use the Unlimited option instead
+PASS  unknown key rejected -> Call failed: [Xorg] param in sesman.ini is not a supported setting
+PASS  internal key rejected -> Call failed: Desktop start script can only be changed through its dedicated operation
+PASS  legacy TLS rejected -> Call failed: Protocol "TLSv1.1" is not allowed; use TLSv1.2 and/or TLSv1.3
+PASS  path traversal in file name rejected -> Call failed: Unknown configuration file "../shadow"
+PASS  unlimited sentinel written, backup sesman.ini.20261024T050607364
+PASS  backup is byte-identical to previous file
+PASS  comments preserved
+PASS  restore backup -> s "Restored sesman.ini.20261024T050607364"
+PASS  rollback restored original bytes
+PASS  re-apply unlimited sessions -> s "sesman.ini.20261024T050607682"
+--- 3. Desktop selection
+PASS  unknown desktop rejected -> Call failed: Unknown desktop "gnome-shell"
+PASS  configure Xfce start script -> s "New sessions will start Xfce"
+PASS  DefaultWindowManager points at packaged script
+PASS  restart service -> s "RestartUnit completed for xrdp.service"
+--- 4. Sessions: two users via the packaged Xfce script
+PASS  two concurrent sessions (c15, c16) started by startwm-xfce.sh
+PASS  client addresses resolved from kernel socket tables: a{sv} 2 "10" s "172.18.0.3:40884" "11" s "172.18.0.4:56076"
+PASS  disconnect c15 via xrdp-dis -> s "Session c15 (display :10) disconnected; it keeps running"
+PASS  rdpuser1 session survives disconnect (:10)
+PASS  client 1 was disconnected
+PASS  client 2 unaffected by disconnecting client 1
+PASS  terminate refuses non-xrdp session ids -> Call failed: Session c999 does not exist
+PASS  terminate c15 -> s "Session c15 (display :10) terminated"
+PASS  rdpuser1 session ended
+PASS  client 2 still connected after terminating session 1
+--- 5. Group-based access control
+PASS  empty group refused (lockout prevention) -> Call failed: Refusing to enable the restriction with an empty group: nobody could log in
+PASS  restrict to rdpusers={rdpuser3} -> s "Only members of rdpusers may log in"
+PASS  group created with rdpuser3
+PASS  restart service -> s "RestartUnit completed for xrdp.service"
+PASS  member rdpuser3 can log in (c24)
+PASS  non-member rdpuser4 denied
+PASS  sesman logged 'login denied for user rdpuser4'
+PASS  removing last member refused -> Call failed: rdpuser3 is the last member of rdpusers; disable the restriction instead of locking everyone out
+PASS  grant rdpuser4 -> s "rdpuser4 may now use remote desktop"
+PASS  disable restriction -> s "Every account that passes PAM authentication may now log in"
+PASS  TerminalServerUsers removed
+--- 6. Service control and autostart
+PASS  disable autostart -> s "Automatic start disabled"
+PASS  xrdp.service disabled
+PASS  enable autostart -> s "Automatic start enabled"
+PASS  xrdp.service enabled
+PASS  stop service -> s "StopUnit completed for xrdp.service"
+PASS  port 3389 closed after stop
+PASS  clients cannot connect while stopped
+PASS  start service -> s "StartUnit completed for xrdp.service"
+PASS  port 3389 listening after start
+--- 7. TLS certificate management
+PASS  invalid CN rejected -> Call failed: "bad host" is not a valid host name or IP address
+PASS  generate self-signed certificate -> s "Certificate installed to /etc/xrdp/urdm/cert.pem; restart xrdp to use it"
+PASS  key is root:xrdp 0640
+PASS  xrdp user can read key
+PASS  ordinary users cannot read key
+PASS  confused deputy: cannot import root-only key -> Call failed: You do not have read permission for /etc/ssl/private/ssl-cert-snakeoil.key
+--- 8. Journal fallback
+PASS  ReadJournal returns journal JSON
+--- Audit log
+audit records: 32
+PASS  audit log contains no password text
+=== RESULT: 56 passed, 0 failed

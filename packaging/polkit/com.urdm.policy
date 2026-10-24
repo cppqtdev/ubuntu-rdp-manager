@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<!--
+  Ubuntu RDP Manager privileged operations. Every action requires administrator
+  authentication (members of the "sudo" group on Ubuntu). auth_admin_keep caches the
+  authorization for a few minutes per session so routine work does not prompt repeatedly.
+  Inactive/remote sessions are never authorized.
+-->
+<policyconfig>
+  <vendor>Ubuntu RDP Manager</vendor>
+
+  <action id="com.urdm.service.control">
+    <description>Start, stop or change automatic start of the remote desktop service</description>
+    <message>Authentication is required to control the remote desktop (xrdp) service</message>
+    <icon_name>preferences-desktop-remote-desktop</icon_name>
+    <defaults><allow_any>no</allow_any><allow_inactive>no</allow_inactive><allow_active>auth_admin_keep</allow_active></defaults>
+  </action>
+
+  <action id="com.urdm.config.modify">
+    <description>Change remote desktop server configuration</description>
+    <message>Authentication is required to change the remote desktop server configuration</message>
+    <defaults><allow_any>no</allow_any><allow_inactive>no</allow_inactive><allow_active>auth_admin_keep</allow_active></defaults>
+  </action>
+
+  <action id="com.urdm.sessions.manage">
+    <description>Disconnect or terminate remote desktop sessions</description>
+    <message>Authentication is required to disconnect or end another user's remote desktop session</message>
+    <defaults><allow_any>no</allow_any><allow_inactive>no</allow_inactive><allow_active>auth_admin_keep</allow_active></defaults>
+  </action>
+
+  <action id="com.urdm.sessions.inspect">
+    <description>View client network addresses of remote desktop sessions</description>
+    <message>Authentication is required to view remote desktop client addresses</message>
+    <defaults><allow_any>no</allow_any><allow_inactive>no</allow_inactive><allow_active>auth_admin_keep</allow_active></defaults>
+  </action>
+
+  <action id="com.urdm.access.manage">
+    <description>Manage which users may use remote desktop</description>
+    <message>Authentication is required to change remote desktop access permissions</message>
+    <defaults><allow_any>no</allow_any><allow_inactive>no</allow_inactive><allow_active>auth_admin_keep</allow_active></defaults>
+  </action>
+
+  <action id="com.urdm.packages.install">
+    <description>Install remote desktop server packages</description>
+    <message>Authentication is required to install the remote desktop server packages</message>
+    <defaults><allow_any>no</allow_any><allow_inactive>no</allow_inactive><allow_active>auth_admin_keep</allow_active></defaults>
+  </action>
+
+  <action id="com.urdm.logs.read">
+    <description>Read remote desktop service logs</description>
+    <message>Authentication is required to read the remote desktop service logs</message>
+    <defaults><allow_any>no</allow_any><allow_inactive>no</allow_inactive><allow_active>auth_admin_keep</allow_active></defaults>
+  </action>
+</policyconfig>

@@ -1,0 +1,11 @@
+USER       RESULT   LOGIN_MS     DISPLAY    XFREERDP
+rdpuser1   PASS     2601          :10       alive
+rdpuser2   PASS     2630          :11       alive
+rdpuser3   PASS     2651          :12       alive
+rdpuser4   PASS     2698          :13       alive
+rdpuser5   PASS     2789          :14       alive
+rdpuser6   PASS     2809          :15       alive
+rdpuser7   PASS     2859          :16       alive
+rdpuser8   PASS     3018          :17       alive
+rdpuser9   PASS     3422          :18       alive
+rdpuser10  PASS     3473          :19       alive

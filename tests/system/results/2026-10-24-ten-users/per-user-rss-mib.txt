@@ -1,0 +1,10 @@
+rdpuser1 500.2
+rdpuser2 502.8
+rdpuser3 513.3
+rdpuser4 512.6
+rdpuser5 510.6
+rdpuser6 428.0
+rdpuser7 428.4
+rdpuser8 426.9
+rdpuser9 427.5
+rdpuser10 428.9

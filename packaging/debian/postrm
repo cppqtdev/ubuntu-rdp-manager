@@ -1,0 +1,35 @@
+#!/bin/sh
+# Ubuntu RDP Manager post-removal.
+#
+# The xrdp configuration in /etc/xrdp (including a certificate generated into /etc/xrdp/urdm/,
+# which xrdp.ini may reference) belongs to the administrator and is never removed: deleting it
+# would break a running RDP server. Only this package's own state is purged.
+set -e
+
+SCRIPT=/opt/ubuntu-rdp-manager/share/startwm/startwm-xfce.sh
+SESMAN=/etc/xrdp/sesman.ini
+
+case "$1" in
+    remove)
+        # sesman would otherwise try to start a script that no longer exists and every new RDP
+        # login would fail. Revert only this one value, and only if it still points at our script.
+        if [ -f "$SESMAN" ] && grep -qx "DefaultWindowManager=$SCRIPT" "$SESMAN"; then
+            cp -p "$SESMAN" "$SESMAN.ubuntu-rdp-manager-removed"
+            sed -i "s|^DefaultWindowManager=$SCRIPT\$|DefaultWindowManager=startwm.sh|" "$SESMAN"
+            echo "ubuntu-rdp-manager: reset DefaultWindowManager to startwm.sh in $SESMAN (backup: $SESMAN.ubuntu-rdp-manager-removed)"
+        fi
+        if [ -d /run/systemd/system ]; then
+            systemctl daemon-reload >/dev/null 2>&1 || true
+        fi
+        if command -v dbus-send >/dev/null 2>&1; then
+            dbus-send --system --type=method_call --dest=org.freedesktop.DBus \
+                /org/freedesktop/DBus org.freedesktop.DBus.ReloadConfig >/dev/null 2>&1 || true
+        fi
+        ;;
+    purge)
+        rm -rf /var/lib/ubuntu-rdp-manager
+        rm -rf /var/log/ubuntu-rdp-manager
+        ;;
+esac
+
+exit 0

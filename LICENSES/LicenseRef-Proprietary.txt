@@ -1,0 +1,6 @@
+Ubuntu RDP Manager
+Copyright (c) 2026 the copyright holder. All rights reserved.
+
+PLACEHOLDER: the final licence terms for this application's own source code have not been
+decided. The copyright holder must replace this file before distribution. See docs/licensing.md
+for the obligations that apply to the bundled third-party components regardless of this choice.

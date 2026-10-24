@@ -1,0 +1,3 @@
+USER       RESULT   LOGIN_MS     DISPLAY    XFREERDP
+rdpuser1   PASS     1930          :10       alive
+rdpuser2   PASS     1938          :11       alive

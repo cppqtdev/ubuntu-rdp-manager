@@ -1,0 +1,10 @@
+rdpuser1 1008.6
+rdpuser2 1002.9
+rdpuser3 1012.8
+rdpuser4 930.5
+rdpuser5 928.8
+rdpuser6 996.1
+rdpuser7 995.0
+rdpuser8 1009.2
+rdpuser9 932.3
+rdpuser10 933.2

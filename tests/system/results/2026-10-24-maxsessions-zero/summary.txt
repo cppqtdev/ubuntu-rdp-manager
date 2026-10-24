@@ -1,0 +1,2 @@
+USER       RESULT   LOGIN_MS     DISPLAY    XFREERDP
+rdpuser1   FAIL     -            -          alive

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Ubuntu RDP Manager
+GenericName=Remote Desktop Server Manager
+Comment=Enable and manage multi-user remote desktop (RDP) access with xrdp
+Exec=/usr/bin/ubuntu-rdp-manager
+Icon=ubuntu-rdp-manager
+Terminal=false
+Categories=System;Settings;Network;RemoteAccess;
+Keywords=rdp;xrdp;remote;desktop;server;sessions;
+StartupWMClass=ubuntu-rdp-manager

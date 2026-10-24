@@ -1,0 +1,2 @@
+
+(ubuntu-rdp-manager:1348): dbind-WARNING **: 05:58:53.365: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files

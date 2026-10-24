@@ -1,0 +1,474 @@
+2026-10-24T04:29:19+00:00 urdm-srv systemd[1]: Starting xrdp-sesman.service - xrdp session manager...
+2026-10-24T04:29:19+00:00 urdm-srv xrdp-sesman[56]: [INFO ] starting xrdp-sesman with pid 56
+2026-10-24T04:29:19+00:00 urdm-srv systemd[1]: Started xrdp-sesman.service - xrdp session manager.
+2026-10-24T04:29:19+00:00 urdm-srv systemd[1]: Starting xrdp.service - xrdp daemon...
+2026-10-24T04:29:19+00:00 urdm-srv xrdp[67]: [INFO ] address [0.0.0.0] port [3389] mode 1
+2026-10-24T04:29:19+00:00 urdm-srv xrdp[67]: [INFO ] listening to port 3389 on 0.0.0.0
+2026-10-24T04:29:19+00:00 urdm-srv xrdp[67]: [INFO ] xrdp_listen_pp done
+2026-10-24T04:29:19+00:00 urdm-srv systemd[1]: xrdp.service: Can't open PID file /run/xrdp/xrdp.pid (yet?) after start: No such file or directory
+2026-10-24T04:29:20+00:00 urdm-srv systemd[1]: Started xrdp.service - xrdp daemon.
+2026-10-24T04:29:21+00:00 urdm-srv xrdp[68]: [INFO ] starting xrdp with pid 68
+2026-10-24T04:29:21+00:00 urdm-srv xrdp[68]: [INFO ] address [0.0.0.0] port [3389] mode 1
+2026-10-24T04:29:21+00:00 urdm-srv xrdp[68]: [INFO ] listening to port 3389 on 0.0.0.0
+2026-10-24T04:29:21+00:00 urdm-srv xrdp[68]: [INFO ] xrdp_listen_pp done
+2026-10-24T04:31:30+00:00 urdm-srv systemd[1]: Stopping xrdp.service - xrdp daemon...
+2026-10-24T04:31:30+00:00 urdm-srv xrdp[144]: stopping xrdp
+2026-10-24T04:31:30+00:00 urdm-srv xrdp[144]: stopping process id 68
+2026-10-24T04:31:30+00:00 urdm-srv xrdp[68]: [INFO ] Received termination signal, stopping the server accept new connections thread
+2026-10-24T04:31:30+00:00 urdm-srv systemd[1]: xrdp.service: Deactivated successfully.
+2026-10-24T04:31:30+00:00 urdm-srv systemd[1]: Stopped xrdp.service - xrdp daemon.
+2026-10-24T04:31:30+00:00 urdm-srv systemd[1]: Stopping xrdp-sesman.service - xrdp session manager...
+2026-10-24T04:31:30+00:00 urdm-srv xrdp-sesman[146]: sesman is not running (pid file not found - /var/run/xrdp/xrdp-sesman.pid)
+2026-10-24T04:31:30+00:00 urdm-srv systemd[1]: xrdp-sesman.service: Control process exited, code=exited, status=1/FAILURE
+2026-10-24T04:31:30+00:00 urdm-srv xrdp-sesman[56]: [INFO ] sesman_main_loop: sesman asked to terminate
+2026-10-24T04:31:30+00:00 urdm-srv systemd[1]: xrdp-sesman.service: Failed with result 'exit-code'.
+2026-10-24T04:31:30+00:00 urdm-srv systemd[1]: Stopped xrdp-sesman.service - xrdp session manager.
+2026-10-24T04:31:30+00:00 urdm-srv systemd[1]: Starting xrdp-sesman.service - xrdp session manager...
+2026-10-24T04:31:30+00:00 urdm-srv xrdp-sesman[149]: [INFO ] starting xrdp-sesman with pid 149
+2026-10-24T04:31:30+00:00 urdm-srv systemd[1]: Started xrdp-sesman.service - xrdp session manager.
+2026-10-24T04:31:30+00:00 urdm-srv systemd[1]: Starting xrdp.service - xrdp daemon...
+2026-10-24T04:31:30+00:00 urdm-srv xrdp[160]: [INFO ] address [0.0.0.0] port [3389] mode 1
+2026-10-24T04:31:30+00:00 urdm-srv xrdp[160]: [INFO ] listening to port 3389 on 0.0.0.0
+2026-10-24T04:31:30+00:00 urdm-srv xrdp[160]: [INFO ] xrdp_listen_pp done
+2026-10-24T04:31:30+00:00 urdm-srv systemd[1]: xrdp.service: Can't open PID file /run/xrdp/xrdp.pid (yet?) after start: No such file or directory
+2026-10-24T04:31:31+00:00 urdm-srv systemd[1]: Started xrdp.service - xrdp daemon.
+2026-10-24T04:31:32+00:00 urdm-srv xrdp[161]: [INFO ] starting xrdp with pid 161
+2026-10-24T04:31:32+00:00 urdm-srv xrdp[161]: [INFO ] address [0.0.0.0] port [3389] mode 1
+2026-10-24T04:31:32+00:00 urdm-srv xrdp[161]: [INFO ] listening to port 3389 on 0.0.0.0
+2026-10-24T04:31:32+00:00 urdm-srv xrdp[161]: [INFO ] xrdp_listen_pp done
+2026-10-24T04:31:38+00:00 urdm-srv xrdp[161]: [INFO ] Socket 12: AF_INET6 connection received from ::ffff:172.18.0.3 port 53808
+2026-10-24T04:31:38+00:00 urdm-srv xrdp[164]: [INFO ] Security protocol: configured [SSL|RDP], requested [SSL|HYBRID|HYBRID_EX|RDP], selected [SSL]
+2026-10-24T04:31:38+00:00 urdm-srv xrdp[164]: [INFO ] Connected client computer name: ceb8ee05be25
+2026-10-24T04:31:38+00:00 urdm-srv xrdp[164]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc006 is unknown (ignored)
+2026-10-24T04:31:38+00:00 urdm-srv xrdp[164]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc00a is unknown (ignored)
+2026-10-24T04:31:38+00:00 urdm-srv xrdp[164]: [INFO ] xrdp_load_keyboard_layout: Keyboard information sent by the RDP client, keyboard_type:[0x04], keyboard_subtype:[0x00], keylayout:[0x00000409]
+2026-10-24T04:31:38+00:00 urdm-srv xrdp[164]: [INFO ] xrdp_load_keyboard_layout: model [] variant [] layout [us] options []
+2026-10-24T04:31:38+00:00 urdm-srv xrdp[164]: [INFO ] TLS connection established from ::ffff:172.18.0.3 port 53808: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384
+2026-10-24T04:31:38+00:00 urdm-srv xrdp[164]: [INFO ] xrdp_caps_process_pointer: client supports new(color) cursor
+2026-10-24T04:31:38+00:00 urdm-srv xrdp[164]: [INFO ] xrdp_process_offscreen_bmpcache: support level 0 cache size 0 MB cache entries 0
+2026-10-24T04:31:38+00:00 urdm-srv xrdp[164]: [INFO ] xrdp_caps_process_codecs: RemoteFX, codec id 3, properties len 49
+2026-10-24T04:31:38+00:00 urdm-srv xrdp[164]: [INFO ] Loading keymap file /etc/xrdp/km-00000409.ini
+2026-10-24T04:31:38+00:00 urdm-srv xrdp[164]: [WARN ] local keymap file for 0x00000409 found and doesn't match built in keymap, using local keymap file
+2026-10-24T04:31:38+00:00 urdm-srv xrdp[164]: [INFO ] connecting to sesman on 127.0.0.1:3350
+2026-10-24T04:31:38+00:00 urdm-srv xrdp-sesman[149]: [INFO ] Socket 12: AF_INET6 connection received from ::1 port 45982
+2026-10-24T04:31:39+00:00 urdm-srv xrdp[164]: [INFO ] xrdp_wm_log_msg: sesman connect ok
+2026-10-24T04:31:39+00:00 urdm-srv xrdp[164]: [INFO ] sesman connect ok
+2026-10-24T04:31:39+00:00 urdm-srv xrdp[164]: [INFO ] sending login info to session manager. Please wait...
+2026-10-24T04:31:39+00:00 urdm-srv xrdp-sesman[149]: [INFO ] Terminal Server Users group is disabled, allowing authentication
+2026-10-24T04:31:39+00:00 urdm-srv xrdp-sesman[149]: [INFO ] ++ created session (access granted): username rdpuser1, ip ::ffff:172.18.0.3:53808 - socket: 12
+2026-10-24T04:31:39+00:00 urdm-srv xrdp-sesman[149]: [INFO ] starting Xorg session...
+2026-10-24T04:31:39+00:00 urdm-srv xrdp-sesman[149]: [INFO ] Starting session: session_pid 165, display :10.0, width 1280, height 800, bpp 24, client ip ::ffff:172.18.0.3:53808 - socket: 12, user name rdpuser1
+2026-10-24T04:31:39+00:00 urdm-srv xrdp-sesman[165]: [INFO ] [session start] (display 10): calling auth_start_session from pid 165
+2026-10-24T04:31:39+00:00 urdm-srv xrdp-sesman[149]: [ERROR] sesman_data_in: scp_process_msg failed
+2026-10-24T04:31:39+00:00 urdm-srv xrdp[164]: [INFO ] xrdp_wm_log_msg: login successful for user rdpuser1 on display 10
+2026-10-24T04:31:39+00:00 urdm-srv xrdp[164]: [INFO ] login successful for user rdpuser1 on display 10
+2026-10-24T04:31:39+00:00 urdm-srv xrdp-sesman[165]: pam_unix(xrdp-sesman:session): session opened for user rdpuser1(uid=1001) by (uid=0)
+2026-10-24T04:31:39+00:00 urdm-srv xrdp-sesman[149]: [ERROR] sesman_main_loop: trans_check_wait_objs failed, removing trans
+2026-10-24T04:31:39+00:00 urdm-srv xrdp[164]: [INFO ] loaded module 'libxup.so' ok, interface size 10296, version 4
+2026-10-24T04:31:39+00:00 urdm-srv xrdp[164]: [INFO ] started connecting
+2026-10-24T04:31:39+00:00 urdm-srv xrdp[164]: [INFO ] lib_mod_connect: connecting via UNIX socket
+2026-10-24T04:31:39+00:00 urdm-srv xrdp[164]: [INFO ] lib_mod_log_peer: xrdp_pid=164 connected to X11rdp_pid=175 X11rdp_uid=1001 X11rdp_gid=1001 client_ip=::ffff:172.18.0.3 client_port=53808
+2026-10-24T04:31:39+00:00 urdm-srv xrdp[164]: [INFO ] connected ok
+2026-10-24T04:31:39+00:00 urdm-srv xrdp-sesman[165]: [INFO ] Found X server running at /tmp/.X11-unix/X10
+2026-10-24T04:31:39+00:00 urdm-srv xrdp-sesman[165]: [INFO ] Session started successfully for user rdpuser1 on display 10
+2026-10-24T04:31:39+00:00 urdm-srv xrdp-sesman[165]: [INFO ] Session in progress on display 10, waiting until the window manager (pid 174) exits to end the session
+2026-10-24T04:32:39+00:00 urdm-srv xrdp[164]: [ERROR] SSL_read: Failure in SSL library (protocol error?)
+2026-10-24T04:32:39+00:00 urdm-srv xrdp[164]: [ERROR] SSL: error:0A000126:SSL routines::unexpected eof while reading
+2026-10-24T04:32:39+00:00 urdm-srv xrdp[164]: [ERROR] xrdp_iso_send: trans_write_copy_s failed
+2026-10-24T04:32:39+00:00 urdm-srv xrdp[164]: [ERROR] Sending [ITU T.125] DisconnectProviderUltimatum failed
+2026-10-24T04:32:39+00:00 urdm-srv xrdp-sesman[149]: [INFO ] Process 165 has exited
+2026-10-24T04:32:39+00:00 urdm-srv xrdp-sesman[149]: [INFO ] ++ terminated session:  username rdpuser1, display :10.0, session_pid 165, ip ::ffff:172.18.0.3:53808 - socket: 12
+2026-10-24T04:32:39+00:00 urdm-srv systemd[1]: Stopping xrdp.service - xrdp daemon...
+2026-10-24T04:32:39+00:00 urdm-srv xrdp[333]: stopping xrdp
+2026-10-24T04:32:39+00:00 urdm-srv xrdp[333]: stopping process id 161
+2026-10-24T04:32:39+00:00 urdm-srv xrdp[161]: [INFO ] Received termination signal, stopping the server accept new connections thread
+2026-10-24T04:32:39+00:00 urdm-srv systemd[1]: xrdp.service: Deactivated successfully.
+2026-10-24T04:32:39+00:00 urdm-srv systemd[1]: Stopped xrdp.service - xrdp daemon.
+2026-10-24T04:32:39+00:00 urdm-srv systemd[1]: Stopping xrdp-sesman.service - xrdp session manager...
+2026-10-24T04:32:39+00:00 urdm-srv xrdp-sesman[339]: sesman is not running (pid file not found - /var/run/xrdp/xrdp-sesman.pid)
+2026-10-24T04:32:39+00:00 urdm-srv systemd[1]: xrdp-sesman.service: Control process exited, code=exited, status=1/FAILURE
+2026-10-24T04:32:39+00:00 urdm-srv xrdp-sesman[149]: [INFO ] sesman_main_loop: sesman asked to terminate
+2026-10-24T04:32:39+00:00 urdm-srv systemd[1]: xrdp-sesman.service: Failed with result 'exit-code'.
+2026-10-24T04:32:39+00:00 urdm-srv systemd[1]: Stopped xrdp-sesman.service - xrdp session manager.
+2026-10-24T04:32:40+00:00 urdm-srv systemd[1]: Starting xrdp-sesman.service - xrdp session manager...
+2026-10-24T04:32:40+00:00 urdm-srv xrdp-sesman[48]: [INFO ] starting xrdp-sesman with pid 48
+2026-10-24T04:32:40+00:00 urdm-srv systemd[1]: Started xrdp-sesman.service - xrdp session manager.
+2026-10-24T04:32:40+00:00 urdm-srv systemd[1]: Starting xrdp.service - xrdp daemon...
+2026-10-24T04:32:40+00:00 urdm-srv xrdp[60]: [INFO ] address [0.0.0.0] port [3389] mode 1
+2026-10-24T04:32:40+00:00 urdm-srv xrdp[60]: [INFO ] listening to port 3389 on 0.0.0.0
+2026-10-24T04:32:40+00:00 urdm-srv xrdp[60]: [INFO ] xrdp_listen_pp done
+2026-10-24T04:32:40+00:00 urdm-srv systemd[1]: xrdp.service: Can't open PID file /run/xrdp/xrdp.pid (yet?) after start: No such file or directory
+2026-10-24T04:32:41+00:00 urdm-srv systemd[1]: Started xrdp.service - xrdp daemon.
+2026-10-24T04:32:42+00:00 urdm-srv xrdp[61]: [INFO ] starting xrdp with pid 61
+2026-10-24T04:32:42+00:00 urdm-srv xrdp[61]: [INFO ] address [0.0.0.0] port [3389] mode 1
+2026-10-24T04:32:42+00:00 urdm-srv xrdp[61]: [INFO ] listening to port 3389 on 0.0.0.0
+2026-10-24T04:32:42+00:00 urdm-srv xrdp[61]: [INFO ] xrdp_listen_pp done
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[61]: [INFO ] Socket 12: AF_INET6 connection received from ::ffff:172.18.0.3 port 45832
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] Security protocol: configured [SSL|RDP], requested [SSL|HYBRID|HYBRID_EX|RDP], selected [SSL]
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] Connected client computer name: 9975af5e933c
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc006 is unknown (ignored)
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc00a is unknown (ignored)
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] xrdp_load_keyboard_layout: Keyboard information sent by the RDP client, keyboard_type:[0x04], keyboard_subtype:[0x00], keylayout:[0x00000409]
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] xrdp_load_keyboard_layout: model [] variant [] layout [us] options []
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] TLS connection established from ::ffff:172.18.0.3 port 45832: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] xrdp_caps_process_pointer: client supports new(color) cursor
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] xrdp_process_offscreen_bmpcache: support level 0 cache size 0 MB cache entries 0
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] xrdp_caps_process_codecs: RemoteFX, codec id 3, properties len 49
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] Loading keymap file /etc/xrdp/km-00000409.ini
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [WARN ] local keymap file for 0x00000409 found and doesn't match built in keymap, using local keymap file
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] connecting to sesman on 127.0.0.1:3350
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[48]: [INFO ] Socket 12: AF_INET6 connection received from ::1 port 50528
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[61]: [INFO ] Socket 12: AF_INET6 connection received from ::ffff:172.18.0.4 port 57204
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] Security protocol: configured [SSL|RDP], requested [SSL|HYBRID|HYBRID_EX|RDP], selected [SSL]
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] Connected client computer name: 9a59eb59e9a2
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc006 is unknown (ignored)
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc00a is unknown (ignored)
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] xrdp_load_keyboard_layout: Keyboard information sent by the RDP client, keyboard_type:[0x04], keyboard_subtype:[0x00], keylayout:[0x00000409]
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] xrdp_load_keyboard_layout: model [] variant [] layout [us] options []
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] TLS connection established from ::ffff:172.18.0.4 port 57204: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] xrdp_caps_process_pointer: client supports new(color) cursor
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] xrdp_process_offscreen_bmpcache: support level 0 cache size 0 MB cache entries 0
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] xrdp_caps_process_codecs: RemoteFX, codec id 3, properties len 49
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] Loading keymap file /etc/xrdp/km-00000409.ini
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [WARN ] local keymap file for 0x00000409 found and doesn't match built in keymap, using local keymap file
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] connecting to sesman on 127.0.0.1:3350
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[48]: [INFO ] Socket 13: AF_INET6 connection received from ::1 port 50538
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] xrdp_wm_log_msg: sesman connect ok
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] sesman connect ok
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] sending login info to session manager. Please wait...
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[48]: [INFO ] Terminal Server Users group is disabled, allowing authentication
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[48]: [INFO ] ++ created session (access granted): username rdpuser1, ip ::ffff:172.18.0.3:45832 - socket: 12
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[48]: [INFO ] starting Xorg session...
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[48]: [INFO ] Starting session: session_pid 127, display :10.0, width 1280, height 800, bpp 24, client ip ::ffff:172.18.0.3:45832 - socket: 12, user name rdpuser1
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[127]: [INFO ] [session start] (display 10): calling auth_start_session from pid 127
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[48]: [ERROR] sesman_data_in: scp_process_msg failed
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] xrdp_wm_log_msg: login successful for user rdpuser1 on display 10
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[127]: pam_unix(xrdp-sesman:session): session opened for user rdpuser1(uid=1001) by (uid=0)
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] login successful for user rdpuser1 on display 10
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[48]: [ERROR] sesman_main_loop: trans_check_wait_objs failed, removing trans
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] loaded module 'libxup.so' ok, interface size 10296, version 4
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] started connecting
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] lib_mod_connect: connecting via UNIX socket
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] xrdp_wm_log_msg: sesman connect ok
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] sesman connect ok
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] sending login info to session manager. Please wait...
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[48]: [INFO ] Terminal Server Users group is disabled, allowing authentication
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[48]: [INFO ] ++ created session (access granted): username rdpuser2, ip ::ffff:172.18.0.4:57204 - socket: 12
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[48]: [INFO ] starting Xorg session...
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[48]: [INFO ] Starting session: session_pid 136, display :11.0, width 1280, height 800, bpp 24, client ip ::ffff:172.18.0.4:57204 - socket: 12, user name rdpuser2
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[136]: [INFO ] [session start] (display 11): calling auth_start_session from pid 136
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[48]: [ERROR] sesman_data_in: scp_process_msg failed
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] xrdp_wm_log_msg: login successful for user rdpuser2 on display 11
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[136]: pam_unix(xrdp-sesman:session): session opened for user rdpuser2(uid=1002) by (uid=0)
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] login successful for user rdpuser2 on display 11
+2026-10-24T04:32:50+00:00 urdm-srv xrdp-sesman[48]: [ERROR] sesman_main_loop: trans_check_wait_objs failed, removing trans
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] loaded module 'libxup.so' ok, interface size 10296, version 4
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] started connecting
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[126]: [INFO ] lib_mod_connect: connecting via UNIX socket
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] lib_mod_log_peer: xrdp_pid=125 connected to X11rdp_pid=139 X11rdp_uid=1001 X11rdp_gid=1001 client_ip=::ffff:172.18.0.3 client_port=45832
+2026-10-24T04:32:50+00:00 urdm-srv xrdp[125]: [INFO ] connected ok
+2026-10-24T04:32:51+00:00 urdm-srv xrdp[126]: [INFO ] lib_mod_log_peer: xrdp_pid=126 connected to X11rdp_pid=151 X11rdp_uid=1002 X11rdp_gid=1002 client_ip=::ffff:172.18.0.4 client_port=57204
+2026-10-24T04:32:51+00:00 urdm-srv xrdp[126]: [INFO ] connected ok
+2026-10-24T04:32:51+00:00 urdm-srv xrdp-sesman[127]: [INFO ] Found X server running at /tmp/.X11-unix/X10
+2026-10-24T04:32:51+00:00 urdm-srv xrdp-sesman[127]: [INFO ] Session started successfully for user rdpuser1 on display 10
+2026-10-24T04:32:51+00:00 urdm-srv xrdp-sesman[127]: [INFO ] Session in progress on display 10, waiting until the window manager (pid 138) exits to end the session
+2026-10-24T04:32:51+00:00 urdm-srv xrdp-sesman[136]: [INFO ] Found X server running at /tmp/.X11-unix/X11
+2026-10-24T04:32:51+00:00 urdm-srv xrdp-sesman[136]: [INFO ] Session started successfully for user rdpuser2 on display 11
+2026-10-24T04:32:51+00:00 urdm-srv xrdp-sesman[136]: [INFO ] Session in progress on display 11, waiting until the window manager (pid 150) exits to end the session
+2026-10-24T04:33:28+00:00 urdm-srv xrdp[125]: [ERROR] xrdp_sec_recv: xrdp_mcs_recv failed
+2026-10-24T04:33:28+00:00 urdm-srv xrdp[125]: [ERROR] xrdp_rdp_recv: xrdp_sec_recv failed
+2026-10-24T04:33:28+00:00 urdm-srv xrdp[125]: [ERROR] libxrdp_process_data: xrdp_rdp_recv failed
+2026-10-24T04:33:28+00:00 urdm-srv xrdp[125]: [ERROR] xrdp_process_data_in: xrdp_process_loop failed
+2026-10-24T04:33:28+00:00 urdm-srv xrdp[125]: [ERROR] SSL_shutdown: I/O error
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[61]: [INFO ] Socket 12: AF_INET6 connection received from ::ffff:172.18.0.3 port 35250
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] Security protocol: configured [SSL|RDP], requested [SSL|HYBRID|HYBRID_EX|RDP], selected [SSL]
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] Connected client computer name: 9975af5e933c
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc006 is unknown (ignored)
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc00a is unknown (ignored)
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] xrdp_load_keyboard_layout: Keyboard information sent by the RDP client, keyboard_type:[0x04], keyboard_subtype:[0x00], keylayout:[0x00000409]
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] xrdp_load_keyboard_layout: model [] variant [] layout [us] options []
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] TLS connection established from ::ffff:172.18.0.3 port 35250: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] xrdp_caps_process_pointer: client supports new(color) cursor
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] xrdp_process_offscreen_bmpcache: support level 0 cache size 0 MB cache entries 0
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] xrdp_caps_process_codecs: RemoteFX, codec id 3, properties len 49
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] Loading keymap file /etc/xrdp/km-00000409.ini
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [WARN ] local keymap file for 0x00000409 found and doesn't match built in keymap, using local keymap file
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] connecting to sesman on 127.0.0.1:3350
+2026-10-24T04:34:02+00:00 urdm-srv xrdp-sesman[48]: [INFO ] Socket 12: AF_INET6 connection received from ::1 port 45406
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] xrdp_wm_log_msg: sesman connect ok
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] sesman connect ok
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] sending login info to session manager. Please wait...
+2026-10-24T04:34:02+00:00 urdm-srv xrdp-sesman[48]: [INFO ] ++ reconnected session: username rdpuser1, display :10.0, session_pid 127, ip ::ffff:172.18.0.3:35250 - socket: 12
+2026-10-24T04:34:02+00:00 urdm-srv xrdp-sesman[48]: [ERROR] sesman_data_in: scp_process_msg failed
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] xrdp_wm_log_msg: login successful for user rdpuser1 on display 10
+2026-10-24T04:34:02+00:00 urdm-srv xrdp-sesman[560]: [INFO ] Starting session reconnection script on display 10: /etc/xrdp/reconnectwm.sh
+2026-10-24T04:34:02+00:00 urdm-srv xrdp-sesman[48]: [ERROR] sesman_main_loop: trans_check_wait_objs failed, removing trans
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] login successful for user rdpuser1 on display 10
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] loaded module 'libxup.so' ok, interface size 10296, version 4
+2026-10-24T04:34:02+00:00 urdm-srv xrdp-sesman[48]: [INFO ] Process 560 has exited
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] started connecting
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] lib_mod_connect: connecting via UNIX socket
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] lib_mod_log_peer: xrdp_pid=559 connected to X11rdp_pid=139 X11rdp_uid=1001 X11rdp_gid=1001 client_ip=::ffff:172.18.0.3 client_port=35250
+2026-10-24T04:34:02+00:00 urdm-srv xrdp[559]: [INFO ] connected ok
+2026-10-24T04:34:13+00:00 urdm-srv xrdp-sesman[48]: [INFO ] Process 127 has exited
+2026-10-24T04:34:13+00:00 urdm-srv xrdp-sesman[48]: [INFO ] ++ terminated session:  username rdpuser1, display :10.0, session_pid 127, ip ::ffff:172.18.0.3:45832 - socket: 12
+2026-10-24T04:34:25+00:00 urdm-srv systemd[1]: Stopping xrdp.service - xrdp daemon...
+2026-10-24T04:34:25+00:00 urdm-srv xrdp[620]: stopping xrdp
+2026-10-24T04:34:25+00:00 urdm-srv xrdp[620]: stopping process id 61
+2026-10-24T04:34:25+00:00 urdm-srv xrdp[61]: [INFO ] Received termination signal, stopping the server accept new connections thread
+2026-10-24T04:34:25+00:00 urdm-srv systemd[1]: xrdp.service: Deactivated successfully.
+2026-10-24T04:34:25+00:00 urdm-srv systemd[1]: Stopped xrdp.service - xrdp daemon.
+2026-10-24T04:34:25+00:00 urdm-srv systemd[1]: Stopping xrdp-sesman.service - xrdp session manager...
+2026-10-24T04:34:25+00:00 urdm-srv xrdp-sesman[622]: sesman is not running (pid file not found - /var/run/xrdp/xrdp-sesman.pid)
+2026-10-24T04:34:25+00:00 urdm-srv systemd[1]: xrdp-sesman.service: Control process exited, code=exited, status=1/FAILURE
+2026-10-24T04:34:25+00:00 urdm-srv xrdp-sesman[48]: [INFO ] sesman_main_loop: sesman asked to terminate
+2026-10-24T04:34:25+00:00 urdm-srv systemd[1]: xrdp-sesman.service: Failed with result 'exit-code'.
+2026-10-24T04:34:25+00:00 urdm-srv systemd[1]: Stopped xrdp-sesman.service - xrdp session manager.
+2026-10-24T04:34:25+00:00 urdm-srv systemd[1]: Starting xrdp-sesman.service - xrdp session manager...
+2026-10-24T04:34:25+00:00 urdm-srv xrdp-sesman[625]: [INFO ] starting xrdp-sesman with pid 625
+2026-10-24T04:34:25+00:00 urdm-srv systemd[1]: Started xrdp-sesman.service - xrdp session manager.
+2026-10-24T04:34:25+00:00 urdm-srv systemd[1]: Starting xrdp.service - xrdp daemon...
+2026-10-24T04:34:25+00:00 urdm-srv xrdp[635]: [INFO ] address [0.0.0.0] port [3389] mode 1
+2026-10-24T04:34:25+00:00 urdm-srv xrdp[635]: [INFO ] listening to port 3389 on 0.0.0.0
+2026-10-24T04:34:25+00:00 urdm-srv xrdp[635]: [INFO ] xrdp_listen_pp done
+2026-10-24T04:34:25+00:00 urdm-srv systemd[1]: xrdp.service: Can't open PID file /run/xrdp/xrdp.pid (yet?) after start: No such file or directory
+2026-10-24T04:34:26+00:00 urdm-srv systemd[1]: Started xrdp.service - xrdp daemon.
+2026-10-24T04:34:27+00:00 urdm-srv xrdp[637]: [INFO ] starting xrdp with pid 637
+2026-10-24T04:34:27+00:00 urdm-srv xrdp[637]: [INFO ] address [0.0.0.0] port [3389] mode 1
+2026-10-24T04:34:27+00:00 urdm-srv xrdp[637]: [INFO ] listening to port 3389 on 0.0.0.0
+2026-10-24T04:34:27+00:00 urdm-srv xrdp[637]: [INFO ] xrdp_listen_pp done
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[637]: [INFO ] Socket 12: AF_INET6 connection received from ::ffff:172.18.0.3 port 44402
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] Security protocol: configured [SSL|RDP], requested [SSL|HYBRID|HYBRID_EX|RDP], selected [SSL]
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] Connected client computer name: b661b8ea1132
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc006 is unknown (ignored)
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc00a is unknown (ignored)
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] xrdp_load_keyboard_layout: Keyboard information sent by the RDP client, keyboard_type:[0x04], keyboard_subtype:[0x00], keylayout:[0x00000409]
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] xrdp_load_keyboard_layout: model [] variant [] layout [us] options []
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] TLS connection established from ::ffff:172.18.0.3 port 44402: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] xrdp_caps_process_pointer: client supports new(color) cursor
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] xrdp_process_offscreen_bmpcache: support level 0 cache size 0 MB cache entries 0
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] xrdp_caps_process_codecs: RemoteFX, codec id 3, properties len 49
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] Loading keymap file /etc/xrdp/km-00000409.ini
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [WARN ] local keymap file for 0x00000409 found and doesn't match built in keymap, using local keymap file
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] connecting to sesman on 127.0.0.1:3350
+2026-10-24T04:34:31+00:00 urdm-srv xrdp-sesman[625]: [INFO ] Socket 12: AF_INET6 connection received from ::1 port 56630
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] xrdp_wm_log_msg: sesman connect ok
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] sesman connect ok
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] sending login info to session manager. Please wait...
+2026-10-24T04:34:31+00:00 urdm-srv xrdp-sesman[625]: [INFO ] Terminal Server Users group is disabled, allowing authentication
+2026-10-24T04:34:31+00:00 urdm-srv xrdp-sesman[625]: [INFO ] ++ created session (access granted): username rdpuser1, ip ::ffff:172.18.0.3:44402 - socket: 12
+2026-10-24T04:34:31+00:00 urdm-srv xrdp-sesman[625]: [INFO ] starting Xorg session...
+2026-10-24T04:34:31+00:00 urdm-srv xrdp-sesman[625]: [ERROR] max concurrent session limit exceeded. login for user rdpuser1 denied
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] xrdp_wm_log_msg: login failed for user rdpuser1
+2026-10-24T04:34:31+00:00 urdm-srv xrdp-sesman[625]: [ERROR] sesman_data_in: scp_process_msg failed
+2026-10-24T04:34:31+00:00 urdm-srv xrdp[690]: [INFO ] login failed for user rdpuser1
+2026-10-24T04:34:31+00:00 urdm-srv xrdp-sesman[625]: [ERROR] sesman_main_loop: trans_check_wait_objs failed, removing trans
+2026-10-24T04:35:51+00:00 urdm-srv xrdp[690]: [ERROR] SSL_read: Failure in SSL library (protocol error?)
+2026-10-24T04:35:51+00:00 urdm-srv xrdp[690]: [ERROR] SSL: error:0A000126:SSL routines::unexpected eof while reading
+2026-10-24T04:35:51+00:00 urdm-srv xrdp[690]: [ERROR] xrdp_iso_send: trans_write_copy_s failed
+2026-10-24T04:35:51+00:00 urdm-srv xrdp[690]: [ERROR] Sending [ITU T.125] DisconnectProviderUltimatum failed
+2026-10-24T04:35:52+00:00 urdm-srv systemd[1]: Stopping xrdp.service - xrdp daemon...
+2026-10-24T04:35:52+00:00 urdm-srv xrdp[1171]: stopping xrdp
+2026-10-24T04:35:52+00:00 urdm-srv xrdp[1171]: stopping process id 637
+2026-10-24T04:35:52+00:00 urdm-srv xrdp[637]: [INFO ] Received termination signal, stopping the server accept new connections thread
+2026-10-24T04:35:52+00:00 urdm-srv systemd[1]: xrdp.service: Deactivated successfully.
+2026-10-24T04:35:52+00:00 urdm-srv systemd[1]: Stopped xrdp.service - xrdp daemon.
+2026-10-24T04:35:52+00:00 urdm-srv systemd[1]: Stopping xrdp-sesman.service - xrdp session manager...
+2026-10-24T04:35:52+00:00 urdm-srv xrdp-sesman[1173]: sesman is not running (pid file not found - /var/run/xrdp/xrdp-sesman.pid)
+2026-10-24T04:35:52+00:00 urdm-srv systemd[1]: xrdp-sesman.service: Control process exited, code=exited, status=1/FAILURE
+2026-10-24T04:35:52+00:00 urdm-srv xrdp-sesman[625]: [INFO ] sesman_main_loop: sesman asked to terminate
+2026-10-24T04:35:52+00:00 urdm-srv systemd[1]: xrdp-sesman.service: Failed with result 'exit-code'.
+2026-10-24T04:35:52+00:00 urdm-srv systemd[1]: Stopped xrdp-sesman.service - xrdp session manager.
+2026-10-24T04:35:52+00:00 urdm-srv systemd[1]: Starting xrdp-sesman.service - xrdp session manager...
+2026-10-24T04:35:52+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] starting xrdp-sesman with pid 1176
+2026-10-24T04:35:52+00:00 urdm-srv systemd[1]: Started xrdp-sesman.service - xrdp session manager.
+2026-10-24T04:35:52+00:00 urdm-srv systemd[1]: Starting xrdp.service - xrdp daemon...
+2026-10-24T04:35:52+00:00 urdm-srv xrdp[1187]: [INFO ] address [0.0.0.0] port [3389] mode 1
+2026-10-24T04:35:52+00:00 urdm-srv xrdp[1187]: [INFO ] listening to port 3389 on 0.0.0.0
+2026-10-24T04:35:52+00:00 urdm-srv xrdp[1187]: [INFO ] xrdp_listen_pp done
+2026-10-24T04:35:52+00:00 urdm-srv systemd[1]: xrdp.service: Can't open PID file /run/xrdp/xrdp.pid (yet?) after start: No such file or directory
+2026-10-24T04:35:53+00:00 urdm-srv systemd[1]: Started xrdp.service - xrdp daemon.
+2026-10-24T04:35:54+00:00 urdm-srv xrdp[1188]: [INFO ] starting xrdp with pid 1188
+2026-10-24T04:35:54+00:00 urdm-srv xrdp[1188]: [INFO ] address [0.0.0.0] port [3389] mode 1
+2026-10-24T04:35:54+00:00 urdm-srv xrdp[1188]: [INFO ] listening to port 3389 on 0.0.0.0
+2026-10-24T04:35:54+00:00 urdm-srv xrdp[1188]: [INFO ] xrdp_listen_pp done
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1188]: [INFO ] Socket 12: AF_INET6 connection received from ::ffff:172.18.0.3 port 42456
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] Security protocol: configured [SSL|RDP], requested [SSL|HYBRID|HYBRID_EX|RDP], selected [SSL]
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] Connected client computer name: de5456eadc58
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc006 is unknown (ignored)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc00a is unknown (ignored)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] xrdp_load_keyboard_layout: Keyboard information sent by the RDP client, keyboard_type:[0x04], keyboard_subtype:[0x00], keylayout:[0x00000409]
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] xrdp_load_keyboard_layout: model [] variant [] layout [us] options []
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] TLS connection established from ::ffff:172.18.0.3 port 42456: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] xrdp_caps_process_pointer: client supports new(color) cursor
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] xrdp_process_offscreen_bmpcache: support level 0 cache size 0 MB cache entries 0
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] xrdp_caps_process_codecs: RemoteFX, codec id 3, properties len 49
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] Loading keymap file /etc/xrdp/km-00000409.ini
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [WARN ] local keymap file for 0x00000409 found and doesn't match built in keymap, using local keymap file
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] connecting to sesman on 127.0.0.1:3350
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Socket 12: AF_INET6 connection received from ::1 port 45920
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1188]: [INFO ] Socket 12: AF_INET6 connection received from ::ffff:172.18.0.4 port 36236
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] Security protocol: configured [SSL|RDP], requested [SSL|HYBRID|HYBRID_EX|RDP], selected [SSL]
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] Connected client computer name: 99e62e3598ba
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc006 is unknown (ignored)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc00a is unknown (ignored)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] xrdp_load_keyboard_layout: Keyboard information sent by the RDP client, keyboard_type:[0x04], keyboard_subtype:[0x00], keylayout:[0x00000409]
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] xrdp_load_keyboard_layout: model [] variant [] layout [us] options []
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] TLS connection established from ::ffff:172.18.0.4 port 36236: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] xrdp_caps_process_pointer: client supports new(color) cursor
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] xrdp_process_offscreen_bmpcache: support level 0 cache size 0 MB cache entries 0
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] xrdp_caps_process_codecs: RemoteFX, codec id 3, properties len 49
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] Loading keymap file /etc/xrdp/km-00000409.ini
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [WARN ] local keymap file for 0x00000409 found and doesn't match built in keymap, using local keymap file
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] connecting to sesman on 127.0.0.1:3350
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Socket 13: AF_INET6 connection received from ::1 port 45930
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1188]: [INFO ] Socket 12: AF_INET6 connection received from ::ffff:172.18.0.5 port 45424
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] Security protocol: configured [SSL|RDP], requested [SSL|HYBRID|HYBRID_EX|RDP], selected [SSL]
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] Connected client computer name: 070ac8f8ef2e
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc006 is unknown (ignored)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc00a is unknown (ignored)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] xrdp_load_keyboard_layout: Keyboard information sent by the RDP client, keyboard_type:[0x04], keyboard_subtype:[0x00], keylayout:[0x00000409]
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] xrdp_load_keyboard_layout: model [] variant [] layout [us] options []
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] TLS connection established from ::ffff:172.18.0.5 port 45424: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] xrdp_caps_process_pointer: client supports new(color) cursor
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] xrdp_process_offscreen_bmpcache: support level 0 cache size 0 MB cache entries 0
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] xrdp_caps_process_codecs: RemoteFX, codec id 3, properties len 49
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] Loading keymap file /etc/xrdp/km-00000409.ini
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [WARN ] local keymap file for 0x00000409 found and doesn't match built in keymap, using local keymap file
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] connecting to sesman on 127.0.0.1:3350
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Socket 14: AF_INET6 connection received from ::1 port 45934
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1188]: [INFO ] Socket 12: AF_INET6 connection received from ::ffff:172.18.0.6 port 58998
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] Security protocol: configured [SSL|RDP], requested [SSL|HYBRID|HYBRID_EX|RDP], selected [SSL]
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] xrdp_wm_log_msg: sesman connect ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] sesman connect ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] sending login info to session manager. Please wait...
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] Connected client computer name: 6c8c54b3161d
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc006 is unknown (ignored)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc00a is unknown (ignored)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Terminal Server Users group is disabled, allowing authentication
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] ++ created session (access granted): username rdpuser1, ip ::ffff:172.18.0.3:42456 - socket: 12
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] xrdp_load_keyboard_layout: Keyboard information sent by the RDP client, keyboard_type:[0x04], keyboard_subtype:[0x00], keylayout:[0x00000409]
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] starting Xorg session...
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] xrdp_load_keyboard_layout: model [] variant [] layout [us] options []
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] TLS connection established from ::ffff:172.18.0.6 port 58998: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Starting session: session_pid 1288, display :10.0, width 1280, height 800, bpp 24, client ip ::ffff:172.18.0.3:42456 - socket: 12, user name rdpuser1
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1288]: [INFO ] [session start] (display 10): calling auth_start_session from pid 1288
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [ERROR] sesman_data_in: scp_process_msg failed
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] xrdp_wm_log_msg: login successful for user rdpuser1 on display 10
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] login successful for user rdpuser1 on display 10
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1288]: pam_unix(xrdp-sesman:session): session opened for user rdpuser1(uid=1001) by (uid=0)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] xrdp_caps_process_pointer: client supports new(color) cursor
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [ERROR] sesman_main_loop: trans_check_wait_objs failed, removing trans
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] loaded module 'libxup.so' ok, interface size 10296, version 4
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] xrdp_process_offscreen_bmpcache: support level 0 cache size 0 MB cache entries 0
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] started connecting
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] xrdp_caps_process_codecs: RemoteFX, codec id 3, properties len 49
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] lib_mod_connect: connecting via UNIX socket
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] Loading keymap file /etc/xrdp/km-00000409.ini
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [WARN ] local keymap file for 0x00000409 found and doesn't match built in keymap, using local keymap file
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] connecting to sesman on 127.0.0.1:3350
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Socket 12: AF_INET6 connection received from ::1 port 45948
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] xrdp_wm_log_msg: sesman connect ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1188]: [INFO ] Socket 12: AF_INET6 connection received from ::ffff:172.18.0.7 port 44734
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] sesman connect ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] sending login info to session manager. Please wait...
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] Security protocol: configured [SSL|RDP], requested [SSL|HYBRID|HYBRID_EX|RDP], selected [SSL]
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] Connected client computer name: a8e522451b41
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc006 is unknown (ignored)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [WARN ] Received [MS-RDPBCGR] TS_UD_HEADER type 0xc00a is unknown (ignored)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] xrdp_load_keyboard_layout: Keyboard information sent by the RDP client, keyboard_type:[0x04], keyboard_subtype:[0x00], keylayout:[0x00000409]
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] xrdp_load_keyboard_layout: model [] variant [] layout [us] options []
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] TLS connection established from ::ffff:172.18.0.7 port 44734: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] xrdp_caps_process_pointer: client supports new(color) cursor
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] xrdp_process_offscreen_bmpcache: support level 0 cache size 0 MB cache entries 0
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] xrdp_caps_process_codecs: RemoteFX, codec id 3, properties len 49
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] Loading keymap file /etc/xrdp/km-00000409.ini
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [WARN ] local keymap file for 0x00000409 found and doesn't match built in keymap, using local keymap file
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Terminal Server Users group is disabled, allowing authentication
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] connecting to sesman on 127.0.0.1:3350
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] ++ created session (access granted): username rdpuser2, ip ::ffff:172.18.0.4:36236 - socket: 12
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] starting Xorg session...
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Starting session: session_pid 1298, display :11.0, width 1280, height 800, bpp 24, client ip ::ffff:172.18.0.4:36236 - socket: 12, user name rdpuser2
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1298]: [INFO ] [session start] (display 11): calling auth_start_session from pid 1298
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [ERROR] sesman_data_in: scp_process_msg failed
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] xrdp_wm_log_msg: login successful for user rdpuser2 on display 11
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1298]: pam_unix(xrdp-sesman:session): session opened for user rdpuser2(uid=1002) by (uid=0)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] login successful for user rdpuser2 on display 11
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [ERROR] sesman_main_loop: trans_check_wait_objs failed, removing trans
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] loaded module 'libxup.so' ok, interface size 10296, version 4
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Socket 13: AF_INET6 connection received from ::1 port 45950
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] started connecting
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] lib_mod_connect: connecting via UNIX socket
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] xrdp_wm_log_msg: sesman connect ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] sesman connect ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] sending login info to session manager. Please wait...
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Terminal Server Users group is disabled, allowing authentication
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] ++ created session (access granted): username rdpuser3, ip ::ffff:172.18.0.5:45424 - socket: 12
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] starting Xorg session...
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Starting session: session_pid 1312, display :12.0, width 1280, height 800, bpp 24, client ip ::ffff:172.18.0.5:45424 - socket: 12, user name rdpuser3
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1312]: [INFO ] [session start] (display 12): calling auth_start_session from pid 1312
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [ERROR] sesman_data_in: scp_process_msg failed
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] xrdp_wm_log_msg: login successful for user rdpuser3 on display 12
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] login successful for user rdpuser3 on display 12
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1312]: pam_unix(xrdp-sesman:session): session opened for user rdpuser3(uid=1003) by (uid=0)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [ERROR] sesman_main_loop: trans_check_wait_objs failed, removing trans
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] loaded module 'libxup.so' ok, interface size 10296, version 4
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] started connecting
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] lib_mod_connect: connecting via UNIX socket
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] lib_mod_log_peer: xrdp_pid=1266 connected to X11rdp_pid=1301 X11rdp_uid=1001 X11rdp_gid=1001 client_ip=::ffff:172.18.0.3 client_port=42456
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1266]: [INFO ] connected ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] xrdp_wm_log_msg: sesman connect ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] sesman connect ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] sending login info to session manager. Please wait...
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] xrdp_wm_log_msg: sesman connect ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] sesman connect ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] sending login info to session manager. Please wait...
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Terminal Server Users group is disabled, allowing authentication
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] ++ created session (access granted): username rdpuser4, ip ::ffff:172.18.0.6:58998 - socket: 12
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] lib_mod_log_peer: xrdp_pid=1273 connected to X11rdp_pid=1315 X11rdp_uid=1002 X11rdp_gid=1002 client_ip=::ffff:172.18.0.4 client_port=36236
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] starting Xorg session...
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1273]: [INFO ] connected ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Starting session: session_pid 1335, display :13.0, width 1280, height 800, bpp 24, client ip ::ffff:172.18.0.6:58998 - socket: 12, user name rdpuser4
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1335]: [INFO ] [session start] (display 13): calling auth_start_session from pid 1335
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [ERROR] sesman_data_in: scp_process_msg failed
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] xrdp_wm_log_msg: login successful for user rdpuser4 on display 13
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1335]: pam_unix(xrdp-sesman:session): session opened for user rdpuser4(uid=1004) by (uid=0)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] login successful for user rdpuser4 on display 13
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [ERROR] sesman_main_loop: trans_check_wait_objs failed, removing trans
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] loaded module 'libxup.so' ok, interface size 10296, version 4
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] started connecting
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] lib_mod_connect: connecting via UNIX socket
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Terminal Server Users group is disabled, allowing authentication
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] ++ created session (access granted): username rdpuser5, ip ::ffff:172.18.0.7:44734 - socket: 12
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] starting Xorg session...
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [INFO ] Starting session: session_pid 1348, display :14.0, width 1280, height 800, bpp 24, client ip ::ffff:172.18.0.7:44734 - socket: 12, user name rdpuser5
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1348]: [INFO ] [session start] (display 14): calling auth_start_session from pid 1348
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [ERROR] sesman_data_in: scp_process_msg failed
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] xrdp_wm_log_msg: login successful for user rdpuser5 on display 14
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1348]: pam_unix(xrdp-sesman:session): session opened for user rdpuser5(uid=1005) by (uid=0)
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] login successful for user rdpuser5 on display 14
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1176]: [ERROR] sesman_main_loop: trans_check_wait_objs failed, removing trans
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] loaded module 'libxup.so' ok, interface size 10296, version 4
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] started connecting
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] lib_mod_connect: connecting via UNIX socket
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] lib_mod_log_peer: xrdp_pid=1280 connected to X11rdp_pid=1332 X11rdp_uid=1003 X11rdp_gid=1003 client_ip=::ffff:172.18.0.5 client_port=45424
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1280]: [INFO ] connected ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] lib_mod_log_peer: xrdp_pid=1287 connected to X11rdp_pid=1353 X11rdp_uid=1004 X11rdp_gid=1004 client_ip=::ffff:172.18.0.6 client_port=58998
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1287]: [INFO ] connected ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] lib_mod_log_peer: xrdp_pid=1290 connected to X11rdp_pid=1362 X11rdp_uid=1005 X11rdp_gid=1005 client_ip=::ffff:172.18.0.7 client_port=44734
+2026-10-24T04:36:00+00:00 urdm-srv xrdp[1290]: [INFO ] connected ok
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1288]: [INFO ] Found X server running at /tmp/.X11-unix/X10
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1288]: [INFO ] Session started successfully for user rdpuser1 on display 10
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1288]: [INFO ] Session in progress on display 10, waiting until the window manager (pid 1300) exits to end the session
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1298]: [INFO ] Found X server running at /tmp/.X11-unix/X11
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1298]: [INFO ] Session started successfully for user rdpuser2 on display 11
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1298]: [INFO ] Session in progress on display 11, waiting until the window manager (pid 1314) exits to end the session
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1312]: [INFO ] Found X server running at /tmp/.X11-unix/X12
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1312]: [INFO ] Session started successfully for user rdpuser3 on display 12
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1312]: [INFO ] Session in progress on display 12, waiting until the window manager (pid 1331) exits to end the session
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1335]: [INFO ] Found X server running at /tmp/.X11-unix/X13
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1335]: [INFO ] Session started successfully for user rdpuser4 on display 13
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1335]: [INFO ] Session in progress on display 13, waiting until the window manager (pid 1352) exits to end the session
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1348]: [INFO ] Found X server running at /tmp/.X11-unix/X14
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1348]: [INFO ] Session started successfully for user rdpuser5 on display 14
+2026-10-24T04:36:00+00:00 urdm-srv xrdp-sesman[1348]: [INFO ] Session in progress on display 14, waiting until the window manager (pid 1361) exits to end the session

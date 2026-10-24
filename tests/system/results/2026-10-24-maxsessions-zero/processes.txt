@@ -1,0 +1,10 @@
+USER         PID   RSS %CPU COMMAND
+message+      44  4768  0.0 dbus-daemon
+polkitd      416  8780  0.0 polkitd
+root           1 12596  0.0 systemd
+root          22 19692  0.0 systemd-journal
+root          45  8800  0.0 systemd-logind
+root         625  3420  0.0 xrdp-sesman
+root        1130  4052 50.0 ps
+xrdp         637  2384  0.0 xrdp
+xrdp         690 15736  0.0 xrdp
