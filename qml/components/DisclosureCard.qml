@@ -40,8 +40,11 @@ Pane {
             background: Rectangle {
                 color: header.hovered ? Theme.hoverBg : "transparent"
                 radius: Theme.radiusS
-                border.color: header.activeFocus ? Theme.accent : "transparent"
-                border.width: header.activeFocus ? 1 : 0
+                border.color: header.visualFocus ? Theme.accent : "transparent"
+                border.width: header.visualFocus ? 1 : 0
+                Behavior on color {
+                    ColorAnimation { duration: 100 }
+                }
             }
 
             contentItem: RowLayout {

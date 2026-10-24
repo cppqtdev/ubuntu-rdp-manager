@@ -62,7 +62,7 @@ foreach(f ${URDM_QML_FILES})
 endforeach()
 set_source_files_properties(../../qml/themes/Theme.qml ../../qml/themes/Words.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 
-file(GLOB icon_files RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/resources/icons/*.svg)
+file(GLOB icon_files CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/resources/icons/*.svg)
 foreach(f ${icon_files})
     get_filename_component(name ${f} NAME)
     set_source_files_properties(${f} PROPERTIES QT_RESOURCE_ALIAS resources/icons/${name})
