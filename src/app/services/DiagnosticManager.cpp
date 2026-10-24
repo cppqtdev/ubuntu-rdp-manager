@@ -185,6 +185,28 @@ void DiagnosticManager::runChecks()
                  QStringLiteral("Installed desktops: %1.").arg(desktops.join(QStringLiteral(", "))),
                  QStringLiteral("For several people at once, choose Xfce in Settings → \"What people see when they connect\"."),
                  QStringLiteral("open-configuration"));
+    {
+        // Sound needs a module that connects the desktop's sound system to xrdp. Either package works.
+        const bool soundModule = QFileInfo::exists(QStringLiteral("/usr/libexec/pipewire-module-xrdp/load_pw_modules.sh"))
+                                 || QFileInfo::exists(QStringLiteral("/usr/libexec/pulseaudio-module-xrdp/load_pa_modules.sh"));
+        const bool soundAllowed = parseXrdpBool(m_config->value(QStringLiteral("redirect.audio")))
+                                  && parseXrdpBool(m_config->value(QStringLiteral("redirect.allChannels")));
+        if (!m_config->xrdpInstalled()) {
+            // nothing to say before the server itself is installed
+        } else if (!soundModule)
+            addCheck(QStringLiteral("sound"), inst, QStringLiteral("Sound and microphone are not set up"), warn,
+                     QStringLiteral("People hear no sound and their microphone does not work in the remote desktop."),
+                     QStringLiteral("Open Setup and install \"Sound and microphone\". People then sign out and connect again."),
+                     QStringLiteral("open-installation"));
+        else if (!soundAllowed)
+            addCheck(QStringLiteral("sound"), inst, QStringLiteral("Sound and microphone are switched off"), info,
+                     QStringLiteral("The sound part is installed, but sharing sound is switched off in Settings."),
+                     QStringLiteral("Settings → \"What the connecting computer can use\" → Sound → Turn on."),
+                     QStringLiteral("open-configuration"));
+        else
+            addCheck(QStringLiteral("sound"), inst, QStringLiteral("Sound and microphone are set up"), pass,
+                     QStringLiteral("Sound plays on the person's computer and their microphone can be used."));
+    }
     addCheck(QStringLiteral("helper"), inst, m_helper->available() ? QStringLiteral("Administrator tools are installed")
                                                                    : QStringLiteral("Administrator tools are missing"),
              m_helper->available() ? pass : fail,
@@ -373,7 +395,8 @@ void DiagnosticManager::runChecks()
         addCheck(QStringLiteral("alsolocal"), cap, QStringLiteral("Same account used here and remotely at the same time"), warn,
                  QStringLiteral("%1 is signed in at this computer's own screen and remotely at the same time. Programs that allow only one "
                                 "copy per account (Google Chrome, Firefox, some file managers) open on the screen where they are already "
-                                "running — so they can appear here instead of on the remote computer.")
+                                "running — so they can appear here instead of on the remote computer. Both desktops also share one sound "
+                                "system, which makes remote sound choppy and delayed.")
                      .arg(m_sessions->alsoLocalUsers().join(QStringLiteral(", "))),
                  QStringLiteral("Give remote users their own account (Ubuntu Settings → System → Users), or sign out at this computer before "
                                 "connecting remotely."));

@@ -42,6 +42,7 @@ inline const QHash<QString, QStringList> &installComponents()
         {QStringLiteral("xrdp"), {QStringLiteral("xrdp")}},
         {QStringLiteral("xorgxrdp"), {QStringLiteral("xorgxrdp")}},
         {QStringLiteral("xfce"), {QStringLiteral("xfce4"), QStringLiteral("xfce4-terminal"), QStringLiteral("dbus-x11")}},
+        {QStringLiteral("audio"), {QStringLiteral("pipewire-module-xrdp")}},
         {QStringLiteral("test-client"), {QStringLiteral("freerdp3-x11")}},
     };
     return c;

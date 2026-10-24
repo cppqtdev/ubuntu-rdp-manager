@@ -43,6 +43,10 @@ PageScaffold {
               answer: qsTr("Changing Remote Desktop affects everyone, so Ubuntu checks that an administrator is making the change. This program never sees or stores your password.") }
         Faq { question: qsTr("Someone closed the window. Is their work lost?")
               answer: qsTr("No. Their desktop stays open (shown as \"Away\"). When they connect again they continue where they left off.") }
+        Faq { question: qsTr("How do I disconnect from the remote computer?")
+              answer: qsTr("Inside the remote desktop, double-click the \"Disconnect\" icon or choose Applications → System → Disconnect. Your programs stay open and you continue later. To finish completely, choose Log Out instead.") }
+        Faq { question: qsTr("Sound is choppy or late.")
+              answer: qsTr("Install \"Sound and microphone\" on the Setup page, and use a separate account for remote work. See Settings → \"Sound tips\" for settings on the connecting computer.") }
         Faq { question: qsTr("What does \"Stuck – can't reconnect\" mean?")
               answer: qsTr("Remote Desktop was restarted while that desktop was open. It still uses memory but nobody can get back to it. You can close it on the \"Who's Connected\" page.") }
         Faq { question: qsTr("The other computer warns about a certificate.")

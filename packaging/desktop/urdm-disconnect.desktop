@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Disconnect
+GenericName=Disconnect remote desktop
+Comment=Close the connection but keep this desktop and your programs open. Connect again to continue.
+Exec=/opt/ubuntu-rdp-manager/share/remote/urdm-disconnect.sh
+Icon=network-offline
+Terminal=false
+Categories=System;
+OnlyShowIn=XFCE;
+Keywords=disconnect;remote;rdp;xrdp;leave;

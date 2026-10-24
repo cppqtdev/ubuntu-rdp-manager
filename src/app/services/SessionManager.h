@@ -43,7 +43,15 @@ public:
     SessionListModel *model() const { return m_model; }
     int totalCount() const { return int(m_model->rows().size()); }
     int connectedCount() const;
-    int disconnectedCount() const { return totalCount() - connectedCount(); }
+    // Desktops that are still open but nobody is looking at (Disconnected + Orphaned); ended desktops
+    // whose leftovers are still running ("Closing") are not counted.
+    int disconnectedCount() const
+    {
+        int n = 0;
+        for (const auto &r : m_model->rows())
+            n += r.state == QLatin1String("Disconnected") || r.state == QLatin1String("Orphaned");
+        return n;
+    }
     int staleCount() const;
     int orphanedCount() const;
     // xrdp-sesman keeps its session list in memory only: sessions opened before the running

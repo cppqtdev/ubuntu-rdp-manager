@@ -130,6 +130,7 @@ void InstallationManager::detectComponents()
         {"xrdp", "Remote desktop server", "xrdp", "The main program that lets other computers connect"},
         {"xorgxrdp", "Display support", "xorgxrdp", "Gives every person their own separate screen"},
         {"xfce", "Xfce desktop", "xfce4", "A light, fast desktop that works well for many people at once"},
+        {"audio", "Sound and microphone", "pipewire-module-xrdp", "Plays sound on the person's speakers and uses their microphone"},
         {"test-client", "Test program (optional)", "freerdp3-x11", "Lets you try a remote connection from this computer"},
     };
     auto list = std::make_shared<QVariantList>();
@@ -149,7 +150,7 @@ void InstallationManager::detectComponents()
                                                         {QStringLiteral("version"), installed ? out.section(QLatin1Char('|'), 1) : QString()},
                                                         {QStringLiteral("optional"), QString::fromLatin1(c.id) == QLatin1String("test-client")}});
                                if (--*remaining == 0) {
-                                   static const QStringList order{QStringLiteral("xrdp"), QStringLiteral("xorgxrdp"), QStringLiteral("xfce"), QStringLiteral("test-client")};
+                                   static const QStringList order{QStringLiteral("xrdp"), QStringLiteral("xorgxrdp"), QStringLiteral("xfce"), QStringLiteral("audio"), QStringLiteral("test-client")};
                                    std::sort(list->begin(), list->end(), [](const QVariant &a, const QVariant &b) {
                                        return order.indexOf(a.toMap().value(QStringLiteral("id")).toString())
                                               < order.indexOf(b.toMap().value(QStringLiteral("id")).toString());

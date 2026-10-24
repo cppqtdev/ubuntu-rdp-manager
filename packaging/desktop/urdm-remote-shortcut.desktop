@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Remote desktop Disconnect shortcut
+Comment=Adds a Disconnect icon to the desktop of remote sessions
+Exec=/opt/ubuntu-rdp-manager/share/remote/urdm-remote-shortcut.sh
+OnlyShowIn=XFCE;
+NoDisplay=true
+X-XFCE-Autostart-Override=true

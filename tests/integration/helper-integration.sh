@@ -94,6 +94,16 @@ expect_ok "terminate $s1" urdmadmin TerminateSession s "$s1"
 sleep 3
 srv pgrep -u rdpuser1 -x Xorg >/dev/null && bad "rdpuser1 Xorg still running" || ok "rdpuser1 session ended"
 docker exec urdm-cli2 pgrep -x xfreerdp3 >/dev/null && ok "client 2 still connected after terminating session 1" || bad "client 2 dropped"
+# A desktop that already ended but left programs running (logind state "closing"): logind's own
+# TerminateSession ignores it on systemd 255, so the helper must stop the leftovers itself.
+cg=$(srv sh -c "find /sys/fs/cgroup -type d -name session-$s2.scope | head -1")
+srv su rdpuser2 -s /bin/sh -c "setsid sleep 99999 >/dev/null 2>&1 &"; sleep 1
+srv sh -c "pgrep -u rdpuser2 -x sleep -n > $cg/cgroup.procs"
+srv pkill -u rdpuser2 -x xfce4-session; sleep 8
+[[ "$(srv loginctl show-session "$s2" -p State --value)" == closing ]] && ok "$s2 ended with a leftover program (closing)" || bad "$s2 is not closing"
+expect_ok "clean up ended $s2" urdmadmin TerminateSession s "$s2"
+srv pgrep -u rdpuser2 -x sleep >/dev/null && bad "leftover program of $s2 still running" || ok "leftover program of $s2 stopped"
+srv loginctl show-session "$s2" >/dev/null 2>&1 && bad "$s2 still listed" || ok "$s2 gone from logind"
 
 echo "--- 5. Group-based access control"
 expect_fail "empty group refused (lockout prevention)" "empty group" urdmadmin SetAccessRestriction bsas true rdpusers 0

@@ -74,7 +74,7 @@ void SessionManager::rebuild()
         r.disconnectedSince = m_disconnectedSince.value(s.id);
         // stale: orphaned (unreachable), or disconnected for longer than staleHours
         const QDateTime ref = r.disconnectedSince.isValid() ? r.disconnectedSince : r.started;
-        r.stale = r.state == QLatin1String("Orphaned")
+        r.stale = r.state == QLatin1String("Orphaned") || r.state == QLatin1String("Closing")
                   || (r.state == QLatin1String("Disconnected") && ref.isValid() && ref.secsTo(now) > qint64(m_staleHours) * 3600);
         r.clientAddress = attached ? m_addresses.value(r.displayNumber) : QString();
         const ScopeUsage u = sample.scopes.value(s.id);

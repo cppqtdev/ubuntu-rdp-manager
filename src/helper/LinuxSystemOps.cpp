@@ -12,8 +12,10 @@
 #include <QFileInfo>
 #include <QProcess>
 #include <QRegularExpression>
+#include <QThread>
 
 #include <cerrno>
+#include <csignal>
 #include <cstring>
 #include <fcntl.h>
 #include <grp.h>
@@ -341,13 +343,41 @@ std::optional<QVariantMap> LinuxSystemOps::sessionProperties(const QString &sess
 bool LinuxSystemOps::terminateSession(const QString &sessionId, QString *error)
 {
     QDBusInterface mgr(kLogind, kLogindPath, kLogindManager, m_bus);
+    const auto gone = [&](int waitMs) {
+        for (int waited = 0;; waited += 200) {
+            if (!sessionProperties(sessionId))
+                return true;
+            if (waited >= waitMs)
+                return false;
+            QThread::msleep(200);
+        }
+    };
     const QDBusMessage reply = mgr.call(QStringLiteral("TerminateSession"), sessionId);
     if (reply.type() == QDBusMessage::ErrorMessage) {
         if (error)
             *error = reply.errorMessage();
         return false;
     }
-    return true;
+    if (gone(3000))
+        return true;
+    // A session that has already ended ("closing": the desktop exited but programs it started are
+    // still running) is ignored by TerminateSession on systemd 255 — logind considers it stopped
+    // already. Signal its remaining processes directly: SIGTERM first, then SIGKILL.
+    for (const int sig : {SIGTERM, SIGKILL}) {
+        const QDBusMessage k = mgr.call(QStringLiteral("KillSession"), sessionId, QStringLiteral("all"), sig);
+        if (k.type() == QDBusMessage::ErrorMessage) {
+            if (!sessionProperties(sessionId))
+                return true;
+            if (error)
+                *error = k.errorMessage();
+            return false;
+        }
+        if (gone(sig == SIGTERM ? 4000 : 3000))
+            return true;
+    }
+    if (error)
+        *error = QStringLiteral("Some programs of session %1 did not stop").arg(sessionId);
+    return false;
 }
 
 // ------------------------------------------------------------------------------------------

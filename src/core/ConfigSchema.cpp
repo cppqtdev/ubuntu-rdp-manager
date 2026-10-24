@@ -3,6 +3,8 @@
 #include "SessionLimitPolicy.h"
 #include "Validators.h"
 
+#include <QRegularExpression>
+
 namespace urdm {
 
 QString configFileName(ConfigFile file)
@@ -232,6 +234,37 @@ QList<SettingDef> buildSettings()
     l << def(QStringLiteral("redirect.dynamicChannels"), X, QStringLiteral("Channels"), QStringLiteral("drdynvc"), T::Bool,
              QStringLiteral("Redirection"), QStringLiteral("Dynamic virtual channels"),
              QStringLiteral("Needed by some extensions (e.g. display resize)."), QStringLiteral("true"));
+    l << def(QStringLiteral("redirect.allChannels"), X, QStringLiteral("Globals"), QStringLiteral("allow_channels"),
+             T::Bool, QStringLiteral("Redirection"), QStringLiteral("Allow virtual channels"),
+             QStringLiteral("Master switch for every channel in [Channels]. false blocks clipboard, drives, audio, ..."),
+             QStringLiteral("true"));
+    l << def(QStringLiteral("redirect.remoteApps"), X, QStringLiteral("Channels"), QStringLiteral("rail"), T::Bool,
+             QStringLiteral("Redirection"), QStringLiteral("RemoteApp (RAIL) channel"),
+             QStringLiteral("Lets clients show single remote programs in their own windows (/app)."), QStringLiteral("true"));
+    l << def(QStringLiteral("redirect.driveMount"), S, QStringLiteral("Chansrv"), QStringLiteral("EnableFuseMount"),
+             T::Bool, QStringLiteral("Redirection"), QStringLiteral("Mount redirected drives"),
+             QStringLiteral("When false, drive redirection is negotiated but no FUSE folder is mounted."),
+             QStringLiteral("true"));
+    {
+        auto d = def(QStringLiteral("redirect.driveFolder"), S, QStringLiteral("Chansrv"), QStringLiteral("FuseMountName"),
+                     T::String, QStringLiteral("Redirection"), QStringLiteral("Drive folder name"),
+                     QStringLiteral("Relative to the home directory, or absolute; %u = uid, %U = user name."),
+                     QStringLiteral("xrdp_client"));
+        l << d;
+    }
+    l << def(QStringLiteral("display.multiMonitor"), X, QStringLiteral("Globals"), QStringLiteral("allow_multimon"),
+             T::Bool, QStringLiteral("Display"), QStringLiteral("Multiple monitors"),
+             QStringLiteral("Allow clients to span the session over several monitors (/multimon)."), QStringLiteral("true"));
+    l << def(QStringLiteral("display.bulkCompression"), X, QStringLiteral("Globals"), QStringLiteral("bulk_compression"),
+             T::Bool, QStringLiteral("Display"), QStringLiteral("Bulk compression"),
+             QStringLiteral("Compress RDP data. Saves bandwidth at a small CPU cost."), QStringLiteral("true"));
+    {
+        auto d = def(QStringLiteral("display.fastPath"), X, QStringLiteral("Globals"), QStringLiteral("use_fastpath"),
+                     T::Enum, QStringLiteral("Display"), QStringLiteral("Fast-path"),
+                     QStringLiteral("Lower-overhead encoding for input and screen updates."), QStringLiteral("both"));
+        d.choices = {QStringLiteral("both"), QStringLiteral("input"), QStringLiteral("output"), QStringLiteral("none")};
+        l << d;
+    }
     {
         auto d = def(QStringLiteral("display.maxBpp"), X, QStringLiteral("Globals"), QStringLiteral("max_bpp"), T::Enum,
                      QStringLiteral("Display"), QStringLiteral("Maximum colour depth"),
@@ -311,10 +344,26 @@ static void applyPlainLanguage(QList<SettingDef> &list)
          {"Allow everything", "Block everything", "Block text", "Block files", "Block pictures"}},
         {"redirect.drives", "Access to the user's own disks and USB sticks",
          "Shows the connecting computer's drives inside the remote desktop (in a folder called thinclient_drives). Printers cannot be shared.", {}},
-        {"redirect.audio", "Play sound on the user's computer",
-         "Sends sound from the remote desktop to the person's speakers.", {}},
-        {"redirect.dynamicChannels", "Extra features (screen resizing and more)",
-         "Needed for things like resizing the remote window. Keep On.", {}},
+        {"redirect.audio", "Sound and microphone",
+         "Sends sound from the remote desktop to the person's speakers, and their microphone into the remote desktop. "
+         "Needs the \"Sound\" part from Setup.", {}},
+        {"redirect.dynamicChannels", "Extra features (microphone, screen resizing and more)",
+         "Needed for the microphone, for resizing the remote window and for other modern features. Keep On.", {}},
+        {"redirect.allChannels", "Allow sharing between computers at all",
+         "Main switch for everything in this section. When Off, clipboard, disks, sound and microphone are all blocked. Keep On.", {}},
+        {"redirect.remoteApps", "Single programs in their own window (RemoteApp)",
+         "Lets the connecting computer show one remote program in a normal window instead of the whole desktop.", {}},
+        {"redirect.driveMount", "Show the user's disks as a folder",
+         "When On, the connecting computer's disks and USB sticks appear as a folder in the remote desktop.", {}},
+        {"redirect.driveFolder", "Name of the folder with the user's disks",
+         "Where the connecting computer's disks appear, inside each person's home folder. Keep \"thinclient_drives\".", {}},
+        {"display.multiMonitor", "Use several monitors",
+         "Lets people with two or more monitors spread the remote desktop over all of them.", {}},
+        {"display.bulkCompression", "Compress data",
+         "Uses less network bandwidth. Keep On.", {}},
+        {"display.fastPath", "Faster mouse, keyboard and screen updates",
+         "Keep \"Both\". Only change it if an old remote desktop program has problems.",
+         {"Both (recommended)", "Only for mouse and keyboard", "Only for the screen", "Off"}},
         {"display.maxBpp", "Colour quality",
          "Lower quality uses less network bandwidth. The screen size is chosen on the connecting computer.",
          {"Very low (256 colours)", "Low", "Medium", "High", "Best (recommended)"}},
@@ -414,6 +463,11 @@ std::optional<QString> ConfigSchema::validate(const SettingDef &d, const QString
         return std::nullopt;
     }
     case T::String:
+        if (d.id == QLatin1String("redirect.driveFolder")) {
+            static const QRegularExpression re(QStringLiteral("^[A-Za-z0-9_./%-]+$"));
+            if (!re.match(value).hasMatch() || value.split(QLatin1Char('/')).contains(QStringLiteral("..")))
+                return QStringLiteral("%1 may contain only letters, digits and _ . / % - (no \"..\")").arg(d.label);
+        }
         return std::nullopt;
     case T::Path:
         if (d.id == QLatin1String("desktop.defaultWindowManager") && value == QLatin1String("startwm.sh"))

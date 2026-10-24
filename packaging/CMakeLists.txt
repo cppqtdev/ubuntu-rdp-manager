@@ -9,6 +9,10 @@ if(URDM_BUILD_HELPER)
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/urdm-helper.service DESTINATION /usr/lib/systemd/system)
     install(FILES polkit/com.urdm.policy DESTINATION /usr/share/polkit-1/actions)
     install(PROGRAMS startwm/startwm-xfce.sh DESTINATION "${URDM_DATA_DIR}/startwm")
+    # Inside remote desktops: a "Disconnect" menu entry and (once per user) desktop icon.
+    install(PROGRAMS remote/urdm-disconnect.sh remote/urdm-remote-shortcut.sh DESTINATION "${URDM_DATA_DIR}/remote")
+    install(FILES desktop/urdm-disconnect.desktop DESTINATION /usr/share/applications)
+    install(FILES desktop/urdm-remote-shortcut.desktop DESTINATION /etc/xdg/autostart)
 endif()
 
 if(URDM_BUILD_GUI)

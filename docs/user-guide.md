@@ -19,6 +19,12 @@ Turn on, Turn off, Restart and *Start automatically when this computer starts*. 
 state how many desktops are running: on xrdp 0.9 those desktops survive but become **orphaned**
 (not reconnectable). Details show systemd state, PID, uptime, versions and listening addresses.
 
+## Disconnecting from the remote side
+Inside a remote desktop, the Xfce **Applications** menu has **Disconnect** (System), and a
+*Disconnect* icon is put on the remote desktop once. It closes the connection but keeps the desktop
+open; connecting again continues where you left off. To end the desktop, use **Log Out** instead.
+In a FreeRDP full-screen window, `Ctrl+Alt+Enter` leaves full screen so the window can be closed.
+
 ## Who's Connected
 One row per RDP session: id, user, state, display, start time, client address, memory, CPU.
 
@@ -40,6 +46,12 @@ and can turn that into a limit. Warning thresholds are adjustable. Apply, then r
 when nobody is logged in.
 
 ## Settings
+**What the connecting computer can use** lists every option a remote desktop program can switch on
+(sound, microphone, disks and USB sticks, copy and paste, smart cards, several monitors, resizing,
+RemoteApp, printers, USB devices, camera, faster graphics, NLA, gateway) with *Allowed*, *Off*,
+*Part missing* or *Not supported by this server*. *Turn on* marks the needed settings; press
+**Save**. *Sound tips* explains choppy or delayed sound.
+
 Searchable settings grouped into Network, Security, Sharing between computers, Picture quality
 and Activity log detail, each with a plain explanation (technical name in small print); edited
 values are highlighted and validated before **Save**. Also: security certificate (view, create, use your own), what people see when they connect, and

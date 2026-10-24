@@ -70,7 +70,7 @@ PageScaffold {
     function confirmCleanup() {
         page.confirm.ask(qsTr("Close desktops that were left open?"),
             qsTr("Desktops to close: %1. Any unsaved work in them will be lost.").arg(page.sessions.staleCount),
-            qsTr("Only stuck desktops and desktops nobody has used for more than %1 hours are closed. People who are connected are not affected.").arg(page.sessions.staleHours),
+            qsTr("Only stuck desktops, leftovers of desktops that already ended, and desktops nobody has used for more than %1 hours are closed. People who are connected are not affected.").arg(page.sessions.staleHours),
             qsTr("Close them"), true, () => page.sessions.terminateStaleSessions())
     }
 
@@ -287,16 +287,26 @@ PageScaffold {
                                 "", qsTr("Disconnect"), false, () => page.sessions.disconnectSession(rowItem.sessionId))
                         }
                         ToolButton {
+                            readonly property bool leftovers: rowItem.sessionState === "Closing"
                             icon.source: Theme.icon("trash")
                             icon.width: 16; icon.height: 16
-                            icon.color: Theme.danger
-                            enabled: page.canAct && rowItem.sessionState !== "Closing"
-                            Accessible.name: qsTr("Terminate session %1").arg(rowItem.sessionId)
-                            ToolTip.visible: hovered; ToolTip.text: qsTr("Close their desktop – closes all their programs")
-                            onClicked: page.confirm.ask(qsTr("Close %1's desktop?").arg(rowItem.userName),
-                                qsTr("All of %1's programs on this remote desktop will be closed. Anything they have not saved will be lost.").arg(rowItem.userName),
-                                qsTr("Only this remote desktop is affected. People working directly at this computer are never touched."),
-                                qsTr("Close desktop"), true, () => page.sessions.terminateSession(rowItem.sessionId))
+                            // Red only when it can actually be pressed; a disabled button must look disabled.
+                            icon.color: enabled ? Theme.danger : Theme.textTertiary
+                            enabled: page.canAct
+                            Accessible.name: leftovers ? qsTr("Clean up session %1").arg(rowItem.sessionId)
+                                                       : qsTr("Terminate session %1").arg(rowItem.sessionId)
+                            ToolTip.visible: hovered
+                            ToolTip.text: leftovers ? qsTr("Clean up – stops the programs this ended desktop left running")
+                                                    : qsTr("Close their desktop – closes all their programs")
+                            onClicked: leftovers
+                                ? page.confirm.ask(qsTr("Clean up %1's ended desktop?").arg(rowItem.userName),
+                                    qsTr("This desktop has already ended. %1 program(s) it started are still running in the background and will be stopped.").arg(Math.max(1, rowItem.processCount)),
+                                    qsTr("Only this ended remote desktop is affected. People working directly at this computer are never touched."),
+                                    qsTr("Clean up"), false, () => page.sessions.terminateSession(rowItem.sessionId))
+                                : page.confirm.ask(qsTr("Close %1's desktop?").arg(rowItem.userName),
+                                    qsTr("All of %1's programs on this remote desktop will be closed. Anything they have not saved will be lost.").arg(rowItem.userName),
+                                    qsTr("Only this remote desktop is affected. People working directly at this computer are never touched."),
+                                    qsTr("Close desktop"), true, () => page.sessions.terminateSession(rowItem.sessionId))
                         }
                     }
                 }

@@ -39,9 +39,16 @@ restore can itself be undone). The latest 30 backups per file are kept.
 | Redirection | Clipboard channel | `xrdp.ini [Channels] cliprdr` | |
 | Redirection | Block copy session→client / client→session | `RestrictOutboundClipboard`, `RestrictInboundClipboard` | `none`, `all` or `text,file,image` |
 | Redirection | Drive redirection | `rdpdr` | appears as `~/thinclient_drives` (FUSE) |
-| Redirection | Audio output | `rdpsnd` | needs `pipewire-module-xrdp` (recommended by Ubuntu's xrdp) |
-| Redirection | Dynamic virtual channels | `drdynvc` | |
+| Redirection | Audio output and microphone | `rdpsnd` | needs `pipewire-module-xrdp` (Setup component "Sound and microphone"); microphone (audin) also needs `drdynvc` |
+| Redirection | Dynamic virtual channels | `drdynvc` | microphone, dynamic resolution |
+| Redirection | All channels (master switch) | `xrdp.ini [Globals] allow_channels` | `false` blocks every channel |
+| Redirection | RemoteApp | `[Channels] rail` | basic support in 0.9 |
+| Redirection | Mount redirected drives | `sesman.ini [Chansrv] EnableFuseMount` | |
+| Redirection | Drive folder name | `[Chansrv] FuseMountName` | relative to `$HOME` or absolute; `%u`/`%U` allowed; `..` refused |
 | Display | Maximum colour depth | `max_bpp` | resolution is chosen by the client |
+| Display | Multiple monitors | `allow_multimon` | |
+| Display | Bulk compression | `bulk_compression` | |
+| Display | Fast-path | `use_fastpath` | both, input, output, none |
 | Logging | xrdp / sesman log level | `[Logging] LogLevel` | CORE, ERROR, WARNING, INFO, DEBUG |
 | Desktop | Desktop for RDP sessions | `sesman.ini DefaultWindowManager` | set via *Desktop* card only |
 | Desktop | Per-user `~/startwm.sh` | `EnableUserWindowManager` | |
@@ -50,6 +57,24 @@ restore can itself be undone). The latest 30 backups per file are kept.
 
 Not offered because xrdp 0.9 does not support them: printer redirection, per-session
 resolution limits (the client decides), NLA/CredSSP.
+
+## Client options (Settings → "What the connecting computer can use")
+
+The card maps every option a client such as FreeRDP can request to the settings above. Options xrdp
+0.9 cannot provide stay listed as **Not supported by this server** so people know to switch them off
+on the client rather than wondering why nothing happens:
+
+| Client option | xrdp 0.9.24 |
+|---|---|
+| `/sound`, `/microphone` | supported (rdpsnd / audin via `pipewire-module-xrdp`); PCM, Opus when the client offers it |
+| `/drive`, `/drive:hotplug`, `/smartcard` | supported (rdpdr) |
+| `/clipboard`, `/multimon`, `/dynamic-resolution`, `/app` | supported |
+| `/printer` | not supported |
+| `/usb` (urbdrc) | not supported — USB sticks work through drive redirection |
+| `/dvc:rdpecam` (camera) | not supported |
+| `/gfx`, `/gfx:AVC444` | not supported — clients fall back to the classic bitmap path automatically |
+| `/sec:nla` | not supported — clients must use `/sec:nla:off` (TLS remains) |
+| `/g` (RD Gateway) | not supported — use a VPN |
 
 ## TLS certificates
 

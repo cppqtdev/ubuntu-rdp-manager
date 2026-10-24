@@ -8,7 +8,7 @@ QtObject {
         case "Connected": return qsTr("Connected")
         case "Disconnected": return qsTr("Away – still open")
         case "Orphaned": return qsTr("Stuck – can't reconnect")
-        case "Closing": return qsTr("Closing…")
+        case "Closing": return qsTr("Ended – leftovers")
         default: return s
         }
     }
@@ -17,6 +17,7 @@ QtObject {
         case "Connected": return qsTr("This person is using the remote desktop right now.")
         case "Disconnected": return qsTr("The window was closed or the network dropped. Their programs are still open and they can connect again.")
         case "Orphaned": return qsTr("Remote Desktop was restarted while this desktop was open. It still uses memory but cannot be reached any more. You can close it.")
+        case "Closing": return qsTr("This desktop has already ended (signed out or crashed), but some of its programs are still running in the background. Press the bin icon to clean them up.")
         default: return ""
         }
     }

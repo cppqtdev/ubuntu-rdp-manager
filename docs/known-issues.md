@@ -10,6 +10,8 @@
 | 4 | Ubuntu's `xrdp-sesman` `ExecStop` exits 1 on every stop → unit shows `failed` until next start | Displayed as a harmless stop, not as a fault |
 | 5 | With `dbus-user-session`, a second concurrent Xfce desktop of the same user exits immediately | Packaged start script gives each desktop a private session bus (verified fix). Trade-off: those desktops don't share the systemd user bus. Removing the package reverts to stock behaviour. |
 | 5b | A user signed in locally on a Wayland desktop (Ubuntu GNOME) who also connects remotely got a **black screen**: the remote session shares `/run/user/<uid>`, GTK found the local `wayland-0` socket and Xfce's desktop/settings daemons crashed (found on real hardware, RK3328 client, 2026-10-24) | Packaged start script forces X11 (`GDK_BACKEND=x11`, `QT_QPA_PLATFORM=xcb`, `CLUTTER_BACKEND=x11`, unset `WAYLAND_DISPLAY`) — fixed in 1.0.2 |
+| 5c | Same user signed in locally and remotely: both desktops share one PipeWire instance. `pipewire-module-xrdp` makes `xrdp-sink` the default for the whole user (local sound goes to the remote client) and forces a global quantum; with the graph clocked by local hardware at 48 kHz and xrdp at 44.1 kHz, remote sound is choppy. Found on real hardware 2026-10-24 | Health Check warning (same account) mentions sound; Settings → *Sound tips*. Use a separate account for remote work |
+| 5d | FreeRDP `/sound:sys:alsa,latency:700` buffers ~0.7 s on the client: sound lags and keeps playing after the source stops | Client-side; *Sound tips* recommend `/sound:sys:pulse` or `latency:150` |
 | 6 | Qt 6.8 cannot change light/dark at runtime on Linux | Theme applied at start-up via the gtk3 platform theme; changing it offers a restart |
 | 7 | Root is required to map sessions to client IPs | Loaded on demand through the helper (one authorization) |
 
@@ -20,7 +22,9 @@
 * "Disconnected since" is known only for disconnections observed while the application was running.
 * Log-derived counters (failed logins, start failures, …) depend on journal retention and on
   message formats verified for xrdp 0.9.24; other versions may need new patterns.
-* Printer redirection and NLA are not available in xrdp 0.9.
+* Printer, USB device (urbdrc) and camera (rdpecam) redirection, the GFX pipeline (RemoteFX
+  progressive / H.264), RD Gateway and NLA are not available in xrdp 0.9. They are listed as
+  "Not supported by this server" on the Settings page.
 * The diagnostics check for keys under `/etc/ssl/private` infers readability from `ssl-cert`
   group membership because an unprivileged process cannot inspect that directory.
 * `KillDisconnected`/`DisconnectedTimeLimit` and `IdleTimeLimit` are written and validated, but

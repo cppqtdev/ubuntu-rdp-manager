@@ -204,6 +204,140 @@ PageScaffold {
         }
     }
 
+    // ---- client features -----------------------------------------------------------------
+    // Every option a remote desktop program (FreeRDP, Windows, thin clients) can ask for, with what
+    // this server does about it. Options xrdp 0.9 cannot provide are listed, not hidden, so people
+    // know to switch them off on the connecting computer.
+    Card {
+        id: featureCard
+        Layout.fillWidth: true
+        title: qsTr("What the connecting computer can use")
+        subtitle: qsTr("Options people can switch on in their remote desktop program, and whether this computer allows them. \"Turn on\" marks the needed settings below; then press Save.")
+        iconName: "link"
+        visible: page.search === "" || "sound microphone audio disk usb drive printer camera webcam clipboard monitor smart card scanner nla gateway remoteapp codec h.264 rfx".indexOf(page.search) >= 0
+
+        property int revision: 0
+        Connections {
+            target: page.config
+            function onLoaded() { featureCard.revision++ }
+            function onPendingChanged() { featureCard.revision++ }
+        }
+        function on(id) {
+            featureCard.revision
+            const v = page.config.isModified(id) ? page.config.pendingValue(id) : page.config.value(id)
+            return ["1", "true", "yes"].indexOf(String(v).trim().toLowerCase()) >= 0
+        }
+        function componentInstalled(id) {
+            const c = App.installer.components
+            for (let i = 0; i < c.length; ++i)
+                if (c[i].id === id)
+                    return c[i].installed
+            return false
+        }
+
+        readonly property var features: [
+            { name: qsTr("Sound"), option: "/sound", ids: ["redirect.allChannels", "redirect.audio"], needs: "audio",
+              note: qsTr("Plays on the person's speakers. If sound stutters or lags, see \"Sound tips\" below.") },
+            { name: qsTr("Microphone"), option: "/microphone", ids: ["redirect.allChannels", "redirect.audio", "redirect.dynamicChannels"], needs: "audio",
+              note: qsTr("The person's microphone works in the remote desktop (calls, recordings).") },
+            { name: qsTr("Disks and USB sticks"), option: "/drive, /drive:hotplug", ids: ["redirect.allChannels", "redirect.drives", "redirect.driveMount"],
+              note: qsTr("Appear in the folder \"%1\" in the person's home folder.").arg(page.config.value("redirect.driveFolder")) },
+            { name: qsTr("Copy and paste"), option: "/clipboard", ids: ["redirect.allChannels", "redirect.clipboard"],
+              note: qsTr("Text, pictures and files.") },
+            { name: qsTr("Smart card readers"), option: "/smartcard", ids: ["redirect.allChannels", "redirect.drives"],
+              note: qsTr("Uses the same sharing channel as disks.") },
+            { name: qsTr("Several monitors"), option: "/multimon", ids: ["display.multiMonitor"], note: "" },
+            { name: qsTr("Resize with the window"), option: "/dynamic-resolution", ids: ["redirect.allChannels", "redirect.dynamicChannels"], note: "" },
+            { name: qsTr("Single programs (RemoteApp)"), option: "/app", ids: ["redirect.allChannels", "redirect.remoteApps"],
+              note: qsTr("Basic support only.") },
+            { name: qsTr("Printers"), option: "/printer", unsupported: true,
+              note: qsTr("This server cannot share printers. Save as PDF into the shared disk folder and print it on the person's computer.") },
+            { name: qsTr("USB devices (scanners and others)"), option: "/usb", unsupported: true,
+              note: qsTr("This server cannot pass whole USB devices through. USB sticks still work through \"Disks and USB sticks\".") },
+            { name: qsTr("Camera / webcam"), option: "/dvc:rdpecam", unsupported: true,
+              note: qsTr("This server cannot use the person's camera.") },
+            { name: qsTr("Faster graphics (RemoteFX / H.264)"), option: "/gfx, /gfx:AVC444", unsupported: true, harmless: true,
+              note: qsTr("Not available here; the remote desktop program automatically uses the standard picture mode. Nothing to change.") },
+            { name: qsTr("Network Level Authentication (NLA)"), option: "/sec:nla", unsupported: true,
+              note: qsTr("Not available here. Switch NLA off in the remote desktop program (/sec:nla:off), otherwise it cannot connect. The connection is still encrypted.") },
+            { name: qsTr("Remote Desktop Gateway"), option: "/g", unsupported: true,
+              note: qsTr("Not available here. Connect directly inside your network, or through a VPN.") }
+        ]
+
+        Repeater {
+            model: featureCard.features
+            delegate: RowLayout {
+                id: featureRow
+                required property var modelData
+                readonly property bool supported: !modelData.unsupported
+                readonly property bool settingsOn: supported && modelData.ids.every(id => featureCard.on(id))
+                readonly property bool partMissing: supported && modelData.needs !== undefined && !featureCard.componentInstalled(modelData.needs)
+                Layout.fillWidth: true
+                spacing: Theme.m
+
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    spacing: 0
+                    Label {
+                        text: featureRow.modelData.name
+                        font.weight: Font.DemiBold
+                        color: Theme.textPrimary
+                        Layout.fillWidth: true
+                        wrapMode: Text.Wrap
+                    }
+                    Label {
+                        text: featureRow.partMissing
+                              ? qsTr("Needs the \"Sound and microphone\" part — install it on the Setup page.")
+                              : featureRow.modelData.note
+                        visible: text !== ""
+                        color: featureRow.partMissing ? Theme.warning : Theme.textSecondary
+                        Layout.fillWidth: true
+                        wrapMode: Text.Wrap
+                    }
+                    Label {
+                        text: qsTr("Option on the connecting computer: %1").arg(featureRow.modelData.option)
+                        color: Theme.textTertiary
+                        font.pixelSize: Theme.caption
+                        Layout.fillWidth: true
+                        wrapMode: Text.Wrap
+                    }
+                }
+                StatusPill {
+                    status: !featureRow.supported ? (featureRow.modelData.harmless ? "neutral" : "warn")
+                          : featureRow.partMissing ? "warn" : featureRow.settingsOn ? "pass" : "neutral"
+                    text: !featureRow.supported ? qsTr("Not supported by this server")
+                        : featureRow.partMissing ? qsTr("Part missing") : featureRow.settingsOn ? qsTr("Allowed") : qsTr("Off")
+                }
+                Button {
+                    text: qsTr("Turn on")
+                    visible: featureRow.supported && !featureRow.settingsOn
+                    enabled: page.canAct
+                    onClicked: featureRow.modelData.ids.forEach(id => { if (!featureCard.on(id)) page.config.setPending(id, "true") })
+                }
+                Button {
+                    text: qsTr("Setup")
+                    visible: featureRow.partMissing
+                    onClicked: App.currentPage = 1
+                }
+            }
+        }
+
+        DisclosureCard {
+            Layout.fillWidth: true
+            title: qsTr("Sound tips (if music stutters, lags or keeps playing)")
+            iconName: "info"
+            Label {
+                Layout.fillWidth: true
+                wrapMode: Text.Wrap
+                color: Theme.textSecondary
+                text: qsTr("• Use a separate account for remote work. If the same person is also signed in at this computer, both desktops share one sound system: sound from the local desktop is sent to the remote screen and timing gets out of step, which makes music choppy.\n"
+                           + "• On the connecting computer, use a small sound buffer. For FreeRDP: /sound:sys:pulse (or /sound:sys:alsa,latency:150). A large value such as latency:700 adds almost a second of delay, and sound keeps playing for a while after the program is closed.\n"
+                           + "• Remote sound needs a steady network. Use a cable instead of Wi-Fi where possible.\n"
+                           + "• After changing anything, sign out of the remote desktop and connect again.")
+            }
+        }
+    }
+
     // ---- generic settings --------------------------------------------------------------
     Repeater {
         model: ["Network", "Security", "Redirection", "Display", "Logging"]

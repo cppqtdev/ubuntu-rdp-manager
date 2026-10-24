@@ -45,6 +45,22 @@ private slots:
         QVERIFY(check("redirect.clipboardOutbound", "text,bogus"));
     }
 
+    void clientFeatureSettings()
+    {
+        // Settings that map to options a connecting client can request.
+        for (const char *id : {"redirect.allChannels", "redirect.remoteApps", "redirect.driveMount", "redirect.driveFolder",
+                               "display.multiMonitor", "display.bulkCompression", "display.fastPath"})
+            QVERIFY2(ConfigSchema::find(QString::fromLatin1(id)), id);
+        QCOMPARE(ConfigSchema::find(QStringLiteral("redirect.driveMount"))->section, QStringLiteral("Chansrv"));
+        QVERIFY(!check("display.fastPath", "both"));
+        QVERIFY(check("display.fastPath", "sometimes"));
+        QVERIFY(!check("redirect.driveFolder", "thinclient_drives"));
+        QVERIFY(!check("redirect.driveFolder", "/run/user/%u/thinclient_drives"));
+        QVERIFY(check("redirect.driveFolder", "../../etc"));
+        QVERIFY(check("redirect.driveFolder", "drives with space"));
+        QVERIFY(!check("redirect.remoteApps", "false"));
+    }
+
     void secureDefaultsAreEnforced()
     {
         QVERIFY(check("security.layer", "rdp"));
