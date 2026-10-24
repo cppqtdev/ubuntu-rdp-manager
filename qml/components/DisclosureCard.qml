@@ -33,18 +33,15 @@ Pane {
             implicitHeight: 72
             padding: Theme.l
             flat: true
-            hoverEnabled: true
+            hoverEnabled: false
             Accessible.name: root.title + (root.subtitle !== "" ? ". " + root.subtitle : "")
             Accessible.description: root.expanded ? qsTr("Expanded") : qsTr("Collapsed")
             onClicked: root.expanded = !root.expanded
             background: Rectangle {
-                color: header.hovered ? Theme.hoverBg : "transparent"
+                color: "transparent"
                 radius: Theme.radiusS
                 border.color: header.visualFocus ? Theme.accent : "transparent"
                 border.width: header.visualFocus ? 1 : 0
-                Behavior on color {
-                    ColorAnimation { duration: 100 }
-                }
             }
 
             contentItem: RowLayout {

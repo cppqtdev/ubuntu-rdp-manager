@@ -99,6 +99,8 @@ PageScaffold {
         // header row
         RowLayout {
             Layout.fillWidth: true
+            Layout.leftMargin: Theme.s
+            Layout.rightMargin: Theme.s
             spacing: Theme.s
             visible: page.sessions.totalCount > 0
             component Head: Label {
@@ -181,6 +183,8 @@ PageScaffold {
                 required property bool stale
 
                 Layout.fillWidth: true
+                Layout.leftMargin: Theme.xs
+                Layout.rightMargin: Theme.xs
                 implicitHeight: 44
                 radius: Theme.radiusS
                 color: hover.hovered ? Theme.hoverBg : "transparent"
